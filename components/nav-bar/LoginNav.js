@@ -1,16 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import Image from "next/image";
+import logo from "../../public/assets/Logo.png";
 
 const LoginNav = () => {
   return (
     <Nav>
       <LogoDiv>
-        <Link href="/"> Logo </Link>
+        <Link href="/" passHref>
+          <Image src={logo} alt="logo image" />
+        </Link>
       </LogoDiv>
-      <Button>
-        <Link href="/login">Register </Link>
-      </Button>
+      <Link href="/login" passHref>
+        <Button>Register</Button>
+      </Link>
     </Nav>
   );
 };
@@ -22,7 +26,6 @@ const Nav = styled.nav`
   height: 50px;
   width: 100%;
   background: #fff;
-  border: 1px solid red;
 `;
 
 const LogoDiv = styled.div`
@@ -40,15 +43,13 @@ const Button = styled.button`
   align-items: center;
   border: none;
   margin-right: 50px;
-
-  a {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 15px;
-    line-height: 22px;
-    color: #ebebeb;
-    text-decoration: none;
-  }
+  // typography
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 22px;
+  color: #ebebeb;
+  text-decoration: none;
 `;
 export default LoginNav;

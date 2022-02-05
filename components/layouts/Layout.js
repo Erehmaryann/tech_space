@@ -14,10 +14,8 @@ const Container = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: red;
-  border: 1px solid blue;
   width: 100%;
-  height: 90vh;
-  //   height: 100vh;
+  height: 91vh;
+  // border: 1px solid purple;
 `;
 export default Layout;
