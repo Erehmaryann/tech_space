@@ -1,0 +1,70 @@
+import styled from "styled-components";
+import device from "../utils/Devices";
+export const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+`;
+export const Main = styled.main`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  @media ${device.tablet} {
+    width: 90%;
+  } ;
+`;
+export const ImageDiv = styled.div`
+  width: 50%;
+  @media ${device.mobile} {
+    display: none;
+  } ;
+`;
+
+export const Form = styled.div`
+  width: 35.4%;
+  display: flex;
+  flex-direction: column;
+  h4 {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 45px;
+    color: #3f3d55;
+    width: 100%;
+  }
+
+  @media ${device.tablet} {
+    width: 40%;
+  }
+  @media ${device.mobile} {
+    width: 100%;
+  } ;
+`;
+
+export const SmallDiv = styled.div`
+  display: flex;
+  width: 100%;
+  height: 15px;
+  align-items: center;
+  justify-content: space-between;
+  div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    color: #c4c4c4;
+
+    :nth-child(2) {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+`;

@@ -16,6 +16,5 @@ const Container = styled.main`
   align-items: center;
   width: 100%;
   height: 91vh;
-  // border: 1px solid purple;
 `;
 export default Layout;

@@ -12,7 +12,7 @@ const LoginNav = () => {
           <Image src={logo} alt="logo image" />
         </Link>
       </LogoDiv>
-      <Link href="/login" passHref>
+      <Link href="/signup" passHref>
         <Button>Register</Button>
       </Link>
     </Nav>
@@ -20,17 +20,17 @@ const LoginNav = () => {
 };
 
 const Nav = styled.nav`
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 50px;
   width: 100%;
   background: #fff;
+  padding: 0 50px;
 `;
 
-const LogoDiv = styled.div`
-  margin-left: 50px;
-`;
+const LogoDiv = styled.div``;
 
 const Button = styled.button`
   width: 113px;
@@ -42,7 +42,6 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   border: none;
-  margin-right: 50px;
   // typography
   font-family: Poppins;
   font-style: normal;
