@@ -11,8 +11,11 @@ import {
   Main,
 } from "../components/styles/AuthStyles";
 import Link from "next/link";
+import Modal from "../components/modal/Modal";
+import { useState } from "react";
 
 const ForgotPassword = () => {
+  const [showModal, setShowModal] = useState(false);
   return (
     <>
       <Head>
@@ -34,15 +37,20 @@ const ForgotPassword = () => {
             </p>
             <LoginInputs type={`email`} placeholder={`Email address`} />
             <Link href={`/`} replace>
-              {/* <a>Already have an account ?</a> */}
               <a className="tech-space__forgot-password-small-text">
                 Already have an account?
               </a>
             </Link>
-            {/* <small>Already have an account?</small> */}
-            <LoginButtons text={`Submit`} />
+            <LoginButtons setShowModal={setShowModal} text={`Submit`} />
           </Form>
         </Main>
+        <Modal
+          onClose={() => setShowModal(false)}
+          show={showModal}
+          btnText={`ok`}
+        >
+          Check your email for password reset details
+        </Modal>
       </Container>
     </>
   );

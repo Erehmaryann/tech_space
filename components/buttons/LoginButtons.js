@@ -2,9 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { GoogleIcon } from "../Icons/Icon";
 
-const LoginButtons = ({ isGoogleSignIn, text }) => {
+const LoginButtons = ({ isGoogleSignIn, text, setShowModal }) => {
   return (
-    <Button isGoogleSignIn={isGoogleSignIn}>
+    <Button
+      onClick={() => {
+        setShowModal && setShowModal(true);
+      }}
+      isGoogleSignIn={isGoogleSignIn}
+    >
       {isGoogleSignIn && (
         <span>
           <GoogleIcon />
