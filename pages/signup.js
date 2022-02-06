@@ -10,6 +10,7 @@ import {
   SmallDiv,
   Main,
 } from "../components/styles/AuthStyles";
+import Link from "next/link";
 
 const SignUp = () => {
   return (
@@ -37,7 +38,9 @@ const SignUp = () => {
 
               <div>
                 <div>Keep me signed in</div>
-                <div>Forgot password?</div>
+                <Link href={`/`} replace>
+                  <a>Already have an account ?</a>
+                </Link>
               </div>
             </SmallDiv>
             <LoginButtons text={`Log in`} />

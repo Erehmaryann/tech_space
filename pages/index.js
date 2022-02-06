@@ -1,10 +1,8 @@
 import Head from "next/head";
 import Image from "next/image";
-import styled from "styled-components";
 import LoginButtons from "../components/buttons/LoginButtons";
 import DevImage from "../public/assets/Developer.png";
 import LoginInputs from "../components/inputs/LoginInputs";
-import device from "../components/utils/Devices";
 import {
   Container,
   Form,
@@ -12,6 +10,7 @@ import {
   SmallDiv,
   Main,
 } from "../components/styles/AuthStyles";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -36,9 +35,9 @@ export default function Home() {
 
               <div>
                 <div>Keep me signed in</div>
-                <div role="button" onClick={() => console.log(`them click me`)}>
-                  Forgot password?
-                </div>
+                <Link href={`/forgot-password`} replace>
+                  <a>Forgot password?</a>
+                </Link>
               </div>
             </SmallDiv>
             <LoginButtons text={`Log in`} />

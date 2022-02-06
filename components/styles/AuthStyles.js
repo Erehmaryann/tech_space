@@ -28,6 +28,14 @@ export const Form = styled.div`
   width: 35.4%;
   display: flex;
   flex-direction: column;
+  p {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    color: #c4c4c4;
+  }
   h4 {
     font-family: Poppins;
     font-style: normal;
@@ -36,6 +44,20 @@ export const Form = styled.div`
     line-height: 45px;
     color: #3f3d55;
     width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .tech-space__forgot-password-small-text {
+    text-decoration: none;
+    display: flex;
+    align-self: flex-end;
+    margin-bottom: 50px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 15px;
+    color: #c4c4c4;
   }
 
   @media ${device.tablet} {
@@ -43,6 +65,7 @@ export const Form = styled.div`
   }
   @media ${device.mobile} {
     width: 100%;
+    align-self: flex-start;
   } ;
 `;
 
@@ -52,7 +75,10 @@ export const SmallDiv = styled.div`
   height: 15px;
   align-items: center;
   justify-content: space-between;
-  div {
+  margin-bottom: 40px;
+  div,
+  a {
+    text-decoration: none;
     display: flex;
     justify-content: space-between;
     width: 100%;
