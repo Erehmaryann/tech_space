@@ -36,7 +36,9 @@ export default function Home() {
 
               <div>
                 <div>Keep me signed in</div>
-                <div>Forgot password?</div>
+                <div role="button" onClick={() => console.log(`them click me`)}>
+                  Forgot password?
+                </div>
               </div>
             </SmallDiv>
             <LoginButtons text={`Log in`} />

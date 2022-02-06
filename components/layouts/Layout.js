@@ -1,10 +1,10 @@
-import Nav from "../nav-bar/LoginNav";
 import styled from "styled-components";
+import Header from "../nav-bar/Header";
 
 const Layout = ({ children }) => {
   return (
     <>
-      <Nav />
+      <Header />
       <Container>{children}</Container>
     </>
   );

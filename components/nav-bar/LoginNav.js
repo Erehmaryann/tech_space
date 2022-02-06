@@ -3,17 +3,22 @@ import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../public/assets/Logo.png";
+import device from "../utils/Devices";
 
 const LoginNav = () => {
   return (
     <Nav>
       <LogoDiv>
-        <Link href="/" passHref>
-          <Image src={logo} alt="logo image" />
+        <Link href="/">
+          <a>
+            <Image src={logo} alt="logo image" />
+          </a>
         </Link>
       </LogoDiv>
-      <Link href="/signup" passHref>
-        <Button>Register</Button>
+      <Link href="/signup">
+        <a>
+          <Button>Register</Button>
+        </a>
       </Link>
     </Nav>
   );
@@ -28,6 +33,12 @@ const Nav = styled.nav`
   width: 100%;
   background: #fff;
   padding: 0 50px;
+  a {
+    text-decoration: none;
+  }
+  @media ${device.mobile} {
+    padding: 0 20px;
+  } ;
 `;
 
 const LogoDiv = styled.div``;
