@@ -30,7 +30,7 @@ export default function Home() {
           <Form>
             <h4>Login to your account</h4>
             <LoginInputs type={`email`} placeholder={`Email address`} />
-            <LoginInputs type={`password`} placeholder={`Email address`} />
+            <LoginInputs type={`password`} placeholder={`Password`} />
             <SmallDiv>
               <input type="checkbox" name="" id="" />
 

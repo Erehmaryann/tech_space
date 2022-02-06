@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import LoginButtons from "../components/buttons/LoginButtons";
 import LoginInputs from "../components/inputs/LoginInputs";
-import DevImage from "../public/assets/Developer.png";
+import signup from "../public/assets/signup.png";
 import {
   Container,
   Form,
@@ -22,13 +22,16 @@ const SignUp = () => {
       <Container>
         <Main>
           <ImageDiv>
-            <Image src={DevImage} alt="hero Image" />
+            <Image src={signup} alt="hero Image" />
           </ImageDiv>
 
           <Form>
-            <h4>Login to your account</h4>
+            <h4>Sign up to Tech Space</h4>
+            <LoginInputs type={`text`} placeholder={`Full Name`} />
+            <LoginInputs type={`text`} placeholder={`Username`} />
             <LoginInputs type={`email`} placeholder={`Email address`} />
-            <LoginInputs type={`password`} placeholder={`Email address`} />
+            <LoginInputs type={`password`} placeholder={`Password`} />
+            <LoginInputs type={`password`} placeholder={`Confirm password`} />
             <SmallDiv>
               <input type="checkbox" name="" id="" />
 
