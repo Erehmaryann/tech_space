@@ -3,8 +3,12 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../../public/assets/Logo.png";
 import device from "../utils/Devices";
+import { useRouter } from "next/router";
 
 const LoginNav = () => {
+  const router = useRouter();
+  const path = router.pathname;
+
   return (
     <Nav>
       <LogoDiv>
@@ -14,21 +18,29 @@ const LoginNav = () => {
           </a>
         </Link>
       </LogoDiv>
-      <Link href="/signup">
-        <a>
-          <Button>Register</Button>
-        </a>
-      </Link>
+
+      {path === "/" && (
+        <Link href="/signup">
+          <a>
+            <Button>Register</Button>
+          </a>
+        </Link>
+      )}
     </Nav>
   );
 };
 
 const Nav = styled.nav`
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  // width: 100%;
+  z-index: 1000;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
+  height: 100px;
   width: 100%;
   background: #fff;
   padding: 0 50px;

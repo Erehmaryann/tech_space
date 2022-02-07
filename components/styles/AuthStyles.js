@@ -28,6 +28,9 @@ export const Form = styled.div`
   width: 35.4%;
   display: flex;
   flex-direction: column;
+  a {
+    text-decoration: none;
+  }
   p {
     font-family: Poppins;
     font-style: normal;
