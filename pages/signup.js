@@ -3,6 +3,8 @@ import Image from "next/image";
 import LoginButtons from "../components/buttons/LoginButtons";
 import LoginInputs from "../components/inputs/LoginInputs";
 import signup from "../public/assets/signup.png";
+import { useRouter } from "next/router";
+
 import {
   Container,
   Form,
@@ -13,6 +15,8 @@ import {
 import Link from "next/link";
 
 const SignUp = () => {
+  const Router = useRouter();
+
   return (
     <>
       <Head>
@@ -43,8 +47,16 @@ const SignUp = () => {
                 </Link>
               </div>
             </SmallDiv>
-            <LoginButtons text={`Log in`} />
-            <LoginButtons isGoogleSignIn text={`Log in with Google`} />
+            <Link href={`/`} replace>
+              <a>
+                <LoginButtons text={`Sign up`} />
+              </a>
+            </Link>
+            <Link href={`/`} replace>
+              <a>
+                <LoginButtons isGoogleSignIn text={`Sign up with Google`} />
+              </a>
+            </Link>
           </Form>
         </Main>
       </Container>

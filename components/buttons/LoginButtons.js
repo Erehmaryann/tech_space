@@ -1,6 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 import { GoogleIcon } from "../Icons/Icon";
+import { Button } from "./ButtonStyle";
 
 const LoginButtons = ({ isGoogleSignIn, text, setShowModal }) => {
   return (
@@ -20,24 +20,5 @@ const LoginButtons = ({ isGoogleSignIn, text, setShowModal }) => {
     </Button>
   );
 };
-
-const Button = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 41px;
-  background: #ffffff;
-  margin: 10px 0;
-  /* Blue shadow */
-  box-shadow: 0px 5px 8px rgba(64, 157, 224, 0.15);
-  background: ${(props) => (props.isGoogleSignIn ? "#fff" : "#409DE0")};
-  color: ${(props) => (props.isGoogleSignIn ? "#109FEF" : "#fff")};
-  border: none;
-
-  span {
-    margin-right: 10px;
-  }
-`;
 
 export default LoginButtons;
