@@ -13,8 +13,7 @@ import {
 } from "./NavStyles";
 import logo from "../../public/assets/Logo.png";
 import { SearchIcon, NotiIcon } from "../Icons/Icon";
-// import Image from "next/image";
-// import ProfileImg from "../../public/assets/";
+import ProfileImg from "../../public/assets/svg/profilepix.svg";
 
 const MainNav = () => {
   return (
@@ -35,7 +34,9 @@ const MainNav = () => {
       </SearchDiv>
       <NotificationDiv>
         <NotiIcon />
-        <ImageDiv />
+        <ImageDiv>
+          <Image src={ProfileImg} alt="profile-img" />
+        </ImageDiv>
       </NotificationDiv>
     </Nav>
   );

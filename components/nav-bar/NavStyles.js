@@ -82,10 +82,9 @@ export const SearchIconDiv = styled.div`
 
 export const NotificationDiv = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  width: 20%;
-  border: 1px solid blue;
+  width: 10%;
 `;
 
 export const ImageDiv = styled.div`
