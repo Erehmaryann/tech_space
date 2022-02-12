@@ -5,7 +5,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header />
-      <Container>{children}</Container>
+      <Container className="tech-space__padding-top">{children}</Container>
     </>
   );
 };
@@ -16,5 +16,6 @@ const Container = styled.main`
   align-items: center;
   width: 100%;
   height: 91vh;
+  padding-top: 30px;
 `;
 export default Layout;

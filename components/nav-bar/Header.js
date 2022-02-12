@@ -1,8 +1,21 @@
+import { useRouter } from "next/router";
 import LoginNav from "./LoginNav";
+import MainNav from "./MainNav";
+
 const Header = () => {
+  const router = useRouter();
+  const path = router.pathname;
+
   return (
     <>
-      <LoginNav />
+      {path === "/" ||
+      path === "/login" ||
+      path === "/signup" ||
+      path === "/forgot-password" ? (
+        <LoginNav />
+      ) : (
+        <MainNav />
+      )}
     </>
   );
 };
