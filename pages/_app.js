@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../components/layouts/Layout";
 import Preloader from "../components/common/preloader/preloader";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = React.useState(false);
@@ -10,7 +11,7 @@ function MyApp({ Component, pageProps }) {
     // setLoading(true);
   }, []);
   return (
-    <>
+    <div style={{ margin: 0 }}>
       {loading ? (
         <>
           <Layout>
@@ -20,7 +21,7 @@ function MyApp({ Component, pageProps }) {
       ) : (
         <Preloader />
       )}
-    </>
+    </div>
   );
 }
 

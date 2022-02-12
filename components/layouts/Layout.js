@@ -3,10 +3,10 @@ import Header from "../nav-bar/Header";
 
 const Layout = ({ children }) => {
   return (
-    <>
+    <div>
       <Header />
-      <Container className="tech-space__padding-top">{children}</Container>
-    </>
+      <Container>{children}</Container>
+    </div>
   );
 };
 
@@ -16,10 +16,13 @@ const Layout = ({ children }) => {
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  // height: 100vh;
-  // padding-top: 30px;
+  min-height: 100vh;
+  padding-top: 10px;
+  background: white;
+  // background: #e5e5e5;
+  padding-top: 80px;
 `;
 export default Layout;
