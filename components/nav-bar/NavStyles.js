@@ -11,7 +11,7 @@ export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  height: 100px;
   width: 100%;
   background: #fff;
   padding: 0 50px;
@@ -25,7 +25,6 @@ export const Nav = styled.nav`
 
 export const LogoDiv = styled.div`
   width: 10%;
-  border: 1px solid red;
 `;
 
 export const Button = styled.button`
@@ -53,7 +52,8 @@ export const SearchDiv = styled.div`
   box-sizing: border-box;
   position: relative;
   display: flex;
-  border: 1px solid blue;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const NavInput = styled.input`
@@ -65,11 +65,29 @@ export const NavInput = styled.input`
   border-radius: 10px;
 
   ::placeholder {
-    color: red;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: #374956;
+    padding-left: 40px;
   }
 `;
-export const SearchIconDiv = styled.span`
+export const SearchIconDiv = styled.div`
   position: absolute;
-  bottom: 50px;
+
+  //   bottom: 10px;
   left: 10px;
+`;
+
+export const NotificationDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 10%;
+`;
+
+export const ImageDiv = styled.div`
+  width: 48.45px;
+  height: 51px;
 `;
