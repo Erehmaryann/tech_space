@@ -8,9 +8,13 @@ import {
   NavInput,
   SearchDiv,
   SearchIconDiv,
+  NotificationDiv,
+  ImageDiv,
 } from "./NavStyles";
 import logo from "../../public/assets/Logo.png";
-import { SearchIcon } from "../Icons/Icon";
+import { SearchIcon, NotiIcon } from "../Icons/Icon";
+// import Image from "next/image";
+// import ProfileImg from "../../public/assets/";
 
 const MainNav = () => {
   return (
@@ -26,11 +30,13 @@ const MainNav = () => {
       <SearchDiv>
         <SearchIconDiv>
           <SearchIcon />
-          {/* <div>test</div> */}
         </SearchIconDiv>
         <NavInput type="text" placeholder="Search" />
       </SearchDiv>
-      <div>test</div>
+      <NotificationDiv>
+        <NotiIcon />
+        <ImageDiv />
+      </NotificationDiv>
     </Nav>
   );
 };
