@@ -17,8 +17,6 @@ const Login = () => {
       <h1>empty</h1>
       {/* <Head>
         <title>Tech Space | Log in</title>
-        <meta name="description" content="Tech Space Programming " />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
         <Main>

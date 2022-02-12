@@ -20,8 +20,6 @@ const ForgotPassword = () => {
     <>
       <Head>
         <title>Tech Space | Forgot Password</title>
-        <meta name="description" content="Tech Space Programming " />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
         <Main>
