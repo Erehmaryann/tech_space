@@ -10,12 +10,16 @@ const Layout = ({ children }) => {
   );
 };
 
-const Container = styled.main`
+// const LayoutContainer = styled.main`
+//   position: relative;
+// `;
+
+const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 91vh;
-  padding-top: 30px;
+  // height: 100vh;
+  // padding-top: 30px;
 `;
 export default Layout;
