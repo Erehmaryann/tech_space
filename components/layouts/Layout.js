@@ -5,16 +5,21 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header />
-      <Container>{children}</Container>
+      <Container className="tech-space__padding-top">{children}</Container>
     </>
   );
 };
 
-const Container = styled.main`
+// const LayoutContainer = styled.main`
+//   position: relative;
+// `;
+
+const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 91vh;
+  // height: 100vh;
+  // padding-top: 30px;
 `;
 export default Layout;

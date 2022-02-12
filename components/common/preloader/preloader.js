@@ -1,17 +1,23 @@
-/* eslint-disable @next/next/no-img-element */
 import React from "react";
-import Logo from '../../../public/assets/Logo.png';
-// import logo from "/assets/Logo.png";
-
+import Logo from "../../../public/assets/Logo.png";
+import Image from "next/image";
+import styled from "styled-components";
 
 const Loading = () => {
   return (
-    <div className="vh-100 d-flex align-items-center justify-content-center">
-      <span className="fallback__preolader--logo-wrapper">
-        <img className="fallback__preolader--logo" src={Logo} alt="logo" />
+    <Loader>
+      <span>
+        <Image src={Logo} alt="logo" />
       </span>
-    </div>
+    </Loader>
   );
 };
+
+const Loader = styled.div`
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export default Loading;
