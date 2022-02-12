@@ -11,7 +11,7 @@ export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
+  height: 80px;
   width: 100%;
   background: #fff;
   padding: 0 50px;
@@ -23,7 +23,10 @@ export const Nav = styled.nav`
   } ;
 `;
 
-export const LogoDiv = styled.div``;
+export const LogoDiv = styled.div`
+  width: 10%;
+  border: 1px solid red;
+`;
 
 export const Button = styled.button`
   width: 113px;
@@ -43,4 +46,22 @@ export const Button = styled.button`
   line-height: 22px;
   color: #ebebeb;
   text-decoration: none;
+`;
+
+export const SearchDiv = styled.div`
+  width: 50%;
+  box-sizing: border-box;
+`;
+
+export const NavInput = styled.input`
+  width: 100%;
+  height: 37px;
+  padding: 0;
+  border: none;
+  background: #f7f7f7;
+  border-radius: 10px;
+
+  ::placeholder {
+    color: red;
+  }
 `;

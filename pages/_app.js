@@ -6,18 +6,20 @@ function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
-    setLoading(true);
+    setTimeout(() => setLoading(true), 2000);
+    // setLoading(true);
   }, []);
   return (
     <>
-      {!loading ? (
-        <Preloader />
+      {loading ? (
+        <>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </>
       ) : (
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      )
-      }
+        <Preloader />
+      )}
     </>
   );
 }
