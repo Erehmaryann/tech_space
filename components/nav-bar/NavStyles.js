@@ -2,7 +2,7 @@ import styled from "styled-components";
 import device from "../utils/Devices";
 
 export const Nav = styled.nav`
-  position: fixed;
+  position: sticky;
   top: 0px;
   left: 0px;
   // width: 100%;
@@ -51,6 +51,9 @@ export const Button = styled.button`
 export const SearchDiv = styled.div`
   width: 50%;
   box-sizing: border-box;
+  position: relative;
+  display: flex;
+  border: 1px solid blue;
 `;
 
 export const NavInput = styled.input`
@@ -64,4 +67,9 @@ export const NavInput = styled.input`
   ::placeholder {
     color: red;
   }
+`;
+export const SearchIconDiv = styled.span`
+  position: absolute;
+  bottom: 50px;
+  left: 10px;
 `;
