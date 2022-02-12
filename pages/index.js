@@ -40,8 +40,16 @@ export default function Home() {
                 </Link>
               </div>
             </SmallDiv>
-            <LoginButtons text={`Log in`} />
-            <LoginButtons isGoogleSignIn text={`Log in with Google`} />
+            <Link href={`/home`} replace>
+              <a>
+                <LoginButtons text={`Log in`} />
+              </a>
+            </Link>
+            <Link href={`/home`} replace>
+              <a>
+                <LoginButtons isGoogleSignIn text={`Log in with Google`} />
+              </a>
+            </Link>
           </Form>
         </Main>
       </Container>
