@@ -19,8 +19,6 @@ const SignUp = () => {
     <>
       <Head>
         <title>Tech Space | Register</title>
-        <meta name="description" content="Tech Space Programming " />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
         <Main>

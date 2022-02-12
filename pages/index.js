@@ -17,8 +17,6 @@ export default function Home() {
     <>
       <Head>
         <title>Tech Space | Log in</title>
-        <meta name="description" content="Tech Space Programming " />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
         <Main>
