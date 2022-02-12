@@ -3,7 +3,6 @@ import Image from "next/image";
 import LoginButtons from "../components/buttons/LoginButtons";
 import LoginInputs from "../components/inputs/LoginInputs";
 import signup from "../public/assets/signup.png";
-// import { useRouter } from "next/router";
 
 import {
   Container,
@@ -15,7 +14,6 @@ import {
 import Link from "next/link";
 
 const SignUp = () => {
-  // const Router = useRouter();
 
   return (
     <>
