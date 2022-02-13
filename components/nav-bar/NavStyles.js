@@ -2,7 +2,7 @@ import styled from "styled-components";
 import device from "../utils/Devices";
 
 export const Nav = styled.nav`
-  position: sticky;
+  position: fixed;
   top: 0px;
   left: 0px;
   // width: 100%;
@@ -11,7 +11,7 @@ export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
+  height: 80px;
   width: 100%;
   background: #fff;
   padding: 0 50px;
@@ -85,9 +85,11 @@ export const NotificationDiv = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 10%;
+  height: 51px;
 `;
 
 export const ImageDiv = styled.div`
   width: 48.45px;
   height: 51px;
+  cursor: pointer;
 `;
