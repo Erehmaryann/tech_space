@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import styled from "styled-components";
+import Link from "next/link";
 import Image from "next/image";
 const postsData = [
   {
@@ -62,7 +63,11 @@ const PostsData = () => {
             </PostsDataHeader>
             <PostBody className="post-body">
               <div>
-                <h6>{post.topicTitle}</h6>
+                <Link href="">
+                  <a>
+                    <h6>{post.topicTitle}</h6>
+                  </a>
+                </Link>
                 <p>{post.description}</p>
                 {post.postImage && (
                   <Image
@@ -150,6 +155,12 @@ const PostName = styled.div`
     font-size: 10px;
     line-height: 15px;
     color: #c4c4c4;
+    & span {
+      &::before {
+        content: "•";
+        padding-left: 4px;
+      }
+    }
   }
 `;
 
@@ -171,6 +182,9 @@ const PostBody = styled.div`
     font-size: 13px;
     line-height: 19px;
     color: #374956;
+    &:hover {
+      color: #0095f6;
+    }
   }
 
   p {
