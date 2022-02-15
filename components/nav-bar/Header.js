@@ -9,9 +9,9 @@ const Header = () => {
   return (
     <>
       {path === "/" ||
-      path === "/login" ||
-      path === "/signup" ||
-      path === "/forgot-password" ? (
+        path === "/login" ||
+        path === "/signup" ||
+        path === "/forgot-password" || path === "/create-new-password" ? (
         <LoginNav />
       ) : (
         <MainNav />
