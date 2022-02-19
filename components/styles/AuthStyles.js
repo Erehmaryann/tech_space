@@ -75,7 +75,7 @@ export const Form = styled.div`
 export const SmallDiv = styled.div`
   display: flex;
   width: 100%;
-  height: 15px;
+  /* height: 15px; */
   align-items: center;
   justify-content: space-between;
   margin-bottom: 40px;

@@ -11,6 +11,7 @@ const Header = () => {
       {path === "/" ||
         path === "/login" ||
         path === "/signup" ||
+        path === "/admin" ||
         path === "/forgot-password" || path === "/create-new-password" ? (
         <LoginNav />
       ) : (

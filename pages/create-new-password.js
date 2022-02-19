@@ -7,10 +7,8 @@ import {
     Container,
     Form,
     ImageDiv,
-    // SmallDiv,
     Main,
 } from "../components/styles/AuthStyles";
-import Link from "next/link";
 import Modal from "../components/modal/Modal";
 import { useState } from "react";
 

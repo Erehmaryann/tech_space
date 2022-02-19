@@ -7,7 +7,6 @@ import {
   Container,
   Form,
   ImageDiv,
-  // SmallDiv,
   Main,
 } from "../components/styles/AuthStyles";
 import Link from "next/link";

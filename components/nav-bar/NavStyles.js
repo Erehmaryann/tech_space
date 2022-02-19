@@ -90,6 +90,6 @@ export const NotificationDiv = styled.div`
 
 export const ImageDiv = styled.div`
   width: 48.45px;
-  height: 51px;
+  /* height: 51px; */
   cursor: pointer;
 `;
