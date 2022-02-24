@@ -20,14 +20,20 @@ const Container = styled.main`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 80vh;
+  /* height: 80vh; */
 
   p {
     cursor: pointer;
+    color: #00bcd4;
+    font-weight: bolder;
     :hover {
       color: blue;
       text-decoration: underline;
     }
+  }
+
+  h3 {
+    color: black;
   }
 `;
 export default NotFoundPage;
