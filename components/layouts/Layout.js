@@ -1,28 +1,27 @@
 import styled from "styled-components";
 import Header from "../nav-bar/Header";
+import SideBar from '../side-bar/side-bar';
 
 const Layout = ({ children }) => {
   return (
     <div>
       <Header />
-      <Container>{children}</Container>
-    </div>
+      <Container>
+        <SideBar />
+        {children}
+        <SideBar />
+      </Container>
+    </div >
   );
 };
 
-// const LayoutContainer = styled.main`
-//   position: relative;
-// `;
-
 const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 300px auto 300px;
   width: 100%;
   min-height: 100vh;
   padding-top: 10px;
-  background: white;
-  // background: #e5e5e5;
+  background: #e5e5e5;
   padding-top: 80px;
 `;
 export default Layout;

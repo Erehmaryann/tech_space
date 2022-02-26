@@ -2,6 +2,8 @@
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
+import Head from "next/head";
+
 const postsData = [
   {
     id: 1,
@@ -39,6 +41,9 @@ const postsData = [
 ];
 
 const PostsData = () => {
+  <Head>
+    <title>Tech Space | Home</title>
+  </Head>;
   return (
     <PostsDataContainer>
       {postsData.map((post) => (
@@ -102,8 +107,7 @@ const PostsData = () => {
 };
 
 const HomeItemContainer = styled.section`
-  width: 100%;
-  display: flex;
+  /* width: 50%; */
   margin: 30px 0;
   background: white;
   padding: 20px;
@@ -112,7 +116,7 @@ const HomeItemContainer = styled.section`
 `;
 
 const PostsDataContainer = styled.main`
-  width: 50%;
+  width: 100%;
   box-sizing: border-box;
   padding: 20px;
 
@@ -161,6 +165,9 @@ const PostName = styled.div`
         padding-left: 4px;
       }
     }
+  }
+  .save-icon {
+    cursor: pointer;
   }
 `;
 
