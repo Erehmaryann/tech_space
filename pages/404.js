@@ -20,6 +20,7 @@ const Container = styled.main`
   justify-content: center;
   align-items: center;
   width: 100%;
+  background: white;
   /* height: 80vh; */
 
   p {
