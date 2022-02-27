@@ -1,23 +1,37 @@
 import styled from "styled-components";
 import Header from "../nav-bar/Header";
-import SideBar from '../side-bar/side-bar';
+import SideBar from "../side-bar/side-bar";
+import { useRouter } from "next/router";
 
 const Layout = ({ children }) => {
+  const router = useRouter();
+  const path = router.pathname;
+  const sideNavDisplay =
+    path === "/" ||
+    path === "/login" ||
+    path === "/signup" ||
+    path === "/admin" ||
+    path === "/404" ||
+    path === "/forgot-password" ||
+    path === "/create-new-password";
   return (
     <div>
       <Header />
       <Container>
-        <SideBar />
+        {/* <SideBar /> */}
+        {!sideNavDisplay && <SideBar />}
         {children}
-        <SideBar />
+        {!sideNavDisplay && <SideBar />}
+        {/* <SideBar /> */}
       </Container>
-    </div >
+    </div>
   );
 };
 
 const Container = styled.div`
-  display: grid;
-  grid-template-columns: 300px auto 300px;
+  // display: grid;
+  // grid-template-columns: 300px auto 300px;
+  display: flex;
   width: 100%;
   min-height: 100vh;
   padding-top: 10px;
