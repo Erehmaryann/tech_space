@@ -21,7 +21,7 @@ const Navlink = ({ img, name, variant, href }) => {
                 >
                     <a style={{ display: "flex", alignItems: "center" }}>
                         <img src={img} alt={`${name}-img`} style={{ padding: "0.5rem", display: "inline-block" }} />
-                        <span style={{ paddingLeft: "0.5rem", display: "inline-block" }}>{name}</span>
+                        <span style={{ paddingLeft: "0.5rem", display: "inline-block", fontWeight: "bold" }}>{name}</span>
                     </a>
                 </Link>
             ) : (
@@ -54,6 +54,7 @@ const Div = styled.div`
     &.ps-4 {
         padding-left: 1.5rem;
         display: inline-block;
+        font-weight: bold;
     }
 `;
 
