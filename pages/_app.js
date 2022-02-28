@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../components/layouts/Layout";
 import Preloader from "../components/common/preloader/preloader";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTimeout(() => setLoading(true), 2000);
-    // setLoading(true);
   }, []);
   return (
     <div style={{ margin: 0 }}>

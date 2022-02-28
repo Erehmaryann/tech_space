@@ -18,7 +18,6 @@ const Layout = ({ children }) => {
     <div>
       <Header />
       <Container>
-        {/* <SideBar /> */}
         {!sideNavDisplay && <SideBar />}
         {children}
         {!sideNavDisplay && <SideBar />}
@@ -29,11 +28,11 @@ const Layout = ({ children }) => {
 };
 
 const Container = styled.div`
-  // display: grid;
-  // grid-template-columns: 300px auto 300px;
+  /* display: grid; */
+  /* grid-template-columns: 300px auto 300px; */
   display: flex;
   width: 100%;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   padding-top: 10px;
   background: #e5e5e5;
   padding-top: 80px;

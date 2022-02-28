@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import styled from "styled-components";
+// import styled from "styled-components";
 import {
   Nav,
   LogoDiv,
-  Button,
+  // Button,
   NavInput,
   SearchDiv,
   SearchIconDiv,
@@ -12,7 +12,8 @@ import {
   ImageDiv,
 } from "./NavStyles";
 import logo from "../../public/assets/Logo.png";
-import { SearchIcon, NotiIcon } from "../Icons/Icon";
+import { SearchIcon, } from "../Icons/Icon";
+import NotIcon from '../notIcon/notIcon';
 import ProfileImg from "../../public/assets/svg/profilepix.svg";
 
 const MainNav = () => {
@@ -33,7 +34,7 @@ const MainNav = () => {
         <NavInput type="text" placeholder="Search" />
       </SearchDiv>
       <NotificationDiv>
-        <NotiIcon />
+        <NotIcon />
         <ImageDiv>
           <Image src={ProfileImg} alt="profile-img" />
         </ImageDiv>
