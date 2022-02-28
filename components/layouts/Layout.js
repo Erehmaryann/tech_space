@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Header from "../nav-bar/Header";
 import SideBar from "../side-bar/side-bar";
+import SideProfile from '../sideprofile/sideProfile';
 import { useRouter } from "next/router";
 
 const Layout = ({ children }) => {
@@ -20,7 +21,7 @@ const Layout = ({ children }) => {
       <Container>
         {!sideNavDisplay && <SideBar />}
         {children}
-        {/* {!sideNavDisplay && <SideBar />} */}
+        {!sideNavDisplay && <SideProfile />}
       </Container>
     </div>
   );
@@ -31,7 +32,7 @@ const Container = styled.div`
   /* grid-template-columns: 300px auto 300px; */
   display: flex;
   width: 100%;
-  /* min-height: 100vh; */
+  min-height: 100vh;
   padding-top: 10px;
   background: #e5e5e5;
   padding-top: 80px;

@@ -44,6 +44,7 @@ const ForgotPassword = () => {
         <Modal
           onClose={() => setShowModal(false)}
           show={showModal}
+          btn
           btnText={`ok`}
         >
           Check your email for password reset details

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import {
   StyledModal,
@@ -9,12 +9,20 @@ import {
   StyledModalTitle,
 } from "./ModalStyles";
 
-const Modal = ({ show, onClose, children, title, btnText, headerText }) => {
+const Modal = ({ show, onClose, children, title, btnText, headerText, btn }) => {
   const [isBrowser, setIsBrowser] = useState(false);
 
   useEffect(() => {
     setIsBrowser(true);
   }, []);
+
+  // useEffect(() => {
+  //   document.addEventListener('click', (e) => {
+  //     if (e.target.id === 'modal-root') {
+  //       setShowModal(false);
+  //     }
+  //   });
+  // }, []);
 
   const handleCloseClick = (e) => {
     e.preventDefault();
@@ -28,10 +36,12 @@ const Modal = ({ show, onClose, children, title, btnText, headerText }) => {
 
         {title && <StyledModalTitle>{title}</StyledModalTitle>}
         <StyledModalBody>
-          <p>{children}</p>
-          <a href="#" onClick={handleCloseClick}>
-            <StyledModalButton>{btnText}</StyledModalButton>
-          </a>
+          <div>{children}</div>
+          {btn && (
+            <a href="#" onClick={handleCloseClick}>
+              <StyledModalButton>{btnText}</StyledModalButton>
+            </a>
+          )}
         </StyledModalBody>
       </StyledModal>
     </StyledModalOverlay>

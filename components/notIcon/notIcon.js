@@ -3,12 +3,12 @@ import Image from "next/image";
 import styled from "styled-components";
 
 const NotIcon = () => {
-    return (
-        <Div className="cart-icon">
-            <Image src="/assets/svg/notIcon.svg" width={28} height={28} alt="notiIcon" className="shopping-icon" />
-            <span className="item-count">1</span>
-        </Div>
-    );
+	return (
+		<Div className="cart-icon">
+			<Image src="/assets/svg/notIcon.svg" width={28} height={28} alt="notiIcon" />
+			<span className="item-count">1</span>
+		</Div>
+	);
 };
 
 

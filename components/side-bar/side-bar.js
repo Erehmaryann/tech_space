@@ -1,4 +1,4 @@
-import Navlink from "../Navlink/navlink";
+import Navlink from "../navlink/navlink";
 import styled from "styled-components";
 import Link from "next/link";
 import { useState } from "react";
@@ -61,8 +61,8 @@ const SideBar = () => {
 
 const Div = styled.div`
   /* position: fixed; */
-  padding: 3rem 1rem;
-  width: 200px;
+  padding: 3rem 1.5rem;
+  /* width: 200px; */
   .active {
     border: 1px solid #409de0;
     padding: 2px 5px;
@@ -85,7 +85,7 @@ const Div = styled.div`
 
     li {
       list-style-type: none;
-      padding: 5px 0px 5px 10px; 
+      padding: 8px 0px 8px 15px; 
     }
   }
 `;

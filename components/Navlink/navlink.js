@@ -39,9 +39,9 @@ const ParentDiv = styled.div`
     flex-direction: column;
     justify-content: space-between;
 
-    .active {
+    /* .active {
         color: "#409DE0";
-    }
+    } */
 `;
 
 const Div = styled.div`

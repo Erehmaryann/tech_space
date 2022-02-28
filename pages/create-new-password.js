@@ -38,6 +38,7 @@ const ForgotPassword = () => {
                 <Modal
                     onClose={() => setShowModal(false)}
                     show={showModal}
+                    btn
                     btnText={`ok`}
                 >
                     Your password has been reset successfully!
