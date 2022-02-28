@@ -20,8 +20,7 @@ const Layout = ({ children }) => {
       <Container>
         {!sideNavDisplay && <SideBar />}
         {children}
-        {!sideNavDisplay && <SideBar />}
-        {/* <SideBar /> */}
+        {/* {!sideNavDisplay && <SideBar />} */}
       </Container>
     </div>
   );
