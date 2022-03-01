@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import {
   StyledModal,
@@ -7,13 +7,42 @@ import {
   StyledModalHeader,
   StyledModalOverlay,
   StyledModalTitle,
+  StyledModalWrapper,
 } from "./ModalStyles";
 
-const Modal = ({ show, onClose, children, title, btnText, headerText, btn }) => {
+const Modal = ({
+  show,
+  onClose,
+  children,
+  title,
+  btnText,
+  headerText,
+  btn,
+}) => {
   const [isBrowser, setIsBrowser] = useState(false);
+
+  // create ref for the StyledModalWrapper component
+  const modalWrapperRef = React.useRef();
+
+  // check if the user has clickedinside or outside the modal
+  const backDropHandler = (e) => {
+    if (!modalWrapperRef?.current?.contains(e.target)) {
+      onClose();
+    }
+  };
 
   useEffect(() => {
     setIsBrowser(true);
+
+    // attach event listener to the whole windor with our handler
+    window.addEventListener("click", backDropHandler);
+
+    // remove the event listener when the modal is closed
+    return () => window.removeEventListener("click", backDropHandler);
+  }, []);
+
+  React.useLayoutEffect(() => {
+    console.log("here");
   }, []);
 
   // useEffect(() => {
@@ -31,19 +60,21 @@ const Modal = ({ show, onClose, children, title, btnText, headerText, btn }) => 
 
   const modalContent = show ? (
     <StyledModalOverlay>
-      <StyledModal>
-        {headerText && <StyledModalHeader>{headerText}</StyledModalHeader>}
+      <StyledModalWrapper ref={modalWrapperRef}>
+        <StyledModal>
+          {headerText && <StyledModalHeader>{headerText}</StyledModalHeader>}
 
-        {title && <StyledModalTitle>{title}</StyledModalTitle>}
-        <StyledModalBody>
-          <div>{children}</div>
-          {btn && (
-            <a href="#" onClick={handleCloseClick}>
-              <StyledModalButton>{btnText}</StyledModalButton>
-            </a>
-          )}
-        </StyledModalBody>
-      </StyledModal>
+          {title && <StyledModalTitle>{title}</StyledModalTitle>}
+          <StyledModalBody>
+            <div>{children}</div>
+            {btn && (
+              <a href="#" onClick={handleCloseClick}>
+                <StyledModalButton>{btnText}</StyledModalButton>
+              </a>
+            )}
+          </StyledModalBody>
+        </StyledModal>
+      </StyledModalWrapper>
     </StyledModalOverlay>
   ) : null;
 

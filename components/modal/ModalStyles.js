@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import devices from "../utils/Devices";
 
+export const StyledModalWrapper = styled.div`
+  width: 500px;
+  height: 600px;
+`;
+
 export const StyledModalBody = styled.div`
   /* padding-top: 60px; */
   display: flex;
@@ -52,7 +57,7 @@ export const StyledModal = styled.div`
   width: 464px;
   height: 430px;
   border-radius: 15px;
-  padding:  15px;
+  padding: 15px;
 
   div {
     /* width: 199px; */
