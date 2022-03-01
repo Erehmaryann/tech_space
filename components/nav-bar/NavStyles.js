@@ -37,8 +37,7 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   border: none;
-  // typography
-  font-family: Poppins;
+  // typograph
   font-style: normal;
   font-weight: bold;
   font-size: 15px;
@@ -65,7 +64,6 @@ export const NavInput = styled.input`
   border-radius: 10px;
 
   ::placeholder {
-    font-family: Poppins;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;

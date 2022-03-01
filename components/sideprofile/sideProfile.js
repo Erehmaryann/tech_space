@@ -52,7 +52,6 @@ const Button = styled.button`
   border-radius: 10px;
   border: none;
   // typography
-  font-family: Poppins;
   font-style: normal;
   font-weight: bold;
   font-size: 15px;

@@ -146,7 +146,6 @@ const PostName = styled.div`
   align-items: center;
 
   .post-name-title {
-    font-family: Poppins;
     font-style: normal;
     font-weight: 500;
     font-size: 15px;

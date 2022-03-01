@@ -1,6 +1,9 @@
 import Select from 'react-select';
-import { useState } from 'react';
+import Image from 'next/image';
+import { useState, useRef } from 'react';
 import styled from "styled-components";
+
+import Modal from "../modal/Modal";
 
 const options = [
     { value: 'programming', label: 'Programming' },
@@ -32,7 +35,6 @@ const SelectStyle = {
     }),
     option: (provided, state) => ({
         ...provided,
-        fontFamily: "Poppins",
         display: "flex",
         justifyContent: "center",
         textALign: "center",
@@ -47,7 +49,6 @@ const SelectStyle = {
     singleValue: (provided) => ({
         ...provided,
         color: "#9E9E9E",
-        fontFamily: "Poppins",
         fontStyle: "normal",
         fontWeight: "300",
         fontSize: "12px",
@@ -56,7 +57,6 @@ const SelectStyle = {
     placeholder: (provided) => ({
         ...provided,
         color: "#9E9E9E",
-        fontFamily: "Poppins",
         fontStyle: "normal",
         fontWeight: "300",
         fontSize: "12px",
@@ -70,11 +70,33 @@ const SelectStyle = {
 
 const CateInputs = () => {
     const [selectedOption, setSelectedOption] = useState(null);
+
+    const [showModal, setShowModal] = useState(false);
+
+    const showModalHandler = () => {
+        setShowModal(true);
+    };
+
+    // Create a reference to the hidden file input element
+    const hiddenFileInput = useRef(null);
+
+    // Programatically click the hidden file input element
+    // when the Button component is clicked
+    const handleClick = event => {
+        hiddenFileInput.current.click();
+    };
+    // Call a function (passed as a prop from the parent component)
+    // to handle the user-selected file 
+    const handleChange = event => {
+        const fileUploaded = event.target.files[0];
+        props.handleFile(fileUploaded);
+    };
+
     return (
         <CateDiv>
             <div className="input-group">
                 <label htmlFor="topic-title">Title</label>
-                <input type="text" name="topic-title" id="topic-title" placeholder="Topic title" />
+                <input type="text" name="topic-title" id="topic-title" className="input" placeholder="Topic title" />
             </div>
             <div className="input-group">
                 <label htmlFor="category">Add category</label>
@@ -92,9 +114,51 @@ const CateInputs = () => {
                 <label htmlFor="topic-description">Description</label>
                 <textarea name="topic-description" id="topic-description" placeholder="Enter a description" />
             </div>
+            <div className="input-group">
+                <label htmlFor="file-upload" className="file-upload">
+                    <Image src="/assets/svg/photoIcon.svg" width={20} height={20} alt="Photo-Icon" onClick={handleClick} />
+                    <input type="file" name="file-upload" id="file-upload" ref={hiddenFileInput} onChange={handleChange} />
+                </label>
+            </div>
+            <ButDiv>
+                <Button onClick={() => showModalHandler()}>Create</Button>
+            </ButDiv>
+            <Modal
+                onClose={() => setShowModal(false)}
+                show={showModal}
+                btnText={`ok`}
+                btn
+            // title={`New Topic`}
+            >
+                Your topic is pending approval
+            </Modal>
         </CateDiv>
     );
 };
+
+const ButDiv = styled.div`
+    display: flex;
+    justify-content: flex-end;
+`;
+
+const Button = styled.button`
+  background: #409de0;
+  cursor: pointer;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  border: none;
+  // typography
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  color: #ebebeb;
+  text-decoration: none;
+`;
 
 const CateDiv = styled.div`
     /* display: flex; */
@@ -104,16 +168,14 @@ const CateDiv = styled.div`
         padding: 5px;
         label {
             text-align: justify !important;
-            font-family: Poppins;
         }
-        input {
+        .input {
             margin-top: 5px;
             display: block;
             width: 100%;
             background: #f5f5f5;
             border: none;
             border-radius: 10px;
-            font-family: Poppins;
             outline: none;
             margin-bottom: 10px;
             padding: 12px
@@ -125,10 +187,12 @@ const CateDiv = styled.div`
             background: #f5f5f5;
             border: none;
             border-radius: 10px;
-            font-family: Poppins;
             outline: none;
             margin-bottom: 10px;
             padding: 15px
+        }
+        input[type="file"] {
+            display: none;
         }
     }
 `;

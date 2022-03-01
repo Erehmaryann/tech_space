@@ -32,7 +32,6 @@ export const Form = styled.div`
     text-decoration: none;
   }
   p {
-    font-family: Poppins;
     font-style: normal;
     font-weight: 500;
     font-size: 15px;
@@ -40,7 +39,6 @@ export const Form = styled.div`
     color: #c4c4c4;
   }
   h4 {
-    font-family: Poppins;
     font-style: normal;
     font-weight: bold;
     font-size: 30px;
@@ -55,7 +53,6 @@ export const Form = styled.div`
     display: flex;
     align-self: flex-end;
     margin-bottom: 50px;
-    font-family: Poppins;
     font-style: normal;
     font-weight: 600;
     font-size: 10px;
@@ -85,7 +82,6 @@ export const SmallDiv = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
-    font-family: Poppins;
     font-style: normal;
     font-weight: normal;
     font-size: 10px;
