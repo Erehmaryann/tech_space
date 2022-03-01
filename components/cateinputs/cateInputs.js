@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react/jsx-key */
 import Select from 'react-select';
 import Image from 'next/image';
-import { useState, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import styled from "styled-components";
 
 import Modal from "../modal/Modal";
@@ -70,8 +72,22 @@ const SelectStyle = {
 
 const CateInputs = () => {
     const [selectedOption, setSelectedOption] = useState(null);
-
     const [showModal, setShowModal] = useState(false);
+    const [images, setImages] = useState([]);
+    const [imageURLs, setImageURLs] = useState([]);
+
+    useEffect(() => {
+        if (images.length < 1) return;
+        const newImageUrls = [];
+        images.forEach(image => {
+            newImageUrls.push(URL.createObjectURL(image));
+        });
+        setImageURLs(newImageUrls);
+    }, [images]);
+
+    const onImageChange = (e) => {
+        setImages([...e.target.files]);
+    };
 
     const showModalHandler = () => {
         setShowModal(true);
@@ -102,7 +118,8 @@ const CateInputs = () => {
             <div className="input-group">
                 <label htmlFor="file-upload" className="file-upload">
                     <Image src="/assets/svg/photoIcon.svg" width={20} height={20} alt="Photo-Icon" />
-                    <input type="file" name="file-upload" id="file-upload" />
+                    <input type="file" name="file-upload" id="file-upload" accept="image/*" onChange={onImageChange} />
+                    {imageURLs.map(imageSrc => (<Image className="rev" width={40} height={20} src={imageSrc} alt="topic-image" />))}
                 </label>
             </div>
             <ButDiv>
