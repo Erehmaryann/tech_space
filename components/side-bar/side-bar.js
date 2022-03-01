@@ -60,9 +60,12 @@ const SideBar = () => {
 };
 
 const Div = styled.div`
-  /* position: fixed; */
   padding: 3rem 1.5rem;
-  /* width: 200px; */
+  height: 50vh;
+  width: 25%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 5rem;
   .active {
     border: 1px solid #409de0;
     padding: 2px 5px;

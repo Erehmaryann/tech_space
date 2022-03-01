@@ -34,10 +34,15 @@ const SideProfile = () => {
 };
 
 const Div = styled.div`
-  padding: 3rem;
+  padding: 3rem 1rem;
   display: flex;
   align-items: center;
   flex-direction: column;
+  height: 50vh;
+  width: 25%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 5rem;
 `;
 
 const Button = styled.button`

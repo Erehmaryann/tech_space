@@ -107,7 +107,6 @@ const PostsData = () => {
 };
 
 const HomeItemContainer = styled.section`
-  /* width: 50%; */
   margin: 16px 0;
   background: white;
   padding: 20px;
@@ -117,6 +116,7 @@ const HomeItemContainer = styled.section`
 
 const PostsDataContainer = styled.main`
   width: 100%;
+  height: 100%;
   box-sizing: border-box;
   padding: 20px;
 

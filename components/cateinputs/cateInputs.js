@@ -77,21 +77,6 @@ const CateInputs = () => {
         setShowModal(true);
     };
 
-    // Create a reference to the hidden file input element
-    const hiddenFileInput = useRef(null);
-
-    // Programatically click the hidden file input element
-    // when the Button component is clicked
-    const handleClick = event => {
-        hiddenFileInput.current.click();
-    };
-    // Call a function (passed as a prop from the parent component)
-    // to handle the user-selected file 
-    const handleChange = event => {
-        const fileUploaded = event.target.files[0];
-        props.handleFile(fileUploaded);
-    };
-
     return (
         <CateDiv>
             <div className="input-group">
@@ -116,8 +101,8 @@ const CateInputs = () => {
             </div>
             <div className="input-group">
                 <label htmlFor="file-upload" className="file-upload">
-                    <Image src="/assets/svg/photoIcon.svg" width={20} height={20} alt="Photo-Icon" onClick={handleClick} />
-                    <input type="file" name="file-upload" id="file-upload" ref={hiddenFileInput} onChange={handleChange} />
+                    <Image src="/assets/svg/photoIcon.svg" width={20} height={20} alt="Photo-Icon" />
+                    <input type="file" name="file-upload" id="file-upload" />
                 </label>
             </div>
             <ButDiv>
@@ -128,7 +113,6 @@ const CateInputs = () => {
                 show={showModal}
                 btnText={`ok`}
                 btn
-            // title={`New Topic`}
             >
                 Your topic is pending approval
             </Modal>
