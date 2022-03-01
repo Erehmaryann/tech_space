@@ -70,7 +70,7 @@ export const StyledModal = styled.div`
   }
 `;
 export const StyledModalOverlay = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -80,4 +80,5 @@ export const StyledModalOverlay = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 2000;
+  overflow-y: hidden !important;
 `;

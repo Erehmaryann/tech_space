@@ -13,14 +13,12 @@ const SideProfile = () => {
     };
 
     return (
-        <>
-            <Div>
-                <Button onClick={() => showModalHandler()}>
-                    Add a new topic
-                    &nbsp;
-                    <Image src="/assets/svg/plusIcon.svg" width={10} height={10} alt="addIcon" />
-                </Button>
-            </Div>
+        <Div>
+            <Button onClick={() => showModalHandler()}>
+                Add a new topic
+                &nbsp;
+                <Image src="/assets/svg/plusIcon.svg" width={10} height={10} alt="addIcon" />
+            </Button>
             <Modal
                 // onClose={() => setShowModal(false)}
                 show={showModal}
@@ -29,7 +27,10 @@ const SideProfile = () => {
             >
                 <CateInputs />
             </Modal>
-        </>
+            <div className="profile-pix">
+                <Image src="/assets/svg/sideDp.svg" width={158} height={150} alt="side-profile-pix" />
+            </div>
+        </Div>
     );
 };
 
@@ -43,6 +44,10 @@ const Div = styled.div`
   position: -webkit-sticky;
   position: sticky;
   top: 5rem;
+
+  .profile-pix {
+      margin-top: 3rem;
+  }
 `;
 
 const Button = styled.button`
