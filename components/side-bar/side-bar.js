@@ -12,12 +12,12 @@ const data = [
   {
     img: "/assets/svg/saved.svg",
     name: "Saved",
-    link: "/home",
+    link: "/saved-topics",
   },
   {
     img: "/assets/svg/trending.svg",
     name: "Trending",
-    link: "/home",
+    link: "/trending",
   },
 ];
 
@@ -29,20 +29,23 @@ const SideBar = () => {
   };
   return (
     <Div>
-      {data.map((item, index) => (
-        <div
-          key={index}
-          className={active === item.name ? "active" : ""}
-          onClick={() => handleClick(item.name)}
-        >
-          <Navlink
-            href={item.link}
-            variant="link"
-            img={item.img}
-            name={item.name}
-          />
-        </div>
-      ))}
+      <div className="link-con">
+        {data.map((item, index) => (
+          <div
+            key={index}
+            className={active === item.name ? "active" : ""}
+            onClick={() => handleClick(item.name)}
+          >
+            <Navlink
+              href={item.link}
+              variant="link"
+              img={item.img}
+              name={item.name}
+            />
+          </div>
+        ))}
+      </div>
+
       <div className="cate-con">
         <h3>CATEGORIES</h3>
         {/* <ul> */}
@@ -66,11 +69,16 @@ const Div = styled.div`
   position: -webkit-sticky;
   position: sticky;
   top: 5rem;
-  .active {
-    border: 1px solid #409de0;
-    padding: 2px 5px;
-    border-radius: 5px;
 
+  .link-con {
+    padding-bottom: 3rem;
+  }
+
+  .active {
+    /* border: 1px solid #409de0; */
+    /* padding: 2px 5px; */
+    border-radius: 5px;
+    
     /* path {
       fill: #409de0
     } */
@@ -80,7 +88,8 @@ const Div = styled.div`
     }
   }
   .cate-con {
-    padding-top: 80px;
+    padding-top: 3rem;
+    border-top: 3px solid #F6F6F6;
 
     h3 {
       color: #409de0;

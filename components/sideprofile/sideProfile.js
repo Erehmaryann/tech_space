@@ -92,7 +92,7 @@ const Button = styled.button`
 `;
 
 const Div = styled.div`
-  padding: 3rem 1rem;
+  padding: 3rem 0rem;
   display: flex;
   align-items: center;
   flex-direction: column;

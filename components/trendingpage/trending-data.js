@@ -5,7 +5,7 @@ import Image from "next/image";
 import Head from "next/head";
 import EmptyState from '../empty-state/empty-state';
 
-const postsData = [
+const trendingData = [
   {
     id: 1,
     profilePix: "/assets/svg/profilepix.svg",
@@ -41,19 +41,20 @@ const postsData = [
   },
 ];
 
-const PostsData = () => {
+const TrendData = () => {
   <Head>
-    <title>Tech Space | Home</title>
+    <title>Tech Space | Trending</title>
   </Head>;
   return (
-    <PostsDataContainer>
-      {postsData.length !== 0 ? (
-        postsData.map((post) => (
-          <HomeItemContainer key={post.id} >
+    <TrendDataContainer>
+      <h2 style={{ color: "#374956" }}>Trending Posts</h2>
+      {trendingData.length !== 0 ? (
+        trendingData.map((post) => (
+          <HomeItemContainer key={post.id}>
             <div className="post-container">
-              <PostsDataHeader>
+              <TrendDataHeader>
                 <img src={post.profilePix} alt="profile-pix" />
-                <PostName className="name">
+                <TrendName className="name">
                   <div>
                     <h5 className="post-name-title">{post.name}</h5>
                     <p className="post-name-time">
@@ -66,8 +67,8 @@ const PostsData = () => {
                   <div className="save-icon">
                     <img src={post.saveIcon} alt="save-icon" />
                   </div>
-                </PostName>
-              </PostsDataHeader>
+                </TrendName>
+              </TrendDataHeader>
               <PostBody className="post-body">
                 <div>
                   <Link href="">
@@ -87,10 +88,8 @@ const PostsData = () => {
                     />
                   )}
                 </div>
-                <BottomDiv className="reactions PostsDataContainer__margin-class" style={{
-                  borderBottom: "1px solid #ECECEC"
-                }}>
-                  <div className="emoji-reaction PostsDataContainer__margin-class">
+                <BottomDiv className="reactions TrendDataContainer__margin-class" style={{ borderBottom: "1px solid #ECECEC" }}>
+                  <div className="emoji-reaction TrendDataContainer__margin-class">
                     <img src={post.emoji} alt="emoji" /> &nbsp;&nbsp;
                     <span>{post.peopleReaction}</span>
                   </div>
@@ -98,21 +97,23 @@ const PostsData = () => {
                     <p className="bottom-div_text-right ">{post.peopleComment}</p>
                   </div>
                 </BottomDiv>
-                <BottomDiv className="like-comment-container PostsDataContainer__margin-class">
+                <BottomDiv className="like-comment-container TrendDataContainer__margin-class">
                   <p className="bottom-div_text-blue">{post.like}</p>
                   <p className="bottom-div_text-blue">{post.comment}</p>
                 </BottomDiv>
               </PostBody>
             </div>
           </HomeItemContainer>
-        ))) : (
-        <EmptyState text={`No post yet`} para={`Posts you create will appear here`} />
-      )}
-    </PostsDataContainer>
+        )
+        )) : (
+        <EmptyState text={`No trending topic yet`} para={`Trending topics will appear here`} />
+      )
+      }
+    </TrendDataContainer>
   );
 };
 
-const PostsDataContainer = styled.main`
+const TrendDataContainer = styled.main`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -124,7 +125,7 @@ const PostsDataContainer = styled.main`
     margin: 0;
     padding: 0;
   }
-  .PostsDataContainer__margin-class {
+  .TrendDataContainer__margin-class {
     margin: 10px 0;
   }
 `;
@@ -137,7 +138,8 @@ const HomeItemContainer = styled.section`
   border-radius: 10px;
 `;
 
-const PostsDataHeader = styled.div`
+
+const TrendDataHeader = styled.div`
   display: flex;
   width: 100%;
   height: 50px;
@@ -145,7 +147,7 @@ const PostsDataHeader = styled.div`
   align-items: center;
 `;
 
-const PostName = styled.div`
+const TrendName = styled.div`
   display: flex;
   width: 91%;
   justify-content: space-between;
@@ -222,6 +224,7 @@ color: #C4C4C4;
 }
 .bottom-div_text-right {
     text-align: right;
+
 }
 .bottom-div_text-blue {
     color: #409DE0;
@@ -229,12 +232,12 @@ color: #C4C4C4;
 }
 p{
     font-style: normal;
-font-weight: normal;
-font-size: 10px;
-line-height: 15px;
-color: #C4C4C4;
-width: auto;
-justify-self: flex-end;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 15px;
+    color: #C4C4C4;
+    width: auto;
+    justify-self: flex-end;
 }
 `;
-export default PostsData;
+export default TrendData;
