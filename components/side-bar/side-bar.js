@@ -2,28 +2,46 @@ import Navlink from "../navlink/navlink";
 import styled from "styled-components";
 import Link from "next/link";
 import { useState } from "react";
+import { SavedIcon, TrendIcon, HomeIcon } from './Icon';
 
-const data = [
-  {
-    img: "/assets/svg/home.svg",
-    name: "Home",
-    link: "/home",
-  },
-  {
-    img: "/assets/svg/saved.svg",
-    name: "Saved",
-    link: "/saved-topics",
-  },
-  {
-    img: "/assets/svg/trending.svg",
-    name: "Trending",
-    link: "/trending",
-  },
-];
+// const data = [
+//   {
+//     img: <HomeIcon />,
+//     name: "Home",
+//     link: "/home",
+//   },
+//   {
+//     img: <SavedIcon />,
+//     name: "Saved",
+//     link: "/saved-topics",
+//   },
+//   {
+//     img: <TrendIcon />,
+//     name: "Trending",
+//     link: "/trending",
+//   },
+// ];
 
 const SideBar = () => {
   const [active, setActive] = useState("Home");
 
+  const data = [
+    {
+      img: <HomeIcon color={active === 'Home'} />,
+      name: "Home",
+      link: "/home",
+    },
+    {
+      img: <SavedIcon color={active === 'Saved'} />,
+      name: "Saved",
+      link: "/saved-topics",
+    },
+    {
+      img: <TrendIcon color={active === 'Trending'} />,
+      name: "Trending",
+      link: "/trending",
+    },
+  ];
   const handleClick = (name) => {
     setActive(name);
   };
@@ -79,10 +97,6 @@ const Div = styled.div`
     /* border: 1px solid #409de0; */
     /* padding: 2px 5px; */
     border-radius: 5px;
-    
-    /* path {
-      fill: #409de0
-    } */
 
     span {
       color: #409de0;

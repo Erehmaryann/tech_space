@@ -44,7 +44,7 @@ const SideProfile = () => {
                 <Image src="/assets/svg/plusIcon.svg" width={10} height={10} alt="addIcon" />
             </Button>
             <Modal
-                // onClose={() => setShowModal(false)}
+                onClose={() => setShowModal(false)}
                 show={showModal}
                 // btnText={`ok`}
                 title={`New Topic`}

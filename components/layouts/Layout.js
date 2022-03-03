@@ -14,7 +14,8 @@ const Layout = ({ children }) => {
     path === "/admin" ||
     path === "/404" ||
     path === "/forgot-password" ||
-    path === "/create-new-password";
+    path === "/create-new-password" ||
+    path === "/admin-dashboard";
   return (
     <div>
       <Header />

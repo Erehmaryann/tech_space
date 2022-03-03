@@ -9,20 +9,14 @@ import {
   StyledModalTitle,
 } from "./ModalStyles";
 
+import Image from "next/image";
+
 const Modal = ({ show, onClose, children, title, btnText, headerText, btn }) => {
   const [isBrowser, setIsBrowser] = useState(false);
 
   useEffect(() => {
     setIsBrowser(true);
   }, []);
-
-  // useEffect(() => {
-  //   document.addEventListener('click', (e) => {
-  //     if (e.target.id === 'modal-root') {
-  //       setShowModal(false);
-  //     }
-  //   });
-  // }, []);
 
   const handleCloseClick = (e) => {
     e.preventDefault();
@@ -32,6 +26,9 @@ const Modal = ({ show, onClose, children, title, btnText, headerText, btn }) => 
   const modalContent = show ? (
     <StyledModalOverlay>
       <StyledModal>
+        <div className="close-icon" onClick={handleCloseClick}>
+          <Image src="/assets/svg/closeIcon.svg" alt="close-icon" width={40} height={40} />
+        </div>
         {headerText && <StyledModalHeader>{headerText}</StyledModalHeader>}
 
         {title && <StyledModalTitle>{title}</StyledModalTitle>}

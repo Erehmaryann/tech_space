@@ -16,11 +16,10 @@ const Navlink = ({ img, name, variant, href }) => {
             {variant === 'link' ? (
                 <Link
                     href={href}
-                // onClick={() => handleClick("Home")}
-                // className={active === name ? 'active' : ''}
                 >
                     <a style={{ display: "flex", alignItems: "center" }}>
-                        <img src={img} alt={`${name}-img`} style={{ padding: "0.5rem", display: "inline-block" }} />
+                        {/* <img src={img} alt={`${name}-img`} style={{ padding: "0.5rem", display: "inline-block" }} /> */}
+                        {img}
                         <span style={{ paddingLeft: "0.5rem", display: "inline-block", fontWeight: "bold" }}>{name}</span>
                     </a>
                 </Link>

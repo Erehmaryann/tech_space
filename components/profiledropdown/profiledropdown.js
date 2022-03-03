@@ -1,19 +1,28 @@
 import styled from 'styled-components';
+import { connect } from "react-redux";
+import { toggleProfileHidden } from "../../redux/profile/profile.actions";
+
 import Link from 'next/link';
 
-const Profiledropdown = () => {
+const Profiledropdown = ({ toggleProfileHidden }) => {
     return (
         <ProDiv className="pro-dropdown">
             <div className="pro-items">
-                <Link href="/profile">
-                    My Profile
-                </Link>
-                <Link href="/settings">
-                    Settings
-                </Link>
-                <Link href="/">
-                    Logout
-                </Link>
+                <span onClick={toggleProfileHidden}>
+                    <Link href="/profile">
+                        My Profile
+                    </Link>
+                </span>
+                <span onClick={toggleProfileHidden}>
+                    <Link href="/settings">
+                        Settings
+                    </Link>
+                </span>
+                <span onClick={toggleProfileHidden}>
+                    <Link href="/">
+                        Logout
+                    </Link>
+                </span>
             </div>
         </ProDiv>
     );
@@ -38,15 +47,19 @@ const ProDiv = styled.div`
 		display: flex;
 		flex-direction: column;
 
-        a {
+        span {
             padding: 10px 5px;
             font-size: 14px;
 
             :hover {
-                background: #f5f5f5;
+                background: #ECECEC;
             }
         }
 	}
 `;
 
-export default Profiledropdown;
+const mapDispatchToProps = (dispatch) => ({
+    toggleProfileHidden: () => dispatch(toggleProfileHidden())
+});
+
+export default connect(null, mapDispatchToProps)(Profiledropdown);

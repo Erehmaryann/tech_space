@@ -113,13 +113,19 @@ const CateInputs = () => {
             </div>
             <div className="input-group">
                 <label htmlFor="topic-description">Description</label>
-                <textarea name="topic-description" id="topic-description" placeholder="Enter a description" />
+                <textarea name="topic-description" id="topic-description" placeholder="Enter a description" style={{ resize: "none" }} />
             </div>
             <div className="input-group">
                 <label htmlFor="file-upload" className="file-upload">
-                    <Image src="/assets/svg/photoIcon.svg" width={20} height={20} alt="Photo-Icon" />
-                    <input type="file" name="file-upload" id="file-upload" accept="image/*" onChange={onImageChange} />
-                    {imageURLs.map(imageSrc => (<Image className="rev" width={40} height={20} src={imageSrc} alt="topic-image" />))}
+                    {images.length < 1 ? (
+                        <>
+                            <Image src="/assets/svg/photoIcon.svg" width={20} height={20} alt="Photo-Icon" />
+                            <input type="file" name="file-upload" id="file-upload" accept="image/*" onChange={onImageChange} />
+                        </>
+                    ) :
+                        imageURLs.map(imageSrc => (<Image className="rev" width={40} height={20} src={imageSrc} alt="topic-image" />))
+                    }
+
                 </label>
             </div>
             <ButDiv>

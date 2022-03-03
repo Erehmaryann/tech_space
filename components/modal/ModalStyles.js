@@ -32,7 +32,7 @@ export const StyledModalButton = styled.button`
   font-style: normal;
   font-weight: bold;
   font-size: 15px;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 50px;
   color: #ffffff;
 `;
@@ -53,6 +53,14 @@ export const StyledModal = styled.div`
   height: 430px;
   border-radius: 15px;
   padding:  15px;
+  position: relative;
+
+  .close-icon {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    cursor: pointer;
+  }
 
   div {
     /* width: 199px; */
