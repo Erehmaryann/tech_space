@@ -4,24 +4,6 @@ import Link from "next/link";
 import { useState } from "react";
 import { SavedIcon, TrendIcon, HomeIcon } from './Icon';
 
-// const data = [
-//   {
-//     img: <HomeIcon />,
-//     name: "Home",
-//     link: "/home",
-//   },
-//   {
-//     img: <SavedIcon />,
-//     name: "Saved",
-//     link: "/saved-topics",
-//   },
-//   {
-//     img: <TrendIcon />,
-//     name: "Trending",
-//     link: "/trending",
-//   },
-// ];
-
 const SideBar = () => {
   const [active, setActive] = useState("Home");
 

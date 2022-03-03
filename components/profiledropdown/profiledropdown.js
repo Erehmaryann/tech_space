@@ -35,7 +35,7 @@ const ProDiv = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding: 20px;
-	background-color: white;
+	background: #F6F6F6;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
 	top: 80px;
     border-radius: 10px;
@@ -52,7 +52,7 @@ const ProDiv = styled.div`
             font-size: 14px;
 
             :hover {
-                background: #ECECEC;
+                background: #ABCEE7;
             }
         }
 	}

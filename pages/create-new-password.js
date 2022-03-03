@@ -30,8 +30,8 @@ const ForgotPassword = () => {
                         <p>
                             Enter a strong password that you can remember
                         </p>
-                        <LoginInputs type={`password`} placeholder={`New password`} />
-                        <LoginInputs type={`password`} placeholder={`Confirm password`} />
+                        <LoginInputs type={`password`} placeholder={`New password`} name={`password`} />
+                        <LoginInputs type={`password`} placeholder={`Confirm password`} name={`confirm-password`} />
                         <LoginButtons setShowModal={setShowModal} text={`Submit`} />
                     </Form>
                 </Main>

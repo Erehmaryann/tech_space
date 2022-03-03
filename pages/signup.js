@@ -28,14 +28,13 @@ const SignUp = () => {
 
           <Form>
             <h4>Sign up to Tech Space</h4>
-            <LoginInputs type={`text`} placeholder={`Full Name`} />
-            <LoginInputs type={`text`} placeholder={`Username`} />
-            <LoginInputs type={`email`} placeholder={`Email address`} />
-            <LoginInputs type={`password`} placeholder={`Password`} />
-            <LoginInputs type={`password`} placeholder={`Confirm password`} />
+            <LoginInputs type={`text`} placeholder={`Full Name`} name={`full-name`} />
+            <LoginInputs type={`text`} placeholder={`Username`} name={`username`} />
+            <LoginInputs type={`email`} placeholder={`Email address`} name={`email`} />
+            <LoginInputs type={`password`} placeholder={`Password`} name={`password`} />
+            <LoginInputs type={`password`} placeholder={`Confirm password`} name={`confirm-password`} />
             <SmallDiv>
               <input type="checkbox" name="" id="" />
-
               <div>
                 <div>Keep me signed in</div>
                 <Link href={`/`} replace>

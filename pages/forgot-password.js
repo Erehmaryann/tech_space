@@ -32,7 +32,7 @@ const ForgotPassword = () => {
               Enter the email address you registered with and we’ll help you
               recover it
             </p>
-            <LoginInputs type={`email`} placeholder={`Email address`} />
+            <LoginInputs type={`email`} placeholder={`Email address`} name={`email`} />
             <Link href={`/`} replace>
               <a className="tech-space__forgot-password-small-text">
                 Already have an account?
