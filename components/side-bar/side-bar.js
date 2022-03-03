@@ -27,6 +27,7 @@ const SideBar = () => {
   const handleClick = (name) => {
     setActive(name);
   };
+
   return (
     <Div>
       <div className="link-con">

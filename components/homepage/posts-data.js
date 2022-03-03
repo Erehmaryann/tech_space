@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { useState } from 'react';
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,6 +14,7 @@ const postsData = [
     time: "54 mins ago",
     category: ["Phone and Technology"],
     saveIcon: "/assets/svg/saveicon.svg",
+    saveIcon2: "/assets/svg/savedTopic.svg",
     postImage: "/assets/laptop.png",
     topicTitle: "New Ipad!",
     description:
@@ -30,6 +32,7 @@ const postsData = [
     time: "54 mins ago",
     category: ["Programming", "Networking"],
     saveIcon: "/assets/svg/saveicon.svg",
+    saveIcon2: "/assets/svg/savedTopic.svg",
     topicTitle: "Faster PC",
     description:
       "You guyssss, i just installed a new RAM and my system is so much faster, it’s inasne. They’re also very cheap so if you need one you can just send me a message right now!",
@@ -45,6 +48,8 @@ const PostsData = () => {
   <Head>
     <title>Tech Space | Home</title>
   </Head>;
+  const [clicked, setClicked] = useState(false);
+
   return (
     <PostsDataContainer>
       {postsData.length !== 0 ? (
@@ -63,8 +68,10 @@ const PostsData = () => {
                       ))}
                     </p>
                   </div>
-                  <div className="save-icon">
-                    <img src={post.saveIcon} alt="save-icon" />
+                  <div className="save-icon" onClick={() => setClicked(!clicked)}>
+                    {clicked ?
+                      <img src={post.saveIcon2} alt="save-icon" /> : <img src={post.saveIcon} alt="save-icon" />
+                    }
                   </div>
                 </PostName>
               </PostsDataHeader>

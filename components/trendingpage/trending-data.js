@@ -116,7 +116,6 @@ const TrendData = () => {
 const TrendDataContainer = styled.main`
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
   padding: 20px;
 
   h5,
@@ -134,7 +133,6 @@ const HomeItemContainer = styled.section`
   margin: 16px 0;
   background: white;
   padding: 20px;
-  box-sizing: border-box;
   border-radius: 10px;
 `;
 
