@@ -25,10 +25,9 @@ const PopupDiv = styled.div`
     width: 233px;
     position: absolute;
     padding: 15px;
-    /* cursor: pointer; */
     z-index: 100;
-    top: -30px;
-    right: -60px;
+    top: -65px;
+    right: -70px;
     border-radius: 15px;
 
     .view {

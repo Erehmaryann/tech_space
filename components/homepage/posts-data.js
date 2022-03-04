@@ -5,61 +5,52 @@ import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
 import EmptyState from '../empty-state/empty-state';
-import { SavedIcon } from './saveIcon';
 import Popup from '../popup/popup';
+
+const postsData = [
+  {
+    id: 1,
+    profilePix: "/assets/svg/profilepix.svg",
+    name: "Maryann Ereh",
+    time: "54 mins ago",
+    category: ["Phone and Technology"],
+    saveIcon: "/assets/svg/saveicon.svg",
+    saveIcon2: "/assets/svg/savedTopic.svg",
+    postImage: "/assets/laptop.png",
+    topicTitle: "New Ipad!",
+    description:
+      "Everyone’s talking about the new Ipad. What new features do you guys like? It’s definitely the OS for me.",
+    emoji: "/assets/svg/heartemoji.svg",
+    peopleReaction: "Takon Ajie and 14 others",
+    peopleComment: "23 Comments",
+    comment: "Comment",
+    like: "Like",
+  },
+  {
+    id: 2,
+    profilePix: "/assets/svg/profilepix.svg",
+    name: "Maryann Ereh",
+    time: "54 mins ago",
+    category: ["Programming", "Networking"],
+    saveIcon: "/assets/svg/saveicon.svg",
+    saveIcon2: "/assets/svg/savedTopic.svg",
+    topicTitle: "Faster PC",
+    description:
+      "You guyssss, i just installed a new RAM and my system is so much faster, it’s inasne. They’re also very cheap so if you need one you can just send me a message right now!",
+    emoji: "/assets/svg/heartemoji.svg",
+    peopleReaction: "Takon Ajie and 14 others",
+    peopleComment: "23 Comments",
+    comment: "Comment",
+    like: "Like",
+  },
+];
 
 const PostsData = () => {
   <Head>
     <title>Tech Space | Home</title>
   </Head>;
   const [clicked, setClicked] = useState(false);
-  const [active, setActive] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-
-  const postsData = [
-    {
-      id: 1,
-      profilePix: "/assets/svg/profilepix.svg",
-      name: "Maryann Ereh",
-      time: "54 mins ago",
-      category: ["Phone and Technology"],
-      saveIcon: <SavedIcon color={active === 1} />,
-      popup: <Popup showPopup={showPopup} closePopup={() => setShowPopup(!showPopup)} id={1} show={active === 1} />,
-      postImage: "/assets/laptop.png",
-      topicTitle: "New Ipad!",
-      description:
-        "Everyone’s talking about the new Ipad. What new features do you guys like? It’s definitely the OS for me.",
-      emoji: "/assets/svg/heartemoji.svg",
-      peopleReaction: "Takon Ajie and 14 others",
-      peopleComment: "23 Comments",
-      comment: "Comment",
-      like: "Like",
-    },
-    {
-      id: 2,
-      profilePix: "/assets/svg/profilepix.svg",
-      name: "Maryann Ereh",
-      time: "54 mins ago",
-      category: ["Programming", "Networking"],
-      saveIcon: <SavedIcon color={active === 2} />,
-      popup: <Popup showPopup={showPopup} closePopup={() => setShowPopup(!showPopup)} show={active === 2} />,
-      topicTitle: "Faster PC",
-      description:
-        "You guyssss, i just installed a new RAM and my system is so much faster, it’s inasne. They’re also very cheap so if you need one you can just send me a message right now!",
-      emoji: "/assets/svg/heartemoji.svg",
-      peopleReaction: "Takon Ajie and 14 others",
-      peopleComment: "23 Comments",
-      comment: "Comment",
-      like: "Like",
-    },
-  ];
-
-  const handleClick = (item) => {
-    setClicked(!clicked);
-    setActive(item);
-    setShowPopup(!showPopup);
-  };
-
 
   return (
     <PostsDataContainer>
@@ -79,11 +70,11 @@ const PostsData = () => {
                       ))}
                     </p>
                   </div>
-                  <div className="save-icon" onClick={() => handleClick(post.id)}>
-                    {post.saveIcon}
-                    {showPopup &&
-                      post.popup
+                  <div className="save-icon" onClick={() => setClicked(!clicked)}>
+                    {clicked ?
+                      <img src={post.saveIcon2} alt="save-icon" /> : <img src={post.saveIcon} alt="save-icon" />
                     }
+                    {clicked && <Popup />}
                   </div>
                 </PostName>
               </PostsDataHeader>
@@ -151,7 +142,7 @@ const HomeItemContainer = styled.section`
   margin: 16px 0;
   background: white;
   padding: 20px;
-  position: relative;
+  box-sizing: border-box;
   border-radius: 10px;
 `;
 
@@ -191,6 +182,7 @@ const PostName = styled.div`
   }
   .save-icon {
     cursor: pointer;
+    position: relative;
   }
 `;
 

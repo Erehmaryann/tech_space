@@ -51,7 +51,7 @@ const SideBar = () => {
         <h3>CATEGORIES</h3>
         {/* <ul> */}
         <li><Link href="/home"><a>All</a></Link></li>
-        <li><Link href=""><a>Programming</a></Link></li>
+        <li><Link href="/programming"><a>Programming</a></Link></li>
         <li><Link href=""><a>Web development</a></Link></li>
         <li><Link href=""><a>Networking</a></Link></li>
         <li><Link href=""><a>Computer repair/ maintenance</a></Link></li>

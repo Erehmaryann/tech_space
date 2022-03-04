@@ -12,12 +12,12 @@ import {
 import Modal from "../components/modal/Modal";
 import { useState } from "react";
 
-const ForgotPassword = () => {
+const CreateNewPassword = () => {
     const [showModal, setShowModal] = useState(false);
     return (
         <>
             <Head>
-                <title>Tech Space | Forgot Password</title>
+                <title>Tech Space | Create New Password</title>
             </Head>
             <Container>
                 <Main>
@@ -48,4 +48,4 @@ const ForgotPassword = () => {
     );
 };
 
-export default ForgotPassword;
+export default CreateNewPassword;
