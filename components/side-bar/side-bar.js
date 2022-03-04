@@ -77,7 +77,6 @@ const Div = styled.div`
 
   .active {
     /* border: 1px solid #409de0; */
-    /* padding: 2px 5px; */
     border-radius: 5px;
 
     span {

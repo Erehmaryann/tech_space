@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import AccSettings from '../accsettings/accsettings';
 import AccPassword from '../accpassword/accpassword';
+import AccEdit from '../accedit/accedit';
 
 import styled from "styled-components";
 
@@ -19,7 +20,7 @@ const SettingsPage = () => {
                     </div>
                 </div>
                 <div className="acc-drop">
-                    {show === "account" ? <AccSettings /> : show === 'password' ? <AccPassword /> : <div>edit</div>}
+                    {show === "account" ? <AccSettings /> : show === 'password' ? <AccPassword /> : <AccEdit />}
                 </div>
             </ProfileItemContainer>
         </ProfileDiv>
@@ -28,7 +29,7 @@ const SettingsPage = () => {
 
 const ProfileDiv = styled.div`
     width: 100%;
-    height: 100%;
+    height: 150%;
     padding: 20px;
     background: #ECECEC;
 `;
