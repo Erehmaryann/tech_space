@@ -10,21 +10,9 @@ import {
   StyledModalWrapper,
 } from "./ModalStyles";
 
-<<<<<<< HEAD
-const Modal = ({
-  show,
-  onClose,
-  children,
-  title,
-  btnText,
-  headerText,
-  btn,
-}) => {
-=======
 import Image from "next/image";
 
 const Modal = ({ show, onClose, children, title, btnText, headerText, btn }) => {
->>>>>>> f1ae1b0334bd7d04ab0793f5617e055b1d7ae6c6
   const [isBrowser, setIsBrowser] = useState(false);
 
   // create ref for the StyledModalWrapper component
