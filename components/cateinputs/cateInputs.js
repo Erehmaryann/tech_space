@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react/jsx-key */
 import Select from 'react-select';
 import Image from 'next/image';
-import { useState, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import styled from "styled-components";
 
 import Modal from "../modal/Modal";
@@ -70,26 +72,25 @@ const SelectStyle = {
 
 const CateInputs = () => {
     const [selectedOption, setSelectedOption] = useState(null);
-
     const [showModal, setShowModal] = useState(false);
+    const [images, setImages] = useState([]);
+    const [imageURLs, setImageURLs] = useState([]);
+
+    useEffect(() => {
+        if (images.length < 1) return;
+        const newImageUrls = [];
+        images.forEach(image => {
+            newImageUrls.push(URL.createObjectURL(image));
+        });
+        setImageURLs(newImageUrls);
+    }, [images]);
+
+    const onImageChange = (e) => {
+        setImages([...e.target.files]);
+    };
 
     const showModalHandler = () => {
         setShowModal(true);
-    };
-
-    // Create a reference to the hidden file input element
-    const hiddenFileInput = useRef(null);
-
-    // Programatically click the hidden file input element
-    // when the Button component is clicked
-    const handleClick = event => {
-        hiddenFileInput.current.click();
-    };
-    // Call a function (passed as a prop from the parent component)
-    // to handle the user-selected file 
-    const handleChange = event => {
-        const fileUploaded = event.target.files[0];
-        props.handleFile(fileUploaded);
     };
 
     return (
@@ -112,12 +113,19 @@ const CateInputs = () => {
             </div>
             <div className="input-group">
                 <label htmlFor="topic-description">Description</label>
-                <textarea name="topic-description" id="topic-description" placeholder="Enter a description" />
+                <textarea name="topic-description" id="topic-description" placeholder="Enter a description" style={{ resize: "none" }} />
             </div>
             <div className="input-group">
                 <label htmlFor="file-upload" className="file-upload">
-                    <Image src="/assets/svg/photoIcon.svg" width={20} height={20} alt="Photo-Icon" onClick={handleClick} />
-                    <input type="file" name="file-upload" id="file-upload" ref={hiddenFileInput} onChange={handleChange} />
+                    {images.length < 1 ? (
+                        <>
+                            <Image src="/assets/svg/photoIcon.svg" width={20} height={20} alt="Photo-Icon" />
+                            <input type="file" name="file-upload" id="file-upload" accept="image/*" onChange={onImageChange} />
+                        </>
+                    ) :
+                        imageURLs.map(imageSrc => (<Image className="rev" width={40} height={20} src={imageSrc} alt="topic-image" />))
+                    }
+
                 </label>
             </div>
             <ButDiv>
@@ -128,7 +136,6 @@ const CateInputs = () => {
                 show={showModal}
                 btnText={`ok`}
                 btn
-            // title={`New Topic`}
             >
                 Your topic is pending approval
             </Modal>

@@ -61,6 +61,7 @@ export const NavInput = styled.input`
   padding: 0;
   border: none;
   background: #f7f7f7;
+  color: #409de0;
   border-radius: 10px;
 
   ::placeholder {
@@ -68,6 +69,10 @@ export const NavInput = styled.input`
     font-weight: normal;
     font-size: 16px;
     color: #374956;
+    padding-left: 40px;
+  }
+  :focus {
+    outline: none;
     padding-left: 40px;
   }
 `;

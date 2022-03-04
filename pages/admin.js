@@ -25,8 +25,8 @@ const admin = () => {
 
                     <Form>
                         <h4>Login to your account</h4>
-                        <LoginInputs type={`email`} placeholder={`Email address`} />
-                        <LoginInputs type={`password`} placeholder={`Password`} />
+                        <LoginInputs type={`email`} placeholder={`Email address`} name={`email`} />
+                        <LoginInputs type={`password`} placeholder={`Password`} name={`email`} />
                         <Link href={`/admin-dashboard`} replace>
                             <a>
                                 <LoginButtons text={`Log in`} />

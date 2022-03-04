@@ -37,7 +37,7 @@ export const StyledModalButton = styled.button`
   font-style: normal;
   font-weight: bold;
   font-size: 15px;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 50px;
   color: #ffffff;
 `;
@@ -57,7 +57,19 @@ export const StyledModal = styled.div`
   width: 464px;
   height: 430px;
   border-radius: 15px;
+<<<<<<< HEAD
   padding: 15px;
+=======
+  padding:  15px;
+  position: relative;
+
+  .close-icon {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    cursor: pointer;
+  }
+>>>>>>> f1ae1b0334bd7d04ab0793f5617e055b1d7ae6c6
 
   div {
     /* width: 199px; */
@@ -75,7 +87,7 @@ export const StyledModal = styled.div`
   }
 `;
 export const StyledModalOverlay = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -85,4 +97,5 @@ export const StyledModalOverlay = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 2000;
+  overflow-y: hidden !important;
 `;

@@ -1,10 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-// import styled from "styled-components";
 import {
   Nav,
   LogoDiv,
-  // Button,
   NavInput,
   SearchDiv,
   SearchIconDiv,
@@ -15,8 +13,13 @@ import logo from "../../public/assets/Logo.png";
 import { SearchIcon, } from "../Icons/Icon";
 import NotIcon from '../notIcon/notIcon';
 import ProfileImg from "../../public/assets/svg/profilepix.svg";
+import Profiledropdown from '../profiledropdown/profiledropdown';
+import { connect } from "react-redux";
+import { createStructuredSelector } from 'reselect';
+import { selectProfileHidden } from "../../redux/profile/profile.selectors";
+import { toggleProfileHidden } from "../../redux/profile/profile.actions";
 
-const MainNav = () => {
+const MainNav = ({ hidden, toggleProfileHidden }) => {
   return (
     <Nav>
       <LogoDiv>
@@ -36,10 +39,20 @@ const MainNav = () => {
       <NotificationDiv>
         <NotIcon />
         <ImageDiv>
-          <Image src={ProfileImg} alt="profile-img" />
+          <Image src={ProfileImg} alt="profile-img" onClick={toggleProfileHidden} />
+          {hidden ? null : <Profiledropdown />}
         </ImageDiv>
       </NotificationDiv>
     </Nav>
   );
 };
-export default MainNav;
+
+const mapStateToProps = createStructuredSelector({
+  hidden: selectProfileHidden
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  toggleProfileHidden: () => dispatch(toggleProfileHidden())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainNav);

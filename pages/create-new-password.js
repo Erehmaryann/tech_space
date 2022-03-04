@@ -12,12 +12,12 @@ import {
 import Modal from "../components/modal/Modal";
 import { useState } from "react";
 
-const ForgotPassword = () => {
+const CreateNewPassword = () => {
     const [showModal, setShowModal] = useState(false);
     return (
         <>
             <Head>
-                <title>Tech Space | Forgot Password</title>
+                <title>Tech Space | Create New Password</title>
             </Head>
             <Container>
                 <Main>
@@ -30,8 +30,8 @@ const ForgotPassword = () => {
                         <p>
                             Enter a strong password that you can remember
                         </p>
-                        <LoginInputs type={`password`} placeholder={`New password`} />
-                        <LoginInputs type={`password`} placeholder={`Confirm password`} />
+                        <LoginInputs type={`password`} placeholder={`New password`} name={`password`} />
+                        <LoginInputs type={`password`} placeholder={`Confirm password`} name={`confirm-password`} />
                         <LoginButtons setShowModal={setShowModal} text={`Submit`} />
                     </Form>
                 </Main>
@@ -48,4 +48,4 @@ const ForgotPassword = () => {
     );
 };
 
-export default ForgotPassword;
+export default CreateNewPassword;
