@@ -1,7 +1,7 @@
 import style from "styled-components";
 import LoginInputs from '../inputs/LoginInputs';
 
-const AccSettings = () => {
+const AccEdit = () => {
     return (
         <AccParent>
             <h3>Account</h3>
@@ -31,4 +31,4 @@ const AccParent = style.div`
     }
 `;
 
-export default AccSettings;
+export default AccEdit;

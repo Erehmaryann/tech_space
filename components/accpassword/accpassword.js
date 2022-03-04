@@ -1,12 +1,12 @@
 import style from "styled-components";
 import LoginInputs from '../inputs/LoginInputs';
 
-const AccSettings = () => {
+const AccPassword = () => {
     return (
         <AccParent>
-            <h3>Account</h3>
-            <LoginInputs type={`text`} placeholder={`+2348125671212`} label={`Phone number`} name={`phone`} />
-            <LoginInputs type={`email`} placeholder={`Maryannereh@gmail.com`} label={`Email address`} name={`email`} />
+            <h3>Change Password</h3>
+            <LoginInputs type={`password`} label={`New password`} name={`password`} />
+            <LoginInputs type={`password`} label={`Confirm new password`} name={`confirm-password`} />
             <button className="button">Save</button>
         </AccParent>
     );
@@ -31,4 +31,4 @@ const AccParent = style.div`
     }
 `;
 
-export default AccSettings;
+export default AccPassword;

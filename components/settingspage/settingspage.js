@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import AccSettings from '../accsettings/accsettings';
+import AccPassword from '../accpassword/accpassword';
 
 import styled from "styled-components";
 
@@ -18,7 +19,7 @@ const SettingsPage = () => {
                     </div>
                 </div>
                 <div className="acc-drop">
-                    {show === "account" ? <AccSettings /> : show === 'password' ? <div>password</div> : <div>edit</div>}
+                    {show === "account" ? <AccSettings /> : show === 'password' ? <AccPassword /> : <div>edit</div>}
                 </div>
             </ProfileItemContainer>
         </ProfileDiv>
@@ -49,7 +50,7 @@ const ProfileItemContainer = styled.section`
         border-radius: 5px;
         color: #374956;
     }
-    
+
     .acc-par {
         position: absolute;
         width: 190px;
