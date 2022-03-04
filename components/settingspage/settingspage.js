@@ -29,7 +29,7 @@ const SettingsPage = () => {
 
 const ProfileDiv = styled.div`
     width: 100%;
-    height: 150%;
+    height: 100%;
     padding: 20px;
     background: #ECECEC;
 `;
@@ -38,6 +38,7 @@ const ProfileItemContainer = styled.section`
     margin: 20px 0 0 0;
     padding: 20px;
     width: 750px;
+    height: 1000px;
     display: flex;
   
     .acc-drop {
@@ -48,7 +49,7 @@ const ProfileItemContainer = styled.section`
         top: 131px;
         background: #FFFFFF;
         border: 1px solid #F6F6F6;
-        border-radius: 5px;
+        border-radius: 10px;
         color: #374956;
     }
 

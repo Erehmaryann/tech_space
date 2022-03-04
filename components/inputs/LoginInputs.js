@@ -14,8 +14,7 @@ const Div = styled.div`
 
 const Input = styled.input`
   width: 90%;
-  border: 1px solid #c4c4c4;
-  box-sizing: border-box;
+  border: none;
   border-radius: 5px;
   width: 100%;
   height: 43px;

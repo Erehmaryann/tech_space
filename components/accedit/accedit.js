@@ -35,11 +35,14 @@ const AccEdit = () => {
                 </label>
                 <h3>Edit Picture</h3>
             </div>
-            <LoginInputs type={`text`} placeholder={`Full Name`} name={`full-name`} />
-            <LoginInputs type={`text`} placeholder={`Username`} name={`username`} />
-            <LoginInputs type={`email`} placeholder={`Email address`} name={`email`} />
+            <LoginInputs type={`text`} placeholder={`Full Name`} label={`Full name`} name={`full-name`} />
+            <LoginInputs type={`text`} placeholder={`Username`} label={`Username`} name={`username`} />
+            <LoginInputs type={`email`} placeholder={`Email address`} label={`Email address`} name={`email`} />
             <LoginInputs type={`text`} placeholder={`+2348125671212`} label={`Phone number`} name={`phone`} />
-            <LoginInputs type={`email`} placeholder={`Maryannereh@gmail.com`} label={`Email address`} name={`email`} />
+            <div className="input-group">
+                <label htmlFor="topic-description">In one sentence, tell us about yourself</label>
+                <textarea name="topic-description" id="topic-description" placeholder="Enter a description" style={{ resize: "none" }} />
+            </div>
             <button className="button">Save</button>
         </AccParent>
     );
@@ -71,6 +74,23 @@ const AccParent = style.div`
         outline: none;
         padding: 10px;
         font-size: 16px;
+    }
+    .input-group {
+        label {
+            text-align: justify !important;
+        }
+
+        textarea {
+            margin-top: 5px;
+            display: block;
+            width: 100%;
+            background: #f5f5f5;
+            border: none;
+            border-radius: 10px;
+            outline: none;
+            margin-bottom: 10px;
+            padding: 15px
+        }
     }
 `;
 
