@@ -12,7 +12,15 @@ import {
 
 import Image from "next/image";
 
-const Modal = ({ show, onClose, children, title, btnText, headerText, btn }) => {
+const Modal = ({
+  show,
+  onClose,
+  children,
+  title,
+  btnText,
+  headerText,
+  btn,
+}) => {
   const [isBrowser, setIsBrowser] = useState(false);
 
   // create ref for the StyledModalWrapper component
@@ -46,26 +54,14 @@ const Modal = ({ show, onClose, children, title, btnText, headerText, btn }) => 
 
   const modalContent = show ? (
     <StyledModalOverlay>
-<<<<<<< HEAD
-      <StyledModalWrapper ref={modalWrapperRef}>
-        <StyledModal>
-          {headerText && <StyledModalHeader>{headerText}</StyledModalHeader>}
-
-          {title && <StyledModalTitle>{title}</StyledModalTitle>}
-          <StyledModalBody>
-            <div>{children}</div>
-            {btn && (
-              <a href="#" onClick={handleCloseClick}>
-                <StyledModalButton>{btnText}</StyledModalButton>
-              </a>
-            )}
-          </StyledModalBody>
-        </StyledModal>
-      </StyledModalWrapper>
-=======
       <StyledModal>
         <div className="close-icon" onClick={handleCloseClick}>
-          <Image src="/assets/svg/closeIcon.svg" alt="close-icon" width={40} height={40} />
+          <Image
+            src="/assets/svg/closeIcon.svg"
+            alt="close-icon"
+            width={40}
+            height={40}
+          />
         </div>
         {headerText && <StyledModalHeader>{headerText}</StyledModalHeader>}
 
@@ -79,7 +75,6 @@ const Modal = ({ show, onClose, children, title, btnText, headerText, btn }) => 
           )}
         </StyledModalBody>
       </StyledModal>
->>>>>>> f1ae1b0334bd7d04ab0793f5617e055b1d7ae6c6
     </StyledModalOverlay>
   ) : null;
 
