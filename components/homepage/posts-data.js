@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState } from 'react';
+import { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
-import EmptyState from '../empty-state/empty-state';
-import Popup from '../popup/popup';
+import EmptyState from "../empty-state/empty-state";
+import Popup from "../popup/popup";
 
 const postsData = [
   {
@@ -14,8 +14,8 @@ const postsData = [
     name: "Maryann Ereh",
     time: "54 mins ago",
     category: ["Phone and Technology"],
-    saveIcon: "/assets/svg/saveicon.svg",
-    saveIcon2: "/assets/svg/savedTopic.svg",
+    // saveIcon: "/assets/svg/saveicon.svg",
+    // saveIcon2: "/assets/svg/savedTopic.svg",
     postImage: "/assets/laptop.png",
     topicTitle: "New Ipad!",
     description:
@@ -25,6 +25,7 @@ const postsData = [
     peopleComment: "23 Comments",
     comment: "Comment",
     like: "Like",
+    bookmarked: true,
   },
   {
     id: 2,
@@ -32,8 +33,8 @@ const postsData = [
     name: "Maryann Ereh",
     time: "54 mins ago",
     category: ["Programming", "Networking"],
-    saveIcon: "/assets/svg/saveicon.svg",
-    saveIcon2: "/assets/svg/savedTopic.svg",
+    // saveIcon: "/assets/svg/saveicon.svg",
+    // saveIcon2: "/assets/svg/savedTopic.svg",
     topicTitle: "Faster PC",
     description:
       "You guyssss, i just installed a new RAM and my system is so much faster, it’s inasne. They’re also very cheap so if you need one you can just send me a message right now!",
@@ -42,6 +43,7 @@ const postsData = [
     peopleComment: "23 Comments",
     comment: "Comment",
     like: "Like",
+    bookmarked: false,
   },
 ];
 
@@ -49,14 +51,14 @@ const PostsData = () => {
   <Head>
     <title>Tech Space | Home</title>
   </Head>;
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState("");
   const [showPopup, setShowPopup] = useState(false);
 
   return (
     <PostsDataContainer>
       {postsData.length !== 0 ? (
-        postsData.map((post) => (
-          <HomeItemContainer key={post.id} >
+        postsData.map((post, index) => (
+          <HomeItemContainer key={post.id}>
             <div className="post-container">
               <PostsDataHeader>
                 <img src={post.profilePix} alt="profile-pix" />
@@ -70,11 +72,20 @@ const PostsData = () => {
                       ))}
                     </p>
                   </div>
-                  <div className="save-icon" onClick={() => setClicked(!clicked)}>
-                    {clicked ?
-                      <img src={post.saveIcon2} alt="save-icon" /> : <img src={post.saveIcon} alt="save-icon" />
+                  <div
+                    className="save-icon"
+                    onClick={() =>
+                      setClicked((prevState) =>
+                        prevState === post.id ? "" : post.id
+                      )
                     }
-                    {clicked && <Popup />}
+                  >
+                    {clicked ? (
+                      <img src="/assets/svg/saveicon.svg" alt="save-icon" />
+                    ) : (
+                      <img src="/assets/svg/savedTopic.svg" alt="save-icon" />
+                    )}
+                    {clicked === post.id && <Popup key={index} />}
                   </div>
                 </PostName>
               </PostsDataHeader>
@@ -97,15 +108,20 @@ const PostsData = () => {
                     />
                   )}
                 </div>
-                <BottomDiv className="reactions PostsDataContainer__margin-class" style={{
-                  borderBottom: "1px solid #ECECEC"
-                }}>
+                <BottomDiv
+                  className="reactions PostsDataContainer__margin-class"
+                  style={{
+                    borderBottom: "1px solid #ECECEC",
+                  }}
+                >
                   <div className="emoji-reaction PostsDataContainer__margin-class">
                     <img src={post.emoji} alt="emoji" /> &nbsp;&nbsp;
                     <span>{post.peopleReaction}</span>
                   </div>
                   <div>
-                    <p className="bottom-div_text-right ">{post.peopleComment}</p>
+                    <p className="bottom-div_text-right ">
+                      {post.peopleComment}
+                    </p>
                   </div>
                 </BottomDiv>
                 <BottomDiv className="like-comment-container PostsDataContainer__margin-class">
@@ -115,8 +131,12 @@ const PostsData = () => {
               </PostBody>
             </div>
           </HomeItemContainer>
-        ))) : (
-        <EmptyState text={`No post yet`} para={`Posts you create will appear here`} />
+        ))
+      ) : (
+        <EmptyState
+          text={`No post yet`}
+          para={`Posts you create will appear here`}
+        />
       )}
     </PostsDataContainer>
   );
