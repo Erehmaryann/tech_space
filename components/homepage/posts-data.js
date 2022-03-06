@@ -14,8 +14,6 @@ const postsData = [
     name: "Maryann Ereh",
     time: "54 mins ago",
     category: ["Phone and Technology"],
-    // saveIcon: "/assets/svg/saveicon.svg",
-    // saveIcon2: "/assets/svg/savedTopic.svg",
     postImage: "/assets/laptop.png",
     topicTitle: "New Ipad!",
     description:
@@ -33,8 +31,6 @@ const postsData = [
     name: "Maryann Ereh",
     time: "54 mins ago",
     category: ["Programming", "Networking"],
-    // saveIcon: "/assets/svg/saveicon.svg",
-    // saveIcon2: "/assets/svg/savedTopic.svg",
     topicTitle: "Faster PC",
     description:
       "You guyssss, i just installed a new RAM and my system is so much faster, it’s inasne. They’re also very cheap so if you need one you can just send me a message right now!",
@@ -52,7 +48,6 @@ const PostsData = () => {
     <title>Tech Space | Home</title>
   </Head>;
   const [clicked, setClicked] = useState("");
-  const [showPopup, setShowPopup] = useState(false);
 
   return (
     <PostsDataContainer>
@@ -80,10 +75,10 @@ const PostsData = () => {
                       )
                     }
                   >
-                    {clicked ? (
-                      <img src="/assets/svg/saveicon.svg" alt="save-icon" />
-                    ) : (
+                    {clicked === post.id ? (
                       <img src="/assets/svg/savedTopic.svg" alt="save-icon" />
+                    ) : (
+                      <img src="/assets/svg/saveicon.svg" alt="save-icon" />
                     )}
                     {clicked === post.id && <Popup key={index} />}
                   </div>
