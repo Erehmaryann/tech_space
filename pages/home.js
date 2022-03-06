@@ -1,5 +1,6 @@
 import PostsData from "../components/homepage/posts-data";
 import Head from "next/head";
+// import Comments from '../components/common/comment/comments';
 import styled from "styled-components";
 //  since you want the login to be the home page.\, we would conditionally render either log in or home page here and then pass it to the index page
 const home = () => {
@@ -9,6 +10,7 @@ const home = () => {
   return (
     <HomeItemContainer>
       <PostsData />
+      {/* <Comments /> */}
     </HomeItemContainer>
   );
 };
