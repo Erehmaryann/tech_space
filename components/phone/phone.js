@@ -6,13 +6,13 @@ import Image from "next/image";
 import EmptyState from "../empty-state/empty-state";
 import Popup from "../popup/popup";
 
-const androidData = [
+const phoneData = [
     {
         id: 2,
         profilePix: "/assets/svg/profilepix.svg",
         name: "Maryann Ereh",
         time: "54 mins ago",
-        category: ["Android/IOS"],
+        category: ["Phone and Technology"],
         topicTitle: "Tech Hangout",
         description:
             "A friend is organizing a hangout for developers and we’re all invited. It’s a great opportunity to meet mentors and just fellow colleagues. Send me message if you’re interested.",
@@ -27,8 +27,8 @@ const androidData = [
         profilePix: "/assets/svg/profilepix.svg",
         name: "Maryann Ereh",
         time: "54 mins ago",
-        category: ["Android/IOS"],
-        // postImage: "/assets/svg/pairprogram.svg",
+        category: ["Phone and Technology"],
+        postImage: "/assets/svg/pairprogram.svg",
         topicTitle: "Join a Tech Company",
         description:
             "Brass is looking for student volunteers to join their company. If you’re a developer or designer interested in expanding your knowledge, you can apply with this link.",
@@ -40,13 +40,13 @@ const androidData = [
     },
 ];
 
-const Android = () => {
+const Phone = () => {
     const [clicked, setClicked] = useState("");
 
     return (
         <PostsDataContainer>
-            {androidData.length !== 0 ? (
-                androidData.map((post, index) => (
+            {phoneData.length !== 0 ? (
+                phoneData.map((post, index) => (
                     <HomeItemContainer key={post.id}>
                         <div className="post-container">
                             <PostsDataHeader>
@@ -256,4 +256,4 @@ width: auto;
 justify-self: flex-end;
 }
 `;
-export default Android;
+export default Phone;
