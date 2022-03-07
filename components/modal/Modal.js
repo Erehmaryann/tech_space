@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import {
   StyledModal,
@@ -7,7 +8,7 @@ import {
   StyledModalHeader,
   StyledModalOverlay,
   StyledModalTitle,
-  StyledModalWrapper,
+  // StyledModalWrapper,
 } from "./ModalStyles";
 
 import Image from "next/image";

@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import NotFound from "../components/404/404";
+import Head from "next/head";
 import Link from "next/link";
 const NotFoundPage = () => {
+  <Head>
+    <title>Tech Space | Not Found</title>
+  </Head>;
   return (
     <Container>
       <NotFound />

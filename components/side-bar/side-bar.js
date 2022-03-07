@@ -52,11 +52,11 @@ const SideBar = () => {
         {/* <ul> */}
         <li><Link href="/home"><a>All</a></Link></li>
         <li><Link href="/programming"><a>Programming</a></Link></li>
-        <li><Link href=""><a>Web development</a></Link></li>
-        <li><Link href=""><a>Networking</a></Link></li>
-        <li><Link href=""><a>Computer repair/ maintenance</a></Link></li>
-        <li><Link href=""><a>Android/IOS</a></Link></li>
-        <li><Link href=""><a>Phone and Technology</a></Link></li>
+        <li><Link href="/web-development"><a>Web development</a></Link></li>
+        <li><Link href="/networking"><a>Networking</a></Link></li>
+        <li><Link href="computer-repair"><a>Computer repair/ maintenance</a></Link></li>
+        <li><Link href="android"><a>Android/IOS</a></Link></li>
+        <li><Link href="phone-technology"><a>Phone and Technology</a></Link></li>
         {/* </ul> */}
       </div>
     </Div>

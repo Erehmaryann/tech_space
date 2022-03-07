@@ -1,22 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
+import { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
 // import Head from "next/head";
-import EmptyState from '../empty-state/empty-state';
+import EmptyState from "../empty-state/empty-state";
+import Popup from "../popup/popup";
 
-const savedData = [
+const webData = [
     {
         id: 1,
         profilePix: "/assets/svg/profilepix.svg",
         name: "Maryann Ereh",
         time: "54 mins ago",
-        category: ["Phone and Technology"],
-        saveIcon: "/assets/svg/savedTopic.svg",
-        postImage: "/assets/laptop.png",
-        topicTitle: "New Ipad!",
+        category: ["Web development"],
+        postImage: "/assets/svg/pairprogram.svg",
+        topicTitle: "Join a Tech Company",
         description:
-            "Everyone’s talking about the new Ipad. What new features do you guys like? It’s definitely the OS for me.",
+            "Brass is looking for student volunteers to join their company. If you’re a developer or designer interested in expanding your knowledge, you can apply with this link.",
         emoji: "/assets/svg/heartemoji.svg",
         peopleReaction: "Takon Ajie and 14 others",
         peopleComment: "23 Comments",
@@ -28,11 +29,10 @@ const savedData = [
         profilePix: "/assets/svg/profilepix.svg",
         name: "Maryann Ereh",
         time: "54 mins ago",
-        category: ["Programming", "Networking"],
-        saveIcon: "/assets/svg/savedTopic.svg",
-        topicTitle: "Faster PC",
+        category: ["Web development"],
+        topicTitle: "Tech Hangout",
         description:
-            "You guyssss, i just installed a new RAM and my system is so much faster, it’s inasne. They’re also very cheap so if you need one you can just send me a message right now!",
+            "A friend is organizing a hangout for developers and we’re all invited. It’s a great opportunity to meet mentors and just fellow colleagues. Send me message if you’re interested.",
         emoji: "/assets/svg/heartemoji.svg",
         peopleReaction: "Takon Ajie and 14 others",
         peopleComment: "23 Comments",
@@ -41,20 +41,22 @@ const savedData = [
     },
 ];
 
-const SaveData = () => {
+const WebdevData = () => {
     // <Head>
-    //     <title>Tech Space | Saved</title>
+    //     <title>Tech Space | Web Development</title>
+    //     {/* <meta property="og:title" content="Tech Space | Programming" key="title" /> */}
     // </Head>;
+    const [clicked, setClicked] = useState("");
+
     return (
-        <SavedDataContainer>
-            <h2 style={{ color: "#374956" }}>Saved Topics</h2>
-            {savedData.length !== 0 ? (
-                savedData.map((post) => (
+        <PostsDataContainer>
+            {webData.length !== 0 ? (
+                webData.map((post, index) => (
                     <HomeItemContainer key={post.id}>
                         <div className="post-container">
-                            <SavedDataHeader>
+                            <PostsDataHeader>
                                 <img src={post.profilePix} alt="profile-pix" />
-                                <SavedName className="name">
+                                <PostName className="name">
                                     <div>
                                         <h5 className="post-name-title">{post.name}</h5>
                                         <p className="post-name-time">
@@ -64,11 +66,23 @@ const SaveData = () => {
                                             ))}
                                         </p>
                                     </div>
-                                    <div className="save-icon">
-                                        <img src={post.saveIcon} alt="save-icon" />
+                                    <div
+                                        className="save-icon"
+                                        onClick={() =>
+                                            setClicked((prevState) =>
+                                                prevState === post.id ? "" : post.id
+                                            )
+                                        }
+                                    >
+                                        {clicked === post.id ? (
+                                            <img src="/assets/svg/savedTopic.svg" alt="save-icon" />
+                                        ) : (
+                                            <img src="/assets/svg/saveicon.svg" alt="save-icon" />
+                                        )}
+                                        {clicked === post.id && <Popup key={index} />}
                                     </div>
-                                </SavedName>
-                            </SavedDataHeader>
+                                </PostName>
+                            </PostsDataHeader>
                             <PostBody className="post-body">
                                 <div>
                                     <Link href="">
@@ -88,35 +102,43 @@ const SaveData = () => {
                                         />
                                     )}
                                 </div>
-                                <BottomDiv className="reactions SavedDataContainer__margin-class" style={{ borderBottom: "1px solid #ECECEC" }}>
-                                    <div className="emoji-reaction SavedDataContainer__margin-class">
+                                <BottomDiv
+                                    className="reactions PostsDataContainer__margin-class"
+                                    style={{
+                                        borderBottom: "1px solid #ECECEC",
+                                    }}
+                                >
+                                    <div className="emoji-reaction PostsDataContainer__margin-class">
                                         <img src={post.emoji} alt="emoji" /> &nbsp;&nbsp;
                                         <span>{post.peopleReaction}</span>
                                     </div>
                                     <div>
-                                        <p className="bottom-div_text-right ">{post.peopleComment}</p>
+                                        <p className="bottom-div_text-right ">
+                                            {post.peopleComment}
+                                        </p>
                                     </div>
                                 </BottomDiv>
-                                <BottomDiv className="like-comment-container SavedDataContainer__margin-class">
+                                <BottomDiv className="like-comment-container PostsDataContainer__margin-class">
                                     <p className="bottom-div_text-blue">{post.like}</p>
                                     <p className="bottom-div_text-blue">{post.comment}</p>
                                 </BottomDiv>
                             </PostBody>
                         </div>
                     </HomeItemContainer>
-                )
-                )) : (
-                <EmptyState text={`No saved topics yet`} para={`Topics you save will appear here`} />
-            )
-            }
-        </SavedDataContainer>
+                ))
+            ) : (
+                <EmptyState
+                    text={`No topic on programming yet`}
+                    para={`Posts on programming will appear here`}
+                />
+            )}
+        </PostsDataContainer>
     );
 };
 
-const SavedDataContainer = styled.main`
+const PostsDataContainer = styled.main`
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
   padding: 20px;
 
   h5,
@@ -125,7 +147,7 @@ const SavedDataContainer = styled.main`
     margin: 0;
     padding: 0;
   }
-  .SavedDataContainer__margin-class {
+  .PostsDataContainer__margin-class {
     margin: 10px 0;
   }
 `;
@@ -138,8 +160,7 @@ const HomeItemContainer = styled.section`
   border-radius: 10px;
 `;
 
-
-const SavedDataHeader = styled.div`
+const PostsDataHeader = styled.div`
   display: flex;
   width: 100%;
   height: 50px;
@@ -147,7 +168,7 @@ const SavedDataHeader = styled.div`
   align-items: center;
 `;
 
-const SavedName = styled.div`
+const PostName = styled.div`
   display: flex;
   width: 91%;
   justify-content: space-between;
@@ -175,6 +196,7 @@ const SavedName = styled.div`
   }
   .save-icon {
     cursor: pointer;
+    position: relative;
   }
 `;
 
@@ -224,7 +246,6 @@ color: #C4C4C4;
 }
 .bottom-div_text-right {
     text-align: right;
-
 }
 .bottom-div_text-blue {
     color: #409DE0;
@@ -232,12 +253,12 @@ color: #C4C4C4;
 }
 p{
     font-style: normal;
-    font-weight: normal;
-    font-size: 10px;
-    line-height: 15px;
-    color: #C4C4C4;
-    width: auto;
-    justify-self: flex-end;
+font-weight: normal;
+font-size: 10px;
+line-height: 15px;
+color: #C4C4C4;
+width: auto;
+justify-self: flex-end;
 }
 `;
-export default SaveData;
+export default WebdevData;

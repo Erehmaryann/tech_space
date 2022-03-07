@@ -33,7 +33,7 @@ const Container = styled.div`
   width: 100%;
   min-height: 100vh;
   padding-top: 10px;
-  /* background: #e5e5e5; */
+  background: #e5e5e5;
   padding-top: 80px;
 `;
 export default Layout;
