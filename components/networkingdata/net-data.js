@@ -6,13 +6,13 @@ import Image from "next/image";
 import EmptyState from "../empty-state/empty-state";
 import Popup from "../popup/popup";
 
-const webData = [
+const networkData = [
     {
         id: 1,
         profilePix: "/assets/svg/profilepix.svg",
         name: "Maryann Ereh",
         time: "54 mins ago",
-        category: ["Web development"],
+        category: ["Networking"],
         postImage: "/assets/svg/pairprogram.svg",
         topicTitle: "Join a Tech Company",
         description:
@@ -28,7 +28,7 @@ const webData = [
         profilePix: "/assets/svg/profilepix.svg",
         name: "Maryann Ereh",
         time: "54 mins ago",
-        category: ["Web development"],
+        category: ["Networking"],
         topicTitle: "Tech Hangout",
         description:
             "A friend is organizing a hangout for developers and we’re all invited. It’s a great opportunity to meet mentors and just fellow colleagues. Send me message if you’re interested.",
@@ -40,13 +40,13 @@ const webData = [
     },
 ];
 
-const WebdevData = () => {
+const NetData = () => {
     const [clicked, setClicked] = useState("");
 
     return (
         <PostsDataContainer>
-            {webData.length !== 0 ? (
-                webData.map((post, index) => (
+            {networkData.length !== 0 ? (
+                networkData.map((post, index) => (
                     <HomeItemContainer key={post.id}>
                         <div className="post-container">
                             <PostsDataHeader>
@@ -256,4 +256,4 @@ width: auto;
 justify-self: flex-end;
 }
 `;
-export default WebdevData;
+export default NetData;

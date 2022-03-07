@@ -3,13 +3,15 @@ import styled from "styled-components";
 import SavedData from '../components/savedpage/saved-data';
 //  since you want the login to be the home page.\, we would conditionally render either log in or home page here and then pass it to the index page
 const Saved = () => {
-    <Head>
-        <title>Tech Space | Saved</title>
-    </Head>;
     return (
-        <SavedItemContainer>
-            <SavedData />
-        </SavedItemContainer>
+        <>
+            <Head>
+                <title>Tech Space | Saved</title>
+            </Head>
+            <SavedItemContainer>
+                <SavedData />
+            </SavedItemContainer>
+        </>
     );
 };
 

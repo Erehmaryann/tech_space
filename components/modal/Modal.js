@@ -25,28 +25,28 @@ const Modal = ({
   const [isBrowser, setIsBrowser] = useState(false);
 
   // create ref for the StyledModalWrapper component
-  const modalWrapperRef = React.useRef();
+  // const modalWrapperRef = React.useRef();
 
   // check if the user has clickedinside or outside the modal
-  const backDropHandler = (e) => {
-    if (!modalWrapperRef?.current?.contains(e.target)) {
-      onClose();
-    }
-  };
+  // const backDropHandler = (e) => {
+  //   if (!modalWrapperRef?.current?.contains(e.target)) {
+  //     onClose();
+  //   }
+  // };
 
   useEffect(() => {
     setIsBrowser(true);
 
     // attach event listener to the whole windor with our handler
-    window.addEventListener("click", backDropHandler);
+    // window.addEventListener("click", backDropHandler);
 
-    // remove the event listener when the modal is closed
-    return () => window.removeEventListener("click", backDropHandler);
+    // // remove the event listener when the modal is closed
+    // return () => window.removeEventListener("click", backDropHandler);
   }, []);
 
-  React.useLayoutEffect(() => {
-    console.log("here");
-  }, []);
+  // React.useLayoutEffect(() => {
+  //   console.log("here");
+  // }, []);
 
   const handleCloseClick = (e) => {
     e.preventDefault();

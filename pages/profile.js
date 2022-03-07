@@ -3,13 +3,15 @@ import styled from "styled-components";
 import ProfilePage from '../components/profile-page/profilepage';
 
 const Profile = () => {
-    <Head>
-        <title>Tech Space | Profile</title>
-    </Head>;
     return (
-        <ProfileItemContainer>
-            <ProfilePage />
-        </ProfileItemContainer>
+        <>
+            <Head>
+                <title>Tech Space | Profile</title>
+            </Head>
+            <ProfileItemContainer>
+                <ProfilePage />
+            </ProfileItemContainer>
+        </>
     );
 };
 

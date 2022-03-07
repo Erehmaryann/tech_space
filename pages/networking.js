@@ -1,17 +1,20 @@
-import ProgrammingData from '../components/programming/programmingData';
+import NetData from '../components/networkingdata/net-data';
 import Head from "next/head";
 import styled from "styled-components";
 //  since you want the login to be the home page.\, we would conditionally render either log in or home page here and then pass it to the index page
-const Programming = () => {
+const Networking = () => {
+
     return (
         <>
             <Head>
-                <title>Tech Space | Programming</title>
+                <title>Tech Space | Netwoking</title>
             </Head>
+
             <HomeItemContainer>
-                <ProgrammingData />
+                <NetData />
             </HomeItemContainer>
         </>
+
     );
 };
 
@@ -19,4 +22,4 @@ const HomeItemContainer = styled.div`
   background: #e5e5e5;
 `;
 
-export default Programming;
+export default Networking;

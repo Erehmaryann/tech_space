@@ -3,19 +3,23 @@ import NotFound from "../components/404/404";
 import Head from "next/head";
 import Link from "next/link";
 const NotFoundPage = () => {
-  <Head>
-    <title>Tech Space | Not Found</title>
-  </Head>;
+
   return (
-    <Container>
-      <NotFound />
-      <h3>Page Not Found!!!</h3>
-      <p>
-        <Link href="/home">
-          <a>Go Back to Homepage</a>
-        </Link>
-      </p>
-    </Container>
+    <>
+      <Head>
+        <title>Tech Space | Not Found</title>
+      </Head>
+      <Container>
+        <NotFound />
+        <h3>Page Not Found!!!</h3>
+        <p>
+          <Link href="/home">
+            <a>Go Back to Homepage</a>
+          </Link>
+        </p>
+      </Container>
+    </>
+
   );
 };
 const Container = styled.main`

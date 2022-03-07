@@ -3,13 +3,15 @@ import styled from "styled-components";
 import SettingsPage from '../components/settingspage/settingspage';
 
 const Settings = () => {
-    <Head>
-        <title>Tech Space | Settings</title>
-    </Head>;
     return (
-        <SettingsItemContainer>
-            <SettingsPage />
-        </SettingsItemContainer>
+        <>
+            <Head>
+                <title>Tech Space | Settings</title>
+            </Head>
+            <SettingsItemContainer>
+                <SettingsPage />
+            </SettingsItemContainer>
+        </>
     );
 };
 
