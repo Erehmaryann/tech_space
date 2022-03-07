@@ -2,7 +2,6 @@
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
-// import Head from "next/head";
 import EmptyState from '../empty-state/empty-state';
 
 const trendingData = [
@@ -42,9 +41,6 @@ const trendingData = [
 ];
 
 const TrendData = () => {
-  // <Head>
-  //   <title>Tech Space | Trending</title>
-  // </Head>;
   return (
     <TrendDataContainer>
       <h2 style={{ color: "#374956" }}>Trending Posts</h2>

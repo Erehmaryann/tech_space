@@ -57,19 +57,7 @@ export const StyledModal = styled.div`
   width: 464px;
   height: 430px;
   border-radius: 15px;
-<<<<<<< HEAD
   padding: 15px;
-=======
-  padding:  15px;
-  position: relative;
-
-  .close-icon {
-    position: absolute;
-    right: 12px;
-    top: 10px;
-    cursor: pointer;
-  }
->>>>>>> f1ae1b0334bd7d04ab0793f5617e055b1d7ae6c6
 
   div {
     /* width: 199px; */

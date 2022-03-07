@@ -1,15 +1,20 @@
-// import Head from "next/head";
+import Head from "next/head";
 import styled from "styled-components";
 import Error from "../../public/assets/svg/error.svg";
 import Image from "next/image";
 
 const NotFound = () => {
   return (
-    <HomeItemContainer>
-      <ImageDiv>
-        <Image src={Error} alt="404" />
-      </ImageDiv>
-    </HomeItemContainer>
+    <>
+      <Head>
+        <title>Tech Space | Not Found</title>
+      </Head>
+      <HomeItemContainer>
+        <ImageDiv>
+          <Image src={Error} alt="404" />
+        </ImageDiv>
+      </HomeItemContainer>
+    </>
   );
 };
 

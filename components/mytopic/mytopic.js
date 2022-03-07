@@ -3,7 +3,6 @@ import { useState } from 'react';
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
-// import Head from "next/head";
 import EmptyState from '../empty-state/empty-state';
 import Popup from '../popup/popup';
 
@@ -42,9 +41,6 @@ const myTopicData = [
 ];
 
 const MyTopic = () => {
-    // <Head>
-    //     <title>Tech Space | Home</title>
-    // </Head>;
     const [clicked, setClicked] = useState(false);
 
     return (

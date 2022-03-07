@@ -3,7 +3,6 @@ import { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
-// import Head from "next/head";
 import EmptyState from "../empty-state/empty-state";
 import Popup from "../popup/popup";
 
@@ -42,10 +41,6 @@ const programData = [
 ];
 
 const ProgrammingData = () => {
-    // <Head>
-    //     <title>Tech Space | Programming</title>
-    //     {/* <meta property="og:title" content="Tech Space | Programming" key="title" /> */}
-    // </Head>;
     const [clicked, setClicked] = useState("");
 
     return (
