@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
 import EmptyState from '../empty-state/empty-state';
+import Popup from '../popup/popup';
 
 const myTopicData = [
     {
@@ -49,7 +50,7 @@ const MyTopic = () => {
     return (
         <PostsDataContainer>
             {myTopicData.length !== 0 ? (
-                myTopicData.map((post) => (
+                myTopicData.map((post, index) => (
                     <HomeItemContainer key={post.id} >
                         <div className="post-container">
                             <PostsDataHeader>
@@ -64,10 +65,20 @@ const MyTopic = () => {
                                             ))}
                                         </p>
                                     </div>
-                                    <div className="save-icon" onClick={() => setClicked(!clicked)}>
-                                        {clicked ?
-                                            <img src={post.saveIcon2} alt="save-icon" /> : <img src={post.saveIcon} alt="save-icon" />
+                                    <div
+                                        className="save-icon"
+                                        onClick={() =>
+                                            setClicked((prevState) =>
+                                                prevState === post.id ? "" : post.id
+                                            )
                                         }
+                                    >
+                                        {clicked === post.id ? (
+                                            <img src="/assets/svg/savedTopic.svg" alt="save-icon" />
+                                        ) : (
+                                            <img src="/assets/svg/saveicon.svg" alt="save-icon" />
+                                        )}
+                                        {clicked === post.id && <Popup key={index} />}
                                     </div>
                                 </PostName>
                             </PostsDataHeader>
@@ -132,6 +143,7 @@ const HomeItemContainer = styled.section`
   margin: 16px 0;
   background: white;
   padding: 20px;
+  position: relative;
   box-sizing: border-box;
   border-radius: 10px;
 `;

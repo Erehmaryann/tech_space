@@ -23,7 +23,6 @@ const postsData = [
     peopleComment: "23 Comments",
     comment: "Comment",
     like: "Like",
-    bookmarked: true,
   },
   {
     id: 2,
@@ -39,7 +38,6 @@ const postsData = [
     peopleComment: "23 Comments",
     comment: "Comment",
     like: "Like",
-    bookmarked: false,
   },
 ];
 

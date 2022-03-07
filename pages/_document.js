@@ -11,6 +11,7 @@ class MainDocument extends Document {
       <Html>
         <Head>
           <meta name="description" content="Tech Space Programming " />
+          {/* <meta property="og:title" content="My page title" key="title" /> */}
           <link rel="icon" href="/favicon.png" />
           <link rel="preconnect" href="https://fonts.googleapis.com/" />
           <link rel="preconnect" href="https://fonts.gstatic.com/" crossOrigin='true' />
