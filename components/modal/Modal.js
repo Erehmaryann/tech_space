@@ -60,8 +60,8 @@ const Modal = ({
           <Image
             src="/assets/svg/closeIcon.svg"
             alt="close-icon"
-            width={40}
-            height={40}
+            width={25}
+            height={25}
           />
         </div>
         {headerText && <StyledModalHeader>{headerText}</StyledModalHeader>}

@@ -7,7 +7,7 @@ const Networking = () => {
     return (
         <>
             <Head>
-                <title>Tech Space | Netwoking</title>
+                <title>Tech Space | Networking</title>
             </Head>
 
             <HomeItemContainer>
