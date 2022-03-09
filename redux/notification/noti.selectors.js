@@ -4,5 +4,5 @@ const selectNoti = state => state.noti;
 
 export const selectNotiHidden = createSelector(
     [selectNoti],
-    noti => noti.hidden
+    noti => noti.notiHidden
 );

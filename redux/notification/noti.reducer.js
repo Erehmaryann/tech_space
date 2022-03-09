@@ -1,7 +1,7 @@
 import NotiActionTypes from './noti.types';
 
 const INITIAL_STATE = {
-    hidden: true
+    notiHidden: true
 };
 
 const NotiReducer = (state = INITIAL_STATE, action) => {
@@ -9,7 +9,7 @@ const NotiReducer = (state = INITIAL_STATE, action) => {
         case NotiActionTypes.TOGGLE_NOTI_HIDDEN:
             return {
                 ...state,
-                hidden: !state.hidden
+                notiHidden: !state.notiHidden
             };
         default:
             return state;

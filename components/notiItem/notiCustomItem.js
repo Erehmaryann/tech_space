@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import Link from 'next/link';
 
-const NotiCustomItem = ({ pix, name, activity, option, time }) => {
+const NotiCustomItem = ({ pix, name, activity, option, time, link }) => {
   return (
     <CustomDiv>
       <div className="">
@@ -11,9 +12,15 @@ const NotiCustomItem = ({ pix, name, activity, option, time }) => {
           <span>{name}</span>
           {activity}
         </p>
-        <small>{option}</small>
+        {option && <small>{option}</small>}
       </div>
-      <small>{time}</small>
+      {time && <small>{time}</small>}
+      {time ?
+        <small>{time}</small> :
+        <Link href="/home">
+          <a>{link}</a>
+        </Link>
+      }
     </CustomDiv>
   );
 };
