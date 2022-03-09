@@ -11,7 +11,7 @@ const home = () => {
       </Head>
       <HomeItemContainer>
         {/* <PostsData /> */}
-        <Comments />
+        <Comments currentUserId="1" />
       </HomeItemContainer>
     </>
 
