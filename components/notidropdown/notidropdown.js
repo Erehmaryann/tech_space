@@ -4,10 +4,8 @@ import styled from "styled-components";
 const NotiDropdown = () => {
     return (
         <NotDiv>
-            <div className="overflow">
-                <h4>Notifications</h4>
-                <NotiItem />
-            </div>
+            <h4>Notifications</h4>
+            <NotiItem />
         </NotDiv>
     );
 };
@@ -26,9 +24,10 @@ const NotDiv = styled.div`
 	right: 10px;
 	z-index: 5;
 
-    .overflow {
-        overflow-y: auto;
-        height: 100%; 
+    h4 {
+        margin-top: -2px;
+        color: #374956;
+        font-size: 15px;
     }
 `;
 

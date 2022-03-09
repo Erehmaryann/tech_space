@@ -1,7 +1,7 @@
 // import { ReactComponent as Icon } from "../../public/assets/svg/notIcon.svg";
 import Image from "next/image";
-import { connect } from 'react-redux';
 import styled from "styled-components";
+import { connect } from 'react-redux';
 
 import { toggleNotiHidden } from "../../redux/notification/noti.actions";
 // import { createStructuredSelector } from 'reselect';
