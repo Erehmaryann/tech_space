@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { getComments as getCommentsApi } from './api';
 
 import Comment from './comment';
+import CommentForm from "./commentForm";
 import styled from "styled-components";
 
 const Comments = ({ currentUserId }) => {
@@ -11,17 +12,24 @@ const Comments = ({ currentUserId }) => {
     useEffect(() => {
         getCommentsApi().then(data => {
             setBackendcomments(data);
-            console.log(data);
         });
     }, []);
+
+    const getReplies = commentId => {
+        return backendComments.filter(backendComment => backendComment.parentId === commentId).sort((a, b) => new Date(a.createdat).getTime() - new Date(b.createdAt).getTime());
+    };
+
+    const addComment = (text, parentId) => { };
 
     return (
         <CommentDiv>
             <h3 className="comments-title">Comments</h3>
+            <div className="comment-form-title">Write comment</div>
+            <CommentForm submitLabel="Write" handleSubmit="addComment" />
             <div className="comments-container">
                 {
                     rootComments.map(comment => (
-                        <Comment key={comment.id} comment={comment} />
+                        <Comment key={comment.id} comment={comment} replies={getReplies(comment.id)} />
                     ))
                 }
             </div>
@@ -74,57 +82,6 @@ const CommentDiv = styled.div`
     .comment-form-cancel-button {
     margin-left: 10px;
     }
-
-    /* .comment {
-    display: flex;
-    margin-bottom: 28px;
-    }
-
-    .comment-image-container {
-    margin-right: 12px;
-    } */
-/* 
-    .comment-image-container img {
-    border-radius: 50px;
-    } */
-
-    /* .comment-right-part {
-    width: 100%;
-    } */
-
-    /* .comment-content {
-    display: flex;
-    }
-
-    .comment-author {
-    margin-right: 8px;
-    font-size: 20px;
-    color: rgb(59, 130, 246);
-    }
-
-    .comment-text {
-    font-size: 18px;
-    }
-
-    .comment-actions {
-    display: flex;
-    font-size: 12px;
-    color: rgb(51, 51, 51);
-    cursor: pointer;
-    margin-top: 8px;
-    }
-
-    .comment-action {
-    margin-right: 8px;
-    }
-
-    .comment-action:hover {
-    text-decoration: underline;
-    }
-
-    .replies {
-    margin-top: 20px;
-    } */
 `;
 
 export default Comments;

@@ -1,14 +1,31 @@
 import styled from "styled-components";
 import Image from "next/image";
 
-const Comment = ({ comment }) => {
+const Comment = ({ comment, replies }) => {
     return (
         <Div>
             <div className="comment-image-container">
                 <Image src="/assets/svg/profilepix.svg" width={28} height={28} alt="user-image" />
             </div>
             <div className="comment-right-part">
-                <div className="comment-content"></div>
+                <div className="comment-content">
+                    <div className="comment-author">
+                        {comment.username}
+                    </div>
+                    <div>{comment.createdAt}</div>
+                </div>
+                <div className="comment-text">
+                    {comment.body}
+                </div>
+                {replies.length > 0 && (
+                    <div className="replies">
+                        {
+                            replies.map((reply) => (
+                                <Comment key={reply.id} comment={reply} replies={[]} />
+                            ))
+                        }
+                    </div>
+                )}
             </div>
         </Div>
     );
