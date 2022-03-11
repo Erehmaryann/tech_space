@@ -25,9 +25,7 @@ const Comments = ({ currentUserId }) => {
 
     return (
         <CommentDiv>
-            {/* <h3 className="comments-title">Comments</h3>
-            <div className="comment-form-title">Write comment</div> */}
-            <CommentForm submitLabel="+" handleSubmit="addComment" />
+            <CommentForm submitLabel="+" handleSubmit={addComment} />
             <div className="comments-container">
                 {
                     rootComments.map(comment => (
