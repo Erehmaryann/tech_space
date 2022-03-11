@@ -20,8 +20,8 @@ const Comments = ({ currentUserId }) => {
     };
 
     const addComment = (text, parentId) => {
-        createCommentApi(text, parentId).then(data => {
-            setBackendcomments([...backendComments, data]);
+        createCommentApi(text, parentId).then(comment => {
+            setBackendcomments([comment, ...backendComments]);
         });
     };
 
@@ -31,7 +31,7 @@ const Comments = ({ currentUserId }) => {
             <div className="comments-container">
                 {
                     rootComments.map(comment => (
-                        <Comment key={comment.id} comment={comment} replies={getReplies(comment.id)} />
+                        <Comment key={comment.id} comment={comment} replies={getReplies(comment.id)} currentUserId={currentUserId} />
                     ))
                 }
             </div>

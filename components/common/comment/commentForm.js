@@ -12,9 +12,16 @@ const CommentForm = ({ handleSubmit, submitLabel }) => {
         setText("");
     };
 
+    const onPress = e => {
+        e.preventDefault;
+        if (e.key === "Enter" && !isTextareaDisabled) {
+            onSubmit(e);
+        }
+    };
+
     return (
         <FormDiv>
-            <form onSubmit={onSubmit}>
+            <form onKeyPress={onPress} onSubmit={onSubmit}>
                 <div className="">
                     <Image src="/assets/svg/profilepix.svg" width={28} height={28} alt="user-image" />
                     <textarea
@@ -23,7 +30,7 @@ const CommentForm = ({ handleSubmit, submitLabel }) => {
                         value={text}
                         onChange={e => setText(e.target.value)}
                     />
-                    <button className="comment-form-button" type="submit" disabled={isTextareaDisabled}>{submitLabel}</button>
+                    {/* <button className="comment-form-button" type="submit" disabled={isTextareaDisabled}>{submitLabel}</button> */}
                 </div>
             </form>
         </FormDiv>

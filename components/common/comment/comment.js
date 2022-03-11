@@ -1,7 +1,13 @@
 import styled from "styled-components";
 import Image from "next/image";
 
-const Comment = ({ comment, replies }) => {
+const Comment = ({ comment, replies, currentUserId }) => {
+    const fiveMinutes = 300000;
+    const timePassed = new Date().getTime() - new Date(comment.createdAt).getTime() > fiveMinutes;
+    const canReply = Boolean(currentUserId);
+    const canEdit = currentUserId === comment.userId && !timePassed;
+    // const canDelete = currentUserId === comment.userId && !timePassed;
+
     return (
         <Div>
             <div className="comment-image-container">
@@ -14,8 +20,11 @@ const Comment = ({ comment, replies }) => {
                     </div>
                     <div>{comment.createdAt}</div>
                 </div>
-                <div className="comment-text">
-                    {comment.body}
+                <div className="comment-text">{comment.body}</div>
+                <div className="comment-actions">
+                    {canReply && <div className="comment-action">Reply</div>}
+                    {canEdit && <div className="comment-action">Edit</div>}
+                    {/* {canDelete && <div className="comment-action">Delete</div>} */}
                 </div>
                 {replies.length > 0 && (
                     <div className="replies">
