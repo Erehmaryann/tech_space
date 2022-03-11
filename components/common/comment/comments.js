@@ -19,13 +19,15 @@ const Comments = ({ currentUserId }) => {
         return backendComments.filter(backendComment => backendComment.parentId === commentId).sort((a, b) => new Date(a.createdat).getTime() - new Date(b.createdAt).getTime());
     };
 
-    const addComment = (text, parentId) => { };
+    const addComment = (text, parentId) => {
+        console.log('addComment', text, parentId);
+    };
 
     return (
         <CommentDiv>
-            <h3 className="comments-title">Comments</h3>
-            <div className="comment-form-title">Write comment</div>
-            <CommentForm submitLabel="Write" handleSubmit="addComment" />
+            {/* <h3 className="comments-title">Comments</h3>
+            <div className="comment-form-title">Write comment</div> */}
+            <CommentForm submitLabel="+" handleSubmit="addComment" />
             <div className="comments-container">
                 {
                     rootComments.map(comment => (
@@ -38,49 +40,15 @@ const Comments = ({ currentUserId }) => {
 };
 
 const CommentDiv = styled.div`
-  margin-top: 20px;
-
-    .comments-title {
-    font-size: 30px;
-    margin-bottom: 20px;
-    }
+    background: rgb(255, 255, 255);
+    width: 765px;
+    height: 680px;
+    box-shadow: 0px 4px 4px rgba(55, 73, 86, 0.07);
+    border-radius: 15px;
+    margin-top: 20px;
 
     .comments-container {
     margin-top: 40px;
-    }
-
-    .comment-form-title {
-    font-size: 22px;
-    }
-
-    .comment-form-textarea {
-    width: 100%;
-    height: 80px;
-    margin-bottom: 8px;
-    margin-top: 8px;
-    border: 1px solid rgb(107, 114, 12);
-    }
-
-    .comment-form-button {
-    font-size: 16px;
-    padding: 8px 16px;
-    background: rgb(59, 130, 246);
-    border-radius: 8px;
-    color: white;
-    }
-
-    .comment-form-button:hover:enabled {
-    cursor: pointer;
-    background: rgb(37, 99, 235);
-    }
-
-    .comment-form-button:disabled {
-    opacity: 0.7;
-    cursor: default;
-    }
-
-    .comment-form-cancel-button {
-    margin-left: 10px;
     }
 `;
 

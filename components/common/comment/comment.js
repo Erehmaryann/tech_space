@@ -74,7 +74,7 @@ const Div = styled.div`
     }
 
     .replies {
-    margin-top: 20px;
+        margin-top: 20px;
     }
 `;
 
