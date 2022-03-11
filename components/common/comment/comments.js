@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getComments as getCommentsApi } from './api';
+import { getComments as getCommentsApi, createComment as createCommentApi } from './api';
 
 import Comment from './comment';
 import CommentForm from "./commentForm";
@@ -20,7 +20,9 @@ const Comments = ({ currentUserId }) => {
     };
 
     const addComment = (text, parentId) => {
-        console.log('addComment', text, parentId);
+        createCommentApi(text, parentId).then(data => {
+            setBackendcomments([...backendComments, data]);
+        });
     };
 
     return (

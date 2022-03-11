@@ -4,10 +4,12 @@ import Image from "next/image";
 
 const CommentForm = ({ handleSubmit, submitLabel }) => {
     const [text, setText] = useState("");
+    const isTextareaDisabled = text.length === 0;
 
     const onSubmit = e => {
         e.preventDefault();
         handleSubmit(text);
+        setText("");
     };
 
     return (
@@ -21,7 +23,7 @@ const CommentForm = ({ handleSubmit, submitLabel }) => {
                         value={text}
                         onChange={e => setText(e.target.value)}
                     />
-                    <button className="comment-form-button" type="submit">{submitLabel}</button>
+                    <button className="comment-form-button" type="submit" disabled={isTextareaDisabled}>{submitLabel}</button>
                 </div>
             </form>
         </FormDiv>
@@ -32,6 +34,7 @@ const FormDiv = styled.div`
     .comment-form-textarea {
         border: 1px solid rgb(107, 114, 12);
         outline: none;
+        resize: none;
     }
 
     .comment-form-button {
