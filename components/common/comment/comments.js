@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getComments as getCommentsApi, createComment as createCommentApi } from './api';
+import { getComments as getCommentsApi, createComment as createCommentApi, deleteComment as deleteCommentApi } from './api';
 
 import Comment from './comment';
 import CommentForm from "./commentForm";
@@ -25,13 +25,30 @@ const Comments = ({ currentUserId }) => {
         });
     };
 
+    const deleteComment = (commentId) => {
+        if (window.confirm("Are you that you want to remove comment?")) {
+            deleteCommentApi(commentId).then(() => {
+                const updatedBackendComments = backendComments.filter(
+                    (backendComment) => backendComment.id !== commentId
+                );
+                setBackendcomments(updatedBackendComments);
+            });
+        }
+    };
+
     return (
         <CommentDiv>
             <CommentForm submitLabel="+" handleSubmit={addComment} />
             <div className="comments-container">
                 {
                     rootComments.map(comment => (
-                        <Comment key={comment.id} comment={comment} replies={getReplies(comment.id)} currentUserId={currentUserId} />
+                        <Comment
+                            key={comment.id}
+                            comment={comment}
+                            replies={getReplies(comment.id)}
+                            currentUserId={currentUserId}
+                            deleteComment={deleteComment}
+                        />
                     ))
                 }
             </div>
