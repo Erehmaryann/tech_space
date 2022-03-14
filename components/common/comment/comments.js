@@ -7,7 +7,11 @@ import styled from "styled-components";
 
 const Comments = ({ currentUserId }) => {
     const [backendComments, setBackendcomments] = useState([]);
-    const rootComments = backendComments.filter(comment => comment.parentId === null);
+    const [activeComment, setActiveComment] = useState(null);
+
+    const rootComments = backendComments.filter(
+        comment => comment.parentId === null
+    );
 
     useEffect(() => {
         getCommentsApi().then(data => {
@@ -16,7 +20,7 @@ const Comments = ({ currentUserId }) => {
     }, []);
 
     const getReplies = commentId => {
-        return backendComments.filter(backendComment => backendComment.parentId === commentId).sort((a, b) => new Date(a.createdat).getTime() - new Date(b.createdAt).getTime());
+        return backendComments.filter(backendComment => backendComment.parentId === commentId).sort((a, b) => new Date(a.createdat).getMinutes() - new Date(b.createdAt).getMinutes());
     };
 
     const addComment = (text, parentId) => {

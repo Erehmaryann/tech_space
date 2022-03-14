@@ -40,7 +40,7 @@ const Comment = ({ comment, replies, currentUserId,// deleteComment
                                     comment={reply}
                                     replies={[]}
                                     currentUserId={currentUserId}
-                                    deleteComment={deleteComment}
+                                // deleteComment={deleteComment}
                                 />
                             ))
                         }
