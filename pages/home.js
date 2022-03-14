@@ -10,8 +10,8 @@ const home = () => {
         <title>Tech Space | Home</title>
       </Head>
       <HomeItemContainer>
-        {/* <PostsData /> */}
-        <Comments currentUserId="1" />
+        <PostsData />
+        {/* <Comments currentUserId="1" /> */}
       </HomeItemContainer>
     </>
 

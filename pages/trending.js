@@ -8,7 +8,7 @@ const Trend = () => {
     return (
         <>
             <Head>
-                <title>Tech Space | Trend</title>
+                <title>Tech Space | Trends</title>
             </Head>
             <TrendItemContainer>
                 <TrendData />

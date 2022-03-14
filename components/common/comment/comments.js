@@ -81,7 +81,6 @@ const Comments = ({ currentUserId }) => {
 const CommentDiv = styled.div`
     background: rgb(255, 255, 255);
     width: 765px;
-    /* height: 680px; */
     box-shadow: 0px 4px 4px rgba(55, 73, 86, 0.07);
     border-radius: 15px;
     margin-top: 20px;

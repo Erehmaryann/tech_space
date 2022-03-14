@@ -67,7 +67,7 @@ const SaveData = () => {
               </SavedDataHeader>
               <PostBody className="post-body">
                 <div>
-                  <Link href="">
+                  <Link href={`https://www.google.com/search?q=${post.topicTitle}`} replace>
                     <a>
                       <h6>{post.topicTitle}</h6>
                     </a>

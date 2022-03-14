@@ -2,17 +2,15 @@ import styled from "styled-components";
 import Image from "next/image";
 import CommentForm from './commentForm';
 
-import { updateComment } from "./api";
+// import { updateComment } from "./api";
 
 import Moment from 'react-moment';
-import moment from 'moment';
 
 
 const Comment = ({ comment, replies, addComment, updateComment, currentUserId,// deleteComment, 
     activeComment, setActiveComment, parentId = null }) => {
     const fiveMinutes = 300000;
     const timePassed = new Date() - new Date(comment.createdAt) > fiveMinutes;
-    const start = moment().add(-4, 'm');
 
     const canReply = Boolean(currentUserId);
     const canEdit = currentUserId === comment.userId && !timePassed;
@@ -96,6 +94,10 @@ const Div = styled.div`
 
     .comment-content {
         display: flex;
+        color: #C4C4C4;
+        font-size: 9px;
+        align-items: center;
+        justify-content: space-between;
         .time {
             &::before {
                 content: "•";
@@ -104,14 +106,16 @@ const Div = styled.div`
     }
 
     .comment-author {
-        margin-right: 8px;
-        font-size: 20px;
-        color: rgb(59, 130, 246);
+        /* margin-right: 8px; */
+        font-size: 12px;
+        font-weight: 600;
+        color: #374956;
         
     }
 
     .comment-text {
-    font-size: 18px;
+        font-size: 10px;
+        color: #374956;
     }
 
     .comment-actions {
