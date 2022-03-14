@@ -26,17 +26,19 @@ const Comment = ({ comment, replies, addComment, updateComment, currentUserId,//
                 <Image src="/assets/svg/profilepix.svg" width={28} height={28} alt="user-image" />
             </div>
             <div className="comment-right-part">
-                <div className="comment-content">
-                    <div className="comment-author">
-                        {comment.username}
+                <div className="grey-bg">
+                    <div className="comment-content">
+                        <div className="comment-author">
+                            {comment.username}
+                        </div>
+                        <div className="time">
+                            <Moment fromNow ago>
+                                {createdAt}
+                            </Moment>
+                        </div>
                     </div>
-                    <div className="time">
-                        <Moment fromNow ago>
-                            {createdAt}
-                        </Moment>
-                    </div>
+                    {!isEditing && <div className="comment-text">{comment.body}</div>}
                 </div>
-                {!isEditing && <div className="comment-text">{comment.body}</div>}
                 {isEditing && (
                     <CommentForm submitLabel="+" handleCancel={() => setActiveComment(null)} handleSubmit={(text) => updateComment(text, comment.id)} initialText={comment.body} hasCancelButton />
                 )}
@@ -90,6 +92,12 @@ const Div = styled.div`
 
     .comment-right-part {
         width: 100%;
+        .grey-bg {
+            background: #F1F1F1;
+            padding: 1rem 0 1rem 1rem;
+            box-sizing: border-box;
+            border-radius: 0px 10px 10px 10px;
+        }
     }
 
     .comment-content {
@@ -97,10 +105,14 @@ const Div = styled.div`
         color: #C4C4C4;
         font-size: 9px;
         align-items: center;
-        justify-content: space-between;
+        padding-bottom: 0.5rem;
+
         .time {
             &::before {
                 content: "•";
+                padding-left: 1rem;
+                padding-right: 0.2rem;
+                font-weight: bold;
             }
         }
     }
@@ -119,19 +131,24 @@ const Div = styled.div`
     }
 
     .comment-actions {
-    display: flex;
-    font-size: 12px;
-    color: rgb(51, 51, 51);
-    cursor: pointer;
-    margin-top: 8px;
+        display: flex;
+        /* font-size: 12px; */
+        cursor: pointer;
+        margin-top: 8px;
     }
 
     .comment-action {
-    margin-right: 8px;
+        margin-right: 8px;
+        font-size: 11px;
+        color: #A2A2A2;
+        font-weight: 400;
+        &::before {
+                content: "•";
+        }
     }
 
     .comment-action:hover {
-    text-decoration: underline;
+        color: #409DE0;
     }
 
     .replies {

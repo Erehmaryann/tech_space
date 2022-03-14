@@ -76,8 +76,8 @@ const ProfileItemContainer = styled.section`
             cursor: pointer;
         }
         .background {
-                background: #ABCEE7;
-            }
+            background: #ABCEE7;
+        }
     }
 `;
 
