@@ -2,11 +2,13 @@ import styled from "styled-components";
 import Image from "next/image";
 import CommentForm from './commentForm';
 
+import { updateComment } from "./api";
+
 import Moment from 'react-moment';
 import moment from 'moment';
 
 
-const Comment = ({ comment, replies, addComment, currentUserId,// deleteComment, 
+const Comment = ({ comment, replies, addComment, updateComment, currentUserId,// deleteComment, 
     activeComment, setActiveComment, parentId = null }) => {
     const fiveMinutes = 300000;
     const timePassed = new Date() - new Date(comment.createdAt) > fiveMinutes;
@@ -36,7 +38,10 @@ const Comment = ({ comment, replies, addComment, currentUserId,// deleteComment,
                         </Moment>
                     </div>
                 </div>
-                <div className="comment-text">{comment.body}</div>
+                {!isEditing && <div className="comment-text">{comment.body}</div>}
+                {isEditing && (
+                    <CommentForm submitLabel="+" handleCancel={() => setActiveComment(null)} handleSubmit={(text) => updateComment(text, comment.id)} initialText={comment.body} hasCancelButton />
+                )}
                 <div className="comment-actions">
                     {canReply && <div className="comment-action" onClick={() => setActiveComment({
                         id: comment.id, type: "replying",
@@ -61,6 +66,7 @@ const Comment = ({ comment, replies, addComment, currentUserId,// deleteComment,
                                     comment={reply}
                                     replies={[]}
                                     currentUserId={currentUserId}
+                                    updateComment={updateComment}
                                     addComment={addComment}
                                     activeComment={activeComment}
                                     setActiveComment={setActiveComment}

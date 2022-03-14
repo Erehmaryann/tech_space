@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getComments as getCommentsApi, createComment as createCommentApi, deleteComment as deleteCommentApi } from './api';
+import { updateComment as updateCommentApi, getComments as getCommentsApi, createComment as createCommentApi, deleteComment as deleteCommentApi } from './api';
 
 import Comment from './comment';
 import CommentForm from "./commentForm";
@@ -26,6 +26,20 @@ const Comments = ({ currentUserId }) => {
     const addComment = (text, parentId) => {
         createCommentApi(text, parentId).then(comment => {
             setBackendcomments([comment, ...backendComments]);
+            setActiveComment(null);
+        });
+    };
+
+    const updateComment = (text, commentId) => {
+        updateCommentApi(text, commentId).then(() => {
+            const updatedBackendComments = backendComments.map(backendComment => {
+                if (backendComment.id === commentId) {
+                    return { ...backendComment, body: text };
+                }
+                return backendComment;
+            });
+            setBackendcomments(updatedBackendComments);
+            setActiveComment(null);
         });
     };
 
@@ -48,6 +62,7 @@ const Comments = ({ currentUserId }) => {
                     rootComments.map(comment => (
                         <Comment
                             key={comment.id}
+                            updateComment={updateComment}
                             comment={comment}
                             replies={getReplies(comment.id)}
                             currentUserId={currentUserId}
@@ -66,10 +81,14 @@ const Comments = ({ currentUserId }) => {
 const CommentDiv = styled.div`
     background: rgb(255, 255, 255);
     width: 765px;
-    height: 680px;
+    /* height: 680px; */
     box-shadow: 0px 4px 4px rgba(55, 73, 86, 0.07);
     border-radius: 15px;
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 
     .comments-container {
     margin-top: 40px;
