@@ -1,14 +1,24 @@
 import styled from "styled-components";
 import Image from "next/image";
+import CommentForm from './commentForm';
 
-const Comment = ({ comment, replies, currentUserId,// deleteComment 
-}) => {
+import Moment from 'react-moment';
+import moment from 'moment';
+
+
+const Comment = ({ comment, replies, addComment, currentUserId,// deleteComment, 
+    activeComment, setActiveComment, parentId = null }) => {
     const fiveMinutes = 300000;
-    const timePassed = new Date().getMinutes() - new Date(comment.createdAt).getMinutes() > fiveMinutes;
+    const timePassed = new Date() - new Date(comment.createdAt) > fiveMinutes;
+    const start = moment().add(-4, 'm');
+
     const canReply = Boolean(currentUserId);
     const canEdit = currentUserId === comment.userId && !timePassed;
     // const canDelete = currentUserId === comment.userId && !timePassed;
-    const createdAt = new Date(comment.createdAt).getMinutes();
+    const createdAt = new Date(comment.createdAt);
+    const isReplying = activeComment && activeComment.type === "replying" && activeComment.id === comment.id;
+    const isEditing = activeComment && activeComment.type === "editing" && activeComment.id === comment.id;
+    const replyId = parentId ? parentId : comment.id;
 
     return (
         <Div>
@@ -20,17 +30,28 @@ const Comment = ({ comment, replies, currentUserId,// deleteComment
                     <div className="comment-author">
                         {comment.username}
                     </div>
-                    <div className="time">{createdAt} mins</div>
+                    <div className="time">
+                        <Moment fromNow ago>
+                            {createdAt}
+                        </Moment>
+                    </div>
                 </div>
                 <div className="comment-text">{comment.body}</div>
                 <div className="comment-actions">
-                    {canReply && <div className="comment-action">Reply</div>}
-                    {canEdit && <div className="comment-action">Edit</div>}
+                    {canReply && <div className="comment-action" onClick={() => setActiveComment({
+                        id: comment.id, type: "replying",
+                    })}>Reply</div>}
+                    {canEdit && <div className="comment-action" onClick={() => setActiveComment({
+                        id: comment.id, type: "editing",
+                    })}>Edit</div>}
                     {/* {canDelete && <div 
                     className="comment-action"
                     onClick={() => deleteComment(comment.id)}
                     >Delete</div>} */}
                 </div>
+                {isReplying && (
+                    <CommentForm submitLabel="+" handleSubmit={(text) => addComment(text, replyId)} />
+                )}
                 {replies.length > 0 && (
                     <div className="replies">
                         {
@@ -40,6 +61,10 @@ const Comment = ({ comment, replies, currentUserId,// deleteComment
                                     comment={reply}
                                     replies={[]}
                                     currentUserId={currentUserId}
+                                    addComment={addComment}
+                                    activeComment={activeComment}
+                                    setActiveComment={setActiveComment}
+                                    parentId={comment.id}
                                 // deleteComment={deleteComment}
                                 />
                             ))

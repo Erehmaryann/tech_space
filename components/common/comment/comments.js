@@ -20,7 +20,7 @@ const Comments = ({ currentUserId }) => {
     }, []);
 
     const getReplies = commentId => {
-        return backendComments.filter(backendComment => backendComment.parentId === commentId).sort((a, b) => new Date(a.createdat).getMinutes() - new Date(b.createdAt).getMinutes());
+        return backendComments.filter(backendComment => backendComment.parentId === commentId).sort((a, b) => new Date(a.createdat) - new Date(b.createdAt));
     };
 
     const addComment = (text, parentId) => {
@@ -52,6 +52,9 @@ const Comments = ({ currentUserId }) => {
                             replies={getReplies(comment.id)}
                             currentUserId={currentUserId}
                             deleteComment={deleteComment}
+                            activeComment={activeComment}
+                            setActiveComment={setActiveComment}
+                            addComment={addComment}
                         />
                     ))
                 }

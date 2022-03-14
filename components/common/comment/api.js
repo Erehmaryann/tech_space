@@ -64,7 +64,7 @@ export const getComments = async () => {
             username: "John",
             userId: "2",
             parentId: "1",
-            createdAt: "2021-08-16T23:00:33.010+02:08",
+            createdAt: "2021-08-16T23:00:33.010+02:00",
         },
         {
             id: "4",
@@ -72,7 +72,7 @@ export const getComments = async () => {
             username: "John",
             userId: "2",
             parentId: "2",
-            createdAt: "2021-08-16T23:00:33.010+02:08",
+            createdAt: "2021-08-16T23:00:33.010+02:00",
         },
     ];
 };
