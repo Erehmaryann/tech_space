@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
 import EmptyState from '../empty-state/empty-state';
+import Comments from '../common/comment/comments';
 
 const savedData = [
   {

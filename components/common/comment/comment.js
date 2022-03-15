@@ -84,7 +84,7 @@ const Comment = ({ comment, replies, addComment, updateComment, currentUserId,//
 
 const Div = styled.div`
     display: flex;
-    margin-bottom: 28px;
+    margin-bottom: 10px;
 
     .comment-image-container {
         margin-right: 12px;
@@ -143,7 +143,8 @@ const Div = styled.div`
         color: #A2A2A2;
         font-weight: 400;
         &::before {
-                content: "•";
+            content: "•";
+            padding-right: 0.2rem;
         }
     }
 

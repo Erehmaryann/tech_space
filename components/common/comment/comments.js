@@ -91,7 +91,7 @@ const CommentDiv = styled.div`
 
 
     .comments-container {
-    margin-top: 40px;
+        margin-top: 20px;
     }
 `;
 
