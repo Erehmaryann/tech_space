@@ -21,8 +21,6 @@ const postsData = [
     emoji: "/assets/svg/heartemoji.svg",
     peopleReaction: "Takon Ajie and 14 others",
     peopleComment: "23 Comments",
-    // comment: "Comment",
-    // like: "Like",
   },
   {
     id: 2,
@@ -36,8 +34,6 @@ const postsData = [
     emoji: "/assets/svg/heartemoji.svg",
     peopleReaction: "Takon Ajie and 14 others",
     peopleComment: "23 Comments",
-    // comment: "Comment",
-    // like: "Like",
   },
 ];
 

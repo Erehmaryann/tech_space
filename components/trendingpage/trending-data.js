@@ -19,8 +19,6 @@ const trendingData = [
     emoji: "/assets/svg/heartemoji.svg",
     peopleReaction: "Takon Ajie and 14 others",
     peopleComment: "23 Comments",
-    comment: "Comment",
-    like: "Like",
   },
   {
     id: 2,
@@ -35,8 +33,6 @@ const trendingData = [
     emoji: "/assets/svg/heartemoji.svg",
     peopleReaction: "Takon Ajie and 14 others",
     peopleComment: "23 Comments",
-    comment: "Comment",
-    like: "Like",
   },
 ];
 
@@ -94,8 +90,8 @@ const TrendData = () => {
                   </div>
                 </BottomDiv>
                 <BottomDiv className="like-comment-container TrendDataContainer__margin-class">
-                  <p className="bottom-div_text-blue">{post.like}</p>
-                  <p className="bottom-div_text-blue">{post.comment}</p>
+                  <p className="bottom-div_text-blue">Like</p>
+                  <p className="bottom-div_text-blue">Comment</p>
                 </BottomDiv>
               </PostBody>
             </div>

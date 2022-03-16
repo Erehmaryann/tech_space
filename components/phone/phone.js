@@ -19,8 +19,6 @@ const phoneData = [
         emoji: "/assets/svg/heartemoji.svg",
         peopleReaction: "Takon Ajie and 14 others",
         peopleComment: "23 Comments",
-        comment: "Comment",
-        like: "Like",
     },
     {
         id: 1,
@@ -35,8 +33,6 @@ const phoneData = [
         emoji: "/assets/svg/heartemoji.svg",
         peopleReaction: "Takon Ajie and 14 others",
         peopleComment: "23 Comments",
-        comment: "Comment",
-        like: "Like",
     },
 ];
 
@@ -114,8 +110,8 @@ const Phone = () => {
                                     </div>
                                 </BottomDiv>
                                 <BottomDiv className="like-comment-container PostsDataContainer__margin-class">
-                                    <p className="bottom-div_text-blue">{post.like}</p>
-                                    <p className="bottom-div_text-blue">{post.comment}</p>
+                                    <p className="bottom-div_text-blue">Like</p>
+                                    <p className="bottom-div_text-blue">Comment</p>
                                 </BottomDiv>
                             </PostBody>
                         </div>

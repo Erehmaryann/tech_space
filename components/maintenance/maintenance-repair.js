@@ -13,15 +13,12 @@ const maintenanceData = [
         name: "Maryann Ereh",
         time: "54 mins ago",
         category: ["Computer repair and Maintenance"],
-        // postImage: "/assets/svg/pairprogram.svg",
         topicTitle: "Join a Tech Company",
         description:
             "Brass is looking for student volunteers to join their company. If you’re a developer or designer interested in expanding your knowledge, you can apply with this link.",
         emoji: "/assets/svg/heartemoji.svg",
         peopleReaction: "Takon Ajie and 14 others",
         peopleComment: "23 Comments",
-        comment: "Comment",
-        like: "Like",
     },
     {
         id: 2,
@@ -35,8 +32,6 @@ const maintenanceData = [
         emoji: "/assets/svg/heartemoji.svg",
         peopleReaction: "Takon Ajie and 14 others",
         peopleComment: "23 Comments",
-        comment: "Comment",
-        like: "Like",
     },
 ];
 
@@ -114,8 +109,8 @@ const Maintenance = () => {
                                     </div>
                                 </BottomDiv>
                                 <BottomDiv className="like-comment-container PostsDataContainer__margin-class">
-                                    <p className="bottom-div_text-blue">{post.like}</p>
-                                    <p className="bottom-div_text-blue">{post.comment}</p>
+                                    <p className="bottom-div_text-blue">Like</p>
+                                    <p className="bottom-div_text-blue">Comment</p>
                                 </BottomDiv>
                             </PostBody>
                         </div>
