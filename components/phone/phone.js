@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
 import EmptyState from "../empty-state/empty-state";
+import Comments from '../common/comment/comments';
 import Popup from "../popup/popup";
 
 const phoneData = [
@@ -38,84 +39,92 @@ const phoneData = [
 
 const Phone = () => {
     const [clicked, setClicked] = useState("");
+    const [clickedComment, setClickedComment] = useState("");
 
     return (
         <PostsDataContainer>
             {phoneData.length !== 0 ? (
                 phoneData.map((post, index) => (
-                    <HomeItemContainer key={post.id}>
-                        <div className="post-container">
-                            <PostsDataHeader>
-                                <img src={post.profilePix} alt="profile-pix" />
-                                <PostName className="name">
+                    <div key={post.id}>
+                        <HomeItemContainer>
+                            <div className="post-container">
+                                <PostsDataHeader>
+                                    <img src={post.profilePix} alt="profile-pix" />
+                                    <PostName className="name">
+                                        <div>
+                                            <h5 className="post-name-title">{post.name}</h5>
+                                            <p className="post-name-time">
+                                                {post.time} &nbsp; &nbsp;
+                                                {post.category.map((category, idx) => (
+                                                    <span key={idx}>{category}</span>
+                                                ))}
+                                            </p>
+                                        </div>
+                                        <div
+                                            className="save-icon"
+                                            onClick={() =>
+                                                setClicked((prevState) =>
+                                                    prevState === post.id ? "" : post.id
+                                                )
+                                            }
+                                        >
+                                            {clicked === post.id ? (
+                                                <img src="/assets/svg/savedTopic.svg" alt="save-icon" />
+                                            ) : (
+                                                <img src="/assets/svg/saveicon.svg" alt="save-icon" />
+                                            )}
+                                            {clicked === post.id && <Popup key={index} />}
+                                        </div>
+                                    </PostName>
+                                </PostsDataHeader>
+                                <PostBody className="post-body">
                                     <div>
-                                        <h5 className="post-name-title">{post.name}</h5>
-                                        <p className="post-name-time">
-                                            {post.time} &nbsp; &nbsp;
-                                            {post.category.map((category, idx) => (
-                                                <span key={idx}>{category}</span>
-                                            ))}
-                                        </p>
+                                        <Link href={`https://www.google.com/search?q=${post.topicTitle}`} replace>
+                                            <a>
+                                                <h6>{post.topicTitle}</h6>
+                                            </a>
+                                        </Link>
+                                        <p>{post.description}</p>
+                                        {post.postImage && (
+                                            <Image
+                                                src={post.postImage}
+                                                alt="post-image"
+                                                width="100%"
+                                                height="60%"
+                                                layout="responsive"
+                                                objectFit="contain"
+                                            />
+                                        )}
                                     </div>
-                                    <div
-                                        className="save-icon"
-                                        onClick={() =>
-                                            setClicked((prevState) =>
+                                    <BottomDiv
+                                        className="reactions PostsDataContainer__margin-class"
+                                        style={{
+                                            borderBottom: "1px solid #ECECEC",
+                                        }}
+                                    >
+                                        <div className="emoji-reaction PostsDataContainer__margin-class">
+                                            <img src={post.emoji} alt="emoji" /> &nbsp;&nbsp;
+                                            <span>{post.peopleReaction}</span>
+                                        </div>
+                                        <div>
+                                            <p className="bottom-div_text-right ">
+                                                {post.peopleComment}
+                                            </p>
+                                        </div>
+                                    </BottomDiv>
+                                    <BottomDiv className="like-comment-container PostsDataContainer__margin-class">
+                                        <p className="bottom-div_text-blue">Like</p>
+                                        <p className="bottom-div_text-blue" onClick={() =>
+                                            setClickedComment((prevState) =>
                                                 prevState === post.id ? "" : post.id
                                             )
-                                        }
-                                    >
-                                        {clicked === post.id ? (
-                                            <img src="/assets/svg/savedTopic.svg" alt="save-icon" />
-                                        ) : (
-                                            <img src="/assets/svg/saveicon.svg" alt="save-icon" />
-                                        )}
-                                        {clicked === post.id && <Popup key={index} />}
-                                    </div>
-                                </PostName>
-                            </PostsDataHeader>
-                            <PostBody className="post-body">
-                                <div>
-                                    <Link href={`https://www.google.com/search?q=${post.topicTitle}`} replace>
-                                        <a>
-                                            <h6>{post.topicTitle}</h6>
-                                        </a>
-                                    </Link>
-                                    <p>{post.description}</p>
-                                    {post.postImage && (
-                                        <Image
-                                            src={post.postImage}
-                                            alt="post-image"
-                                            width="100%"
-                                            height="60%"
-                                            layout="responsive"
-                                            objectFit="contain"
-                                        />
-                                    )}
-                                </div>
-                                <BottomDiv
-                                    className="reactions PostsDataContainer__margin-class"
-                                    style={{
-                                        borderBottom: "1px solid #ECECEC",
-                                    }}
-                                >
-                                    <div className="emoji-reaction PostsDataContainer__margin-class">
-                                        <img src={post.emoji} alt="emoji" /> &nbsp;&nbsp;
-                                        <span>{post.peopleReaction}</span>
-                                    </div>
-                                    <div>
-                                        <p className="bottom-div_text-right ">
-                                            {post.peopleComment}
-                                        </p>
-                                    </div>
-                                </BottomDiv>
-                                <BottomDiv className="like-comment-container PostsDataContainer__margin-class">
-                                    <p className="bottom-div_text-blue">Like</p>
-                                    <p className="bottom-div_text-blue">Comment</p>
-                                </BottomDiv>
-                            </PostBody>
-                        </div>
-                    </HomeItemContainer>
+                                        }>Comment</p>
+                                    </BottomDiv>
+                                </PostBody>
+                            </div>
+                        </HomeItemContainer>
+                        {clickedComment === post.id && <Comments currentUserId="1" />}
+                    </div>
                 ))
             ) : (
                 <EmptyState
@@ -224,32 +233,33 @@ const PostBody = styled.div`
 `;
 
 const BottomDiv = styled.div`
-display: flex;
-justify-content: space-between;
-align-items: center;
-width; 100%;
-span {
-    font-style: normal;
-font-weight: normal;
-font-size: 10px;
-line-height: 15px;
-color: #C4C4C4;
-}
-.bottom-div_text-right {
-    text-align: right;
-}
-.bottom-div_text-blue {
-    color: #409DE0;
-
-}
-p{
-    font-style: normal;
-font-weight: normal;
-font-size: 10px;
-line-height: 15px;
-color: #C4C4C4;
-width: auto;
-justify-self: flex-end;
-}
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width; 100%;
+    span {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 10px;
+        line-height: 15px;
+        color: #C4C4C4;
+    }
+    .bottom-div_text-right {
+        text-align: right;
+        cursor: pointer;
+    }
+    .bottom-div_text-blue {
+        color: #409DE0;
+        cursor: pointer;
+    }
+    p{
+        font-style: normal;
+        font-weight: normal;
+        font-size: 10px;
+        line-height: 15px;
+        color: #C4C4C4;
+        width: auto;
+        justify-self: flex-end;
+    }
 `;
 export default Phone;
