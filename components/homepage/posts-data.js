@@ -123,7 +123,7 @@ const PostsData = () => {
                 </PostBody>
               </div>
             </HomeItemContainer>
-            {clickedComment === post.id && <Comments currentUserId="1" key={index} />}
+            {clickedComment === post.id && <Comments currentUserId="1" />}
           </div>
         ))
       ) : (
