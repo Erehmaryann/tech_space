@@ -21,8 +21,8 @@ const postsData = [
     emoji: "/assets/svg/heartemoji.svg",
     peopleReaction: "Takon Ajie and 14 others",
     peopleComment: "23 Comments",
-    comment: "Comment",
-    like: "Like",
+    // comment: "Comment",
+    // like: "Like",
   },
   {
     id: 2,
@@ -36,8 +36,8 @@ const postsData = [
     emoji: "/assets/svg/heartemoji.svg",
     peopleReaction: "Takon Ajie and 14 others",
     peopleComment: "23 Comments",
-    comment: "Comment",
-    like: "Like",
+    // comment: "Comment",
+    // like: "Like",
   },
 ];
 
@@ -49,8 +49,8 @@ const PostsData = () => {
     <PostsDataContainer>
       {postsData.length !== 0 ? (
         postsData.map((post, index) => (
-          <>
-            <HomeItemContainer key={post.id}>
+          <div key={index}>
+            <HomeItemContainer >
               <div className="post-container">
                 <PostsDataHeader>
                   <img src={post.profilePix} alt="profile-pix" />
@@ -117,18 +117,18 @@ const PostsData = () => {
                     </div>
                   </BottomDiv>
                   <BottomDiv className="like-comment-container PostsDataContainer__margin-class">
-                    <p className="bottom-div_text-blue">{post.like}</p>
+                    <p className="bottom-div_text-blue">Like</p>
                     <p className="bottom-div_text-blue" onClick={() =>
                       setClickedComment((prevState) =>
                         prevState === post.id ? "" : post.id
                       )
-                    }>{post.comment}</p>
+                    }>Comment</p>
                   </BottomDiv>
                 </PostBody>
               </div>
             </HomeItemContainer>
-            {clickedComment === post.id && <Comments currentUserId="1" />}
-          </>
+            {clickedComment === post.id && <Comments currentUserId="1" key={index} />}
+          </div>
         ))
       ) : (
         <EmptyState
@@ -249,11 +249,12 @@ const BottomDiv = styled.div`
     color: #C4C4C4;
   }
   .bottom-div_text-right {
-      text-align: right;
+    text-align: right;
+    cursor: pointer;
   }
   .bottom-div_text-blue {
-      color: #409DE0;
-      cursor: pointer;
+    color: #409DE0;
+    cursor: pointer;
   }
   p{
     font-style: normal;

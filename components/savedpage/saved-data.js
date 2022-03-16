@@ -50,8 +50,8 @@ const SaveData = () => {
       <h2 style={{ color: "#374956" }}>Saved Topics</h2>
       {savedData.length !== 0 ? (
         savedData.map((post) => (
-          <>
-            <HomeItemContainer key={post.id}>
+          <div key={post.id}>
+            <HomeItemContainer >
               <div className="post-container">
                 <SavedDataHeader>
                   <img src={post.profilePix} alt="profile-pix" />
@@ -109,11 +109,11 @@ const SaveData = () => {
                 </PostBody>
               </div>
             </HomeItemContainer>
-            {clickedComment === post.id && <Comments currentUserId="1" />}
-          </>
+            {clickedComment === post.id && <Comments currentUserId="1" key={index} />}
+          </div>
         )
         )) : (
-        <EmptyState text={`No saved topics yet`} para={`Topics you save will appear here`} />
+        <EmptyState text={`No saved topics yet`} para={`Topics you save will appear here`} key={index} />
       )
       }
     </SavedDataContainer>
@@ -223,14 +223,15 @@ const BottomDiv = styled.div`
   align-items: center;
   width; 100%;
   span {
-      font-style: normal;
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 15px;
-  color: #C4C4C4;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 15px;
+    color: #C4C4C4;
   }
   .bottom-div_text-right {
     text-align: right;
+    cursor: pointer;
   }
   .bottom-div_text-blue {
     color: #409DE0;

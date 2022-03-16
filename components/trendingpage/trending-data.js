@@ -205,26 +205,26 @@ const PostBody = styled.div`
 `;
 
 const BottomDiv = styled.div`
-display: flex;
-justify-content: space-between;
-align-items: center;
-width; 100%;
-span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width; 100%;
+  span {
     font-style: normal;
-font-weight: normal;
-font-size: 10px;
-line-height: 15px;
-color: #C4C4C4;
-}
-.bottom-div_text-right {
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 15px;
+    color: #C4C4C4;
+  }
+  .bottom-div_text-right {
     text-align: right;
-
-}
-.bottom-div_text-blue {
+    cursor: pointer;
+  }
+  .bottom-div_text-blue {
     color: #409DE0;
-
-}
-p{
+    cursor: pointer;
+  }
+  p{
     font-style: normal;
     font-weight: normal;
     font-size: 10px;
@@ -232,6 +232,6 @@ p{
     color: #C4C4C4;
     width: auto;
     justify-self: flex-end;
-}
+  }
 `;
 export default TrendData;
