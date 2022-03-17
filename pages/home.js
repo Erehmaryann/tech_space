@@ -1,8 +1,7 @@
 import PostsData from "../components/homepage/posts-data";
 import Head from "next/head";
 import styled from "styled-components";
-import Emoji from '../components/emoji/emoji';
-import { Picker } from 'emoji-mart';
+// import Emoji from '../components/emoji/emoji';
 //  since you want the login to be the home page.\, we would conditionally render either log in or home page here and then pass it to the index page
 const home = () => {
   return (
@@ -11,8 +10,8 @@ const home = () => {
         <title>Tech Space | Home</title>
       </Head>
       <HomeItemContainer>
-        {/* <PostsData /> */}
-        <Picker showPreview={false} showSkinTones={false} />
+        <PostsData />
+        {/* <Picker /> */}
       </HomeItemContainer>
     </>
 

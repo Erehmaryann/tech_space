@@ -7,6 +7,8 @@ import EmptyState from "../empty-state/empty-state";
 import Comments from '../common/comment/comments';
 import Popup from "../popup/popup";
 
+import Emoji from "../emoji/emoji";
+
 const postsData = [
   {
     id: 1,
@@ -40,6 +42,8 @@ const postsData = [
 const PostsData = () => {
   const [clicked, setClicked] = useState("");
   const [clickedComment, setClickedComment] = useState("");
+  const [reactionShown, setReactionShown] = useState("");
+  const [selectedEmoji, setSelectedEmoji] = useState([]);
 
   return (
     <PostsDataContainer>
@@ -113,7 +117,10 @@ const PostsData = () => {
                     </div>
                   </BottomDiv>
                   <BottomDiv className="like-comment-container PostsDataContainer__margin-class">
-                    <p className="bottom-div_text-blue">Like</p>
+                    {reactionShown === post.id && (
+                      <Emoji />
+                    )}
+                    <p className="bottom-div_text-blue" onClick={() => setReactionShown((prevState) => prevState === post.id ? "" : post.id)}>Like</p>
                     <p className="bottom-div_text-blue" onClick={() =>
                       setClickedComment((prevState) =>
                         prevState === post.id ? "" : post.id
