@@ -1,5 +1,7 @@
-import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
+import { useMemo } from 'react';
+
+import 'emoji-mart/css/emoji-mart.css';
 
 const customReactionEmojis = [
     {
@@ -60,10 +62,46 @@ const customReactionEmojis = [
     }
 ];
 
-const Emoji = () => {
+const Emojis = ({ selectedEmoji, setSelectedEmoji, total, setTotal }) => {
+
+    const handleEmojiSelect = (emoji) => {
+        let isEmojiAlreadyFound = false;
+        let emojiObjectWithReactionCount = { ...emoji, reaction_count: 1 };
+        setTotal([...total, "like"]);
+
+
+        let newSelectedEmojis = selectedEmoji.map(emojiObject => {
+            if (emojiObject === emoji) {
+                isEmojiAlreadyFound = true;
+                return { ...emojiObject, reaction_count: emojiObject.reaction_count + 1 };
+            }
+            if (emojiObject.id === emoji.id) {
+                isEmojiAlreadyFound = true;
+                return {
+                    ...emojiObject,
+                    reaction_count: emojiObject.reaction_count + 1,
+                };
+            }
+            return emojiObject;
+        });
+        if (isEmojiAlreadyFound) {
+            setSelectedEmoji(newSelectedEmojis);
+        } else {
+            setSelectedEmoji([...newSelectedEmojis, emojiObjectWithReactionCount]);
+        }
+    };
+
     return (
-        <Picker showPreview={false} showSkinTones={false} include={['custom']} custom={customReactionEmojis} />
+        <Picker
+            total={total}
+            onSelect={handleEmojiSelect}
+            showPreview={false}
+            showSkinTones={false}
+            emojiSize={16}
+            include={['custom']}
+            custom={customReactionEmojis}
+        />
     );
 };
 
-export default Emoji;
+export default Emojis;

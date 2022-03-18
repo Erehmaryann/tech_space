@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
@@ -7,7 +7,8 @@ import EmptyState from "../empty-state/empty-state";
 import Comments from '../common/comment/comments';
 import Popup from "../popup/popup";
 
-import Emoji from "../emoji/emoji";
+import Emojis from "../emoji/emoji";
+import { Emoji } from 'emoji-mart';
 
 const postsData = [
   {
@@ -20,8 +21,7 @@ const postsData = [
     topicTitle: "New Ipad!",
     description:
       "Everyone’s talking about the new Ipad. What new features do you guys like? It’s definitely the OS for me.",
-    emoji: "/assets/svg/heartemoji.svg",
-    peopleReaction: "Takon Ajie and 14 others",
+    peopleReaction: "Takon Ajie",
     peopleComment: "23 Comments",
   },
   {
@@ -32,9 +32,8 @@ const postsData = [
     category: ["Programming", "Networking"],
     topicTitle: "Faster PC",
     description:
-      "You guyssss, i just installed a new RAM and my system is so much faster, it’s inasne. They’re also very cheap so if you need one you can just send me a message right now!",
-    emoji: "/assets/svg/heartemoji.svg",
-    peopleReaction: "Takon Ajie and 14 others",
+      "You guyssss, i just installed a new RAM and my system is so much faster, it’s insane. They’re also very cheap so if you need one you can just send me a message right now!",
+    peopleReaction: "Takon Ajie",
     peopleComment: "23 Comments",
   },
 ];
@@ -44,6 +43,7 @@ const PostsData = () => {
   const [clickedComment, setClickedComment] = useState("");
   const [reactionShown, setReactionShown] = useState("");
   const [selectedEmoji, setSelectedEmoji] = useState([]);
+  const [total, setTotal] = useState([]);
 
   return (
     <PostsDataContainer>
@@ -106,21 +106,25 @@ const PostsData = () => {
                       borderBottom: "1px solid #ECECEC",
                     }}
                   >
-                    <div className="emoji-reaction PostsDataContainer__margin-class">
-                      <img src={post.emoji} alt="emoji" /> &nbsp;&nbsp;
-                      <span>{post.peopleReaction}</span>
-                    </div>
+                    {reactionShown === post.id && (
+                      <div className="emoji-reaction PostsDataContainer__margin-class">
+                        {selectedEmoji.map(emoji => <Emoji emoji={emoji} size={16} key={emoji.id} />)}
+                        &nbsp;&nbsp;
+                        <span>{post.peopleReaction} and </span>
+                        <span>{total.length} others</span>
+                      </div>
+                    )}
                     <div>
                       <p className="bottom-div_text-right ">
                         {post.peopleComment}
                       </p>
                     </div>
                   </BottomDiv>
+                  {reactionShown === post.id && (
+                    <Emojis setSelectedEmoji={setSelectedEmoji} selectedEmoji={selectedEmoji} total={total} setTotal={setTotal} />
+                  )}
                   <BottomDiv className="like-comment-container PostsDataContainer__margin-class">
-                    {reactionShown === post.id && (
-                      <Emoji />
-                    )}
-                    <p className="bottom-div_text-blue" onClick={() => setReactionShown((prevState) => prevState === post.id ? "" : post.id)}>Like</p>
+                    <p className="bottom-div_text-blue" onClick={() => setReactionShown((prevState) => prevState === post.id ? "" : post.id)} tabIndex="0">Like</p>
                     <p className="bottom-div_text-blue" onClick={() =>
                       setClickedComment((prevState) =>
                         prevState === post.id ? "" : post.id
@@ -244,6 +248,9 @@ const BottomDiv = styled.div`
   justify-content: space-between;
   align-items: center;
   width; 100%;
+  .like-comment-container {
+    position: relative;
+  }
   span {
     font-style: normal;
     font-weight: normal;
