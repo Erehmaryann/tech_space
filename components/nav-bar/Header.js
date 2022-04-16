@@ -8,17 +8,18 @@ const Header = () => {
 
   return (
     <>
-      {path === "/" ||
-      path === "/login" ||
-      path === "/signup" ||
-      path === "/admin" ||
-      path === "/404" ||
-      path === "/forgot-password" ||
-      path === "/create-new-password" ? (
-        <LoginNav />
-      ) : (
-        <MainNav />
-      )}
+      {
+        path === "/" ||
+          path === "/login" ||
+          path === "/signup" ||
+          path === "/admin" ||
+          path === "/404" ||
+          path === "/forgot-password" ||
+          path === "/create-new-password" ? (
+          <LoginNav />
+        ) : (
+          <MainNav />
+        )}
     </>
   );
 };

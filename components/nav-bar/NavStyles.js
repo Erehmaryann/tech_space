@@ -5,9 +5,7 @@ export const Nav = styled.nav`
   position: fixed;
   top: 0px;
   left: 0px;
-  // width: 100%;
   z-index: 1000;
-  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
