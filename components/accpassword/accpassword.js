@@ -1,5 +1,5 @@
-import style from "styled-components";
 import LoginInputs from '../inputs/LoginInputs';
+import { AccParent } from './accpasswordStyles';
 
 const AccPassword = () => {
     return (
@@ -11,24 +11,5 @@ const AccPassword = () => {
         </AccParent>
     );
 };
-
-const AccParent = style.div`
-    background: #fff;
-    padding: 20px;
-
-    h3 {
-        font-size: 17px;
-    }
-    .button {
-        width: 74px;
-        background: #409DE0;
-        border-radius: 15px;
-        color: #fff;
-        border: none;
-        outline: none;
-        padding: 10px;
-        font-size: 16px;
-    }
-`;
 
 export default AccPassword;
