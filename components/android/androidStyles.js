@@ -1,4 +1,4 @@
-import style from 'styled-components';
+import styled from 'styled-components';
 
 export const PostsDataContainer = styled.main`
   width: 100%;

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import styled from "styled-components";
+import { HomeItemContainer, ImageDiv } from "./404Styles";
 import Error from "../../public/assets/svg/error.svg";
 import Image from "next/image";
 
@@ -19,18 +19,3 @@ const NotFound = () => {
 };
 
 export default NotFound;
-
-const HomeItemContainer = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  background: #e5e5e5;
-`;
-
-const ImageDiv = styled.div`
-  width: 100%;
-  background: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;

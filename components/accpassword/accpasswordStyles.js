@@ -1,6 +1,6 @@
-import style from "styled-components";
+import styled from "styled-components";
 
-export const AccParent = style.div`
+export const AccParent = styled.div`
     background: #fff;
     padding: 20px;
 

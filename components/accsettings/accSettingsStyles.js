@@ -1,6 +1,6 @@
-import style from "styled-components";
+import styled from "styled-components";
 
-export const AccSettingsContainer = style.div`
+export const AccSettingsContainer = styled.div`
     background: #fff;
     padding: 20px;
 
