@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../../../public/assets/Logo.png";
 import Image from "next/image";
-import styled from "styled-components";
+import { Loader } from "./preloaderStyles";
 
 const Loading = () => {
   return (
@@ -12,13 +12,5 @@ const Loading = () => {
     </Loader>
   );
 };
-
-const Loader = styled.div`
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff
-`;
 
 export default Loading;
