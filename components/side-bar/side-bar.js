@@ -24,6 +24,7 @@ const SideBar = () => {
       link: "/trending",
     },
   ];
+  
   const handleClick = (name) => {
     setActive(name);
   };

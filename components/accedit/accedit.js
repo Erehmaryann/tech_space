@@ -31,7 +31,7 @@ const AccEdit = () => {
                         </>
                     )
                         :
-                        imageURLs.map((imageSrc, idx) => (<Image className="rev" key={idx} width={80} height={80} src={imageSrc} alt="profile-image" />))
+                        imageURLs.map((imageSrc, idx) => (<Image className="rev" key={idx} width={80} height={80} src={imageSrc} alt="profile-image" style={{ borderRadius: "50%" }} />))
                     }
                 </label>
                 <h3>Edit Picture</h3>
