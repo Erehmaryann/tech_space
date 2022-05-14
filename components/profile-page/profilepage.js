@@ -33,7 +33,7 @@ const ProfilePage = () => {
                         </>
                     )
                         :
-                        imageURLs.map((imageSrc, idx) => (<Image className="rev" key={idx} width={100} height={100} src={imageSrc} alt="profile-image" />))
+                        imageURLs.map((imageSrc, idx) => (<Image className="rev" key={idx} width={100} height={100} src={imageSrc} alt="profile-image" style={{ borderRadius: "50%" }} />))
                     }
                 </label>
                 <h4>Maryann Ereh</h4>

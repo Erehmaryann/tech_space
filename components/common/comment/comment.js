@@ -23,7 +23,7 @@ const Comment = ({ comment, replies, addComment, updateComment, currentUserId,//
     return (
         <Div>
             <div className="comment-image-container">
-                <Image src="/assets/svg/profilepix.svg" width={28} height={28} alt="user-image" />
+                <Image src="/assets/svg/profilepix.svg" width={28} height={28} alt="user-image" style={{ borderRadius: "50%" }} />
             </div>
             <div className="comment-right-part">
                 <div className="grey-bg">

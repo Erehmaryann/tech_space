@@ -1,17 +1,17 @@
 import Head from "next/head";
 import Image from "next/image";
-import LoginButtons from "../components/buttons/LoginButtons";
+import LoginButtons from "../buttons/LoginButtons";
 import DevImage from "../public/assets/svg/admin-avatar.svg";
-import LoginInputs from "../components/inputs/LoginInputs";
+import LoginInputs from "../inputs/LoginInputs";
 import {
     Container,
     Form,
     ImageDiv,
     Main,
-} from "../components/styles/AuthStyles";
+} from "../styles/AuthStyles";
 import Link from "next/link";
 
-const admin = () => {
+const Admin = () => {
     return (
         <>
             <Head>
@@ -39,4 +39,4 @@ const admin = () => {
     );
 };
 
-export default admin;
+export default Admin;

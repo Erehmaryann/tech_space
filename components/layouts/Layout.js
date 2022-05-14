@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Header from "../nav-bar/Header";
 import SideBar from "../side-bar/side-bar";
 import SideProfile from '../sideprofile/sideProfile';
+import { Container } from './layoutStyles';
 import { useRouter } from "next/router";
 
 const Layout = ({ children }) => {
@@ -14,8 +15,7 @@ const Layout = ({ children }) => {
     path === "/admin" ||
     path === "/404" ||
     path === "/forgot-password" ||
-    path === "/create-new-password" ||
-    path === "/admin-dashboard";
+    path === "/create-new-password";
   return (
     <div>
       <Header />
@@ -28,12 +28,5 @@ const Layout = ({ children }) => {
   );
 };
 
-const Container = styled.div`
-  display: flex;
-  width: 100%;
-  min-height: 100vh;
-  /* padding-top: 10px; */
-  background: #e5e5e5;
-  padding-top: 80px;
-`;
+
 export default Layout;

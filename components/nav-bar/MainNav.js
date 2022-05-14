@@ -43,7 +43,7 @@ const MainNav = ({ hidden, toggleProfileHidden, toggleNotiHidden, notiHidden }) 
         <NotIcon onClick={toggleNotiHidden} />
         {notiHidden ? null : <NotiDropdown />}
         <ImageDiv>
-          <Image src={ProfileImg} alt="profile-img" onClick={toggleProfileHidden} />
+          <Image src={ProfileImg} alt="profile-img" onClick={toggleProfileHidden} style={{ borderRadius: "50%" }} />
           {hidden ? null : <Profiledropdown />}
         </ImageDiv>
       </NotificationDiv>

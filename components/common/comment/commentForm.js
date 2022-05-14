@@ -22,7 +22,7 @@ const CommentForm = ({ handleSubmit, hasCancelButton = false, initialText = "", 
     return (
         <FormDiv>
             <form onKeyPress={onPress} onSubmit={onSubmit}>
-                <Image src="/assets/svg/profilepix.svg" width={28} height={28} alt="user-image" />
+                <Image src="/assets/svg/profilepix.svg" width={28} height={28} alt="user-image" style={{ borderRadius: "50%" }} />
                 <textarea
                     className="comment-form-textarea"
                     placeholder="Add comment"
