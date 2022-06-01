@@ -1,8 +1,8 @@
-import Navlink from "../navlink/navlink";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { useState } from "react";
 import { SavedIcon, TrendIcon, HomeIcon } from './Icon';
+import Navlink from "../navlink/navlink";
 
 const SideBar = () => {
   const [active, setActive] = useState("Home");
