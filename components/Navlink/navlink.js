@@ -1,6 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-// import ActiveLink from '../common/activelink/activelink';
-import { useState } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 

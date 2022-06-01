@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import EmptyState from "../empty-state/empty-state";
-import { PostsDataContainer, HomeItemContainer, PostsDataHeader, PostName, PostBody, BottomDiv } from "./android-style";
+import { PostsDataContainer, HomeItemContainer, PostsDataHeader, PostName, PostBody, BottomDiv } from "./androidStyles";
 import Comments from '../common/comment/comments';
 import Popup from "../popup/popup";
 
