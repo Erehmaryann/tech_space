@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import { Div, Input, Label } from "./loginInputsStyles";
+
 const LoginInputs = ({ type, placeholder, label, name, value }) => {
   return (
     <Div className="bottom">
@@ -8,32 +9,5 @@ const LoginInputs = ({ type, placeholder, label, name, value }) => {
   );
 };
 
-const Div = styled.div`
-  margin-bottom: 12px;
-`;
-
-const Input = styled.input`
-  width: 90%;
-  border: none;
-  border-radius: 5px;
-  width: 100%;
-  height: 43px;
-  margin: 10px 0;
-  /* background: transparent; */
-  background: #F6F6F6;;
-  color: #000;
-  outline: none;
-  padding: 10px;
-
-  ::placeholder {
-    padding-left: 20px;
-    color: #EBEBEB;
-  }
-`;
-
-const Label = styled.label`
-  text-align: justify !important;
-  font-size: 15px;
-`;
 
 export default LoginInputs;
