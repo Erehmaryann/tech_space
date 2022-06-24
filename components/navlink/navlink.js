@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import styled from 'styled-components';
+import { ParentDiv, Div } from './navlinkStyles';
 
 const Navlink = ({ img, name, variant, href }) => {
-
     return (
         <ParentDiv>
             {variant === 'link' ? (
@@ -26,28 +25,5 @@ const Navlink = ({ img, name, variant, href }) => {
         </ParentDiv>
     );
 };
-
-const ParentDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-`;
-
-const Div = styled.div`
-    display: flex;
-    align-items: center;
-    padding-left: 1rem;
-    .p-1 {
-        padding: 0.2rem;
-        display: inline-block;
-    }
-    .ps-4 {
-        padding-left: 0.5rem;
-        display: inline-block;
-        font-weight: bold;
-        font-size: 15px;
-        color: #409de0
-    }
-`;
 
 export default Navlink;
