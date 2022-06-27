@@ -1,8 +1,7 @@
 // import { ReactComponent as Icon } from "../../public/assets/svg/notIcon.svg";
 import Image from "next/image";
-import styled from "styled-components";
 import { connect } from 'react-redux';
-
+import { Div } from './notIconStyles';
 import { toggleNotiHidden } from "../../redux/notification/noti.actions";
 // import { createStructuredSelector } from 'reselect';
 
@@ -15,28 +14,6 @@ const NotIcon = ({ toggleNotiHidden }) => {
 		</Div>
 	);
 };
-
-const Div = styled.div`
-	width: 45px;
-	height: 45px;
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
-
-	.item-count {
-		position: absolute;
-		font-size: 10px;
-		font-weight: bolder;
-		right: 8px;
-        bottom: 17px;
-        background: #CF2A2A;
-        border-radius: 50%;
-        padding: 1px 4px;
-        color: white;
-	}
-`;
 
 const mapDispatchToProps = (dispatch) => ({
 	toggleNotiHidden: () => dispatch(toggleNotiHidden()),
