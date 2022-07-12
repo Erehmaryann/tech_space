@@ -21,6 +21,7 @@ class MainDocument extends Document {
           <NextScript />
           {/*Below we add the modal wrapper*/}
           <div id="modal-root"></div>
+          <div className="show-mobile">This website is not optimized for mobile devices. Please use a desktop device to view this website.</div>
         </body>
       </Html>
     );
