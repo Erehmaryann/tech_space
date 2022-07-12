@@ -20,6 +20,7 @@ const ComputerRepair = () => {
 
 const HomeItemContainer = styled.div`
   background: #e5e5e5;
+  width: 50%;
 `;
 
 export default ComputerRepair;
