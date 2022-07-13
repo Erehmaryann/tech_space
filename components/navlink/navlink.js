@@ -10,9 +10,14 @@ const Navlink = ({ img, name, variant, href }) => {
                     href={href}
                 >
                     <a style={{ display: "flex", alignItems: "center" }}>
-                        <div className="" style={{ padding: "0.5rem", display: "inline-block" }}>
-                            {img}
-                        </div>
+                        {
+                            img && (
+                                <div className="" style={{ padding: "0.5rem", display: "inline-block" }}>
+                                    {img}
+                                </div>
+                            )
+                        }
+                        
                         <span style={{ paddingLeft: "0.5rem", display: "inline-block", fontWeight: "bold" }}>{name}</span>
                     </a>
                 </Link>
