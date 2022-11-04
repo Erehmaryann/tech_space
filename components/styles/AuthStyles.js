@@ -76,7 +76,7 @@ export const SmallDiv = styled.div`
   /* height: 15px; */
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 40px;
+  padding-bottom: 40px;
   div,
   a {
     text-decoration: none;
@@ -92,5 +92,18 @@ export const SmallDiv = styled.div`
       display: flex;
       justify-content: flex-end;
     }
+  }
+`;
+
+export const NoAcc = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  a {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    color: #c4c4c4;
   }
 `;

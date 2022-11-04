@@ -8,6 +8,7 @@ import {
   Form,
   ImageDiv,
   SmallDiv,
+  NoAcc,
   Main,
 } from "../components/styles/AuthStyles";
 import Link from "next/link";
@@ -26,8 +27,16 @@ export default function Home() {
 
           <Form>
             <h4>Login to your account</h4>
-            <LoginInputs type={`email`} placeholder={`Email address`} name={`email`} />
-            <LoginInputs type={`password`} placeholder={`Password`} name={`password`} />
+            <LoginInputs
+              type={`email`}
+              placeholder={`Email address`}
+              name={`email`}
+            />
+            <LoginInputs
+              type={`password`}
+              placeholder={`Password`}
+              name={`password`}
+            />
             <SmallDiv>
               <input type="checkbox" name="" id="" />
 
@@ -43,6 +52,11 @@ export default function Home() {
                 <LoginButtons text={`Log in`} />
               </a>
             </Link>
+            <NoAcc>
+              <Link href={`/signup`} replace>
+                <a>Don&apos;t have an account? </a>
+              </Link>
+            </NoAcc>
             <Link href={`/home`} replace>
               <a>
                 <LoginButtons isGoogleSignIn text={`Log in with Google`} />
