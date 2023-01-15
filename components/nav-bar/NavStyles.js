@@ -13,6 +13,7 @@ export const Nav = styled.nav`
   width: 100%;
   background: #fff;
   padding: 0 50px;
+  filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.05));
   a {
     text-decoration: none;
   }
