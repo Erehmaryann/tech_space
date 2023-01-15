@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import styled from "styled-components";
+import Member from "../components/members";
 
 const Members = () => {
   return (
@@ -9,14 +10,14 @@ const Members = () => {
         <title>Tech Space | Members</title>
       </Head>
       <Container>
-        <h2>Members</h2>
+        <Member />
       </Container>
     </>
   );
 };
 
 const Container = styled.div`
-  background: #e5e5e5;
+  background: #fff;
   width: 50%;
 `;
 
