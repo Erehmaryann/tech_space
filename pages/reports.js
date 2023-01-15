@@ -17,7 +17,7 @@ const Reports = () => {
 
 const Container = styled.div`
   background: #e5e5e5;
-  width: 50%;
+  width: 75%;
 `;
 
 export default Reports;

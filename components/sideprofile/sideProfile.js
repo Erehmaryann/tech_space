@@ -66,10 +66,7 @@ const SideProfile = () => {
             </div>
           </div>
         )}
-      {(path === "/requests" ||
-        path === "/topics" ||
-        path === "/members" ||
-        path === "/reports") && (
+      {(path === "/requests" || path === "/topics" || path === "/members") && (
         <>
           {activeMem.map((item, idx) => (
             <div className="num-of-mem" key={idx}>
