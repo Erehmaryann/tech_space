@@ -13,7 +13,6 @@ export const Div = styled.div`
   }
 
   .active {
-    /* border: 1px solid #409de0; */
     border-radius: 5px;
 
     span {
@@ -22,14 +21,22 @@ export const Div = styled.div`
   }
   .cate-con {
     padding-top: 3rem;
-    border-top: 3px solid #F6F6F6;
+    border-top: 2px solid #f6f6f6;
 
     h3 {
       color: #409de0;
     }
 
     span {
-      padding: 8px 0px 8px 15px; 
+      padding: 8px 0px 8px 15px;
+    }
+  }
+  .contributors {
+    h2 {
+      padding-left: 1rem;
+      color: #374956;
+      font-size: 20px;
+      font-weight: 500;
     }
   }
 `;

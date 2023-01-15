@@ -45,8 +45,8 @@ export const Button = styled.button`
 `;
 
 export const SearchDiv = styled.div`
-  width: 50%;
-  box-sizing: border-box;
+  width: 549px;
+  height: 100%;
   position: relative;
   display: flex;
   justify-content: center;
@@ -55,12 +55,13 @@ export const SearchDiv = styled.div`
 
 export const NavInput = styled.input`
   width: 100%;
-  height: 37px;
+  height: 100%;
   padding: 0;
   border: none;
   background: #f7f7f7;
   color: #409de0;
-  border-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 
   ::placeholder {
     font-style: normal;
@@ -76,8 +77,6 @@ export const NavInput = styled.input`
 `;
 export const SearchIconDiv = styled.div`
   position: absolute;
-
-  //   bottom: 10px;
   left: 10px;
 `;
 
@@ -91,6 +90,12 @@ export const NotificationDiv = styled.div`
 
 export const ImageDiv = styled.div`
   width: 48.45px;
-  /* height: 51px; */
   cursor: pointer;
+`;
+
+export const SelectDiv = styled.div`
+  width: 162px;
+  margin-top: 5px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 `;
