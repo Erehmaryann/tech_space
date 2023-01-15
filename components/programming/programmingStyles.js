@@ -1,9 +1,7 @@
 import styled from "styled-components";
-
 export const PostsDataContainer = styled.main`
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
   padding: 20px;
 
   h5,
@@ -21,7 +19,6 @@ export const HomeItemContainer = styled.section`
   margin: 25px 0;
   background: white;
   padding: 20px;
-  position: relative;
   box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(55, 73, 86, 0.07);
@@ -47,7 +44,6 @@ export const PostName = styled.div`
     font-size: 15px;
     color: #374956;
     margin: 5px 0;
-    text-align: start;
   }
   .post-name-time {
     font-style: normal;
@@ -64,6 +60,7 @@ export const PostName = styled.div`
   }
   .save-icon {
     cursor: pointer;
+    position: relative;
   }
 `;
 
@@ -113,9 +110,11 @@ export const BottomDiv = styled.div`
   }
   .bottom-div_text-right {
     text-align: right;
+    cursor: pointer;
   }
   .bottom-div_text-blue {
     color: #409de0;
+    cursor: pointer;
   }
   p {
     font-style: normal;

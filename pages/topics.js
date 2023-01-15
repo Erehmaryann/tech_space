@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import styled from "styled-components";
+import Topic from "../components/topics";
 
 const Topics = () => {
   return (
@@ -9,7 +10,7 @@ const Topics = () => {
         <title>Tech Space | Topics</title>
       </Head>
       <Container>
-        <h2>Topics</h2>
+        <Topic />
       </Container>
     </>
   );

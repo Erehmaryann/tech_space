@@ -3,40 +3,19 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import EmptyState from "../empty-state/empty-state";
-import Comments from '../common/comment/comments';
+import Comments from "../common/comment/comments";
 import Popup from "../popup/popup";
-
+import { postsData } from "./data";
 import Emojis from "../emoji/emoji";
-import { Emoji } from 'emoji-mart';
-import { PostsDataContainer, HomeItemContainer, PostsDataHeader, PostName, PostBody, BottomDiv } from "./postsDataStyles";
-
-const postsData = [
-  {
-    id: 1,
-    profilePix: "/assets/svg/profilepix.svg",
-    name: "Maryann Ereh",
-    time: "54 mins ago",
-    category: ["Phone and Technology"],
-    postImage: "/assets/laptop.png",
-    topicTitle: "New Ipad!",
-    description:
-      "Everyone’s talking about the new Ipad. What new features do you guys like? It’s definitely the OS for me.",
-    peopleReaction: "Takon Ajie",
-    peopleComment: "23 Comments",
-  },
-  {
-    id: 2,
-    profilePix: "/assets/svg/profilepix.svg",
-    name: "Maryann Ereh",
-    time: "54 mins ago",
-    category: ["Programming", "Networking"],
-    topicTitle: "Faster PC",
-    description:
-      "You guyssss, i just installed a new RAM and my system is so much faster, it’s insane. They’re also very cheap so if you need one you can just send me a message right now!",
-    peopleReaction: "Takon Ajie",
-    peopleComment: "23 Comments",
-  },
-];
+import { Emoji } from "emoji-mart";
+import {
+  PostsDataContainer,
+  HomeItemContainer,
+  PostsDataHeader,
+  PostName,
+  PostBody,
+  BottomDiv,
+} from "./postsDataStyles";
 
 const PostsData = () => {
   const [clicked, setClicked] = useState("");
@@ -50,7 +29,7 @@ const PostsData = () => {
       {postsData.length !== 0 ? (
         postsData.map((post, index) => (
           <div key={index}>
-            <HomeItemContainer >
+            <HomeItemContainer>
               <div className="post-container">
                 <PostsDataHeader>
                   <img src={post.profilePix} alt="profile-pix" />
@@ -83,7 +62,10 @@ const PostsData = () => {
                 </PostsDataHeader>
                 <PostBody className="post-body">
                   <div>
-                    <Link href={`https://www.google.com/search?q=${post.topicTitle}`} replace>
+                    <Link
+                      href={`https://www.google.com/search?q=${post.topicTitle}`}
+                      replace
+                    >
                       <a>
                         <h6>{post.topicTitle}</h6>
                       </a>
@@ -108,7 +90,9 @@ const PostsData = () => {
                   >
                     {reactionShown === post.id && (
                       <div className="emoji-reaction PostsDataContainer__margin-class">
-                        {selectedEmoji.map(emoji => <Emoji emoji={emoji} size={16} key={emoji.id} />)}
+                        {selectedEmoji.map((emoji) => (
+                          <Emoji emoji={emoji} size={16} key={emoji.id} />
+                        ))}
                         &nbsp;&nbsp;
                         <span>{post.peopleReaction} and </span>
                         <span>{total.length} others</span>
@@ -121,15 +105,35 @@ const PostsData = () => {
                     </div>
                   </BottomDiv>
                   {reactionShown === post.id && (
-                    <Emojis setSelectedEmoji={setSelectedEmoji} selectedEmoji={selectedEmoji} total={total} setTotal={setTotal} />
+                    <Emojis
+                      setSelectedEmoji={setSelectedEmoji}
+                      selectedEmoji={selectedEmoji}
+                      total={total}
+                      setTotal={setTotal}
+                    />
                   )}
                   <BottomDiv className="like-comment-container PostsDataContainer__margin-class">
-                    <p className="bottom-div_text-blue" onClick={() => setReactionShown((prevState) => prevState === post.id ? "" : post.id)} tabIndex="0">Like</p>
-                    <p className="bottom-div_text-blue" onClick={() =>
-                      setClickedComment((prevState) =>
-                        prevState === post.id ? "" : post.id
-                      )
-                    }>Comment</p>
+                    <p
+                      className="bottom-div_text-blue"
+                      onClick={() =>
+                        setReactionShown((prevState) =>
+                          prevState === post.id ? "" : post.id
+                        )
+                      }
+                      tabIndex="0"
+                    >
+                      Like
+                    </p>
+                    <p
+                      className="bottom-div_text-blue"
+                      onClick={() =>
+                        setClickedComment((prevState) =>
+                          prevState === post.id ? "" : post.id
+                        )
+                      }
+                    >
+                      Comment
+                    </p>
                   </BottomDiv>
                 </PostBody>
               </div>
@@ -140,12 +144,11 @@ const PostsData = () => {
       ) : (
         <EmptyState
           text={`No post yet`}
-          para={`Posts you create will appear here`}
+          para={`Posts you and other users create will appear here`}
         />
       )}
     </PostsDataContainer>
   );
 };
-
 
 export default PostsData;

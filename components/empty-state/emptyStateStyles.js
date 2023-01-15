@@ -1,27 +1,27 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Div = styled.div`
-    display: flex; 
-    align-items: center;
-    justify-content: center; 
-    flex-direction: column;
-    width: 700px;
-    height: 500px;
-    background-color: #F5F5F5;
-    margin: 16px 0;
-    padding: 20px;
-    box-sizing: border-box;
-    border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 700px;
+  height: 500px;
+  background-color: #f5f5f5;
+  margin: 25px 0;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
 
-    h5 {
-        color: #374956;
-        padding: 10px;
-    }
+  h5 {
+    color: #374956;
+    padding: 10px;
+  }
 
-    small {
-        padding: 10px;
-        color: #C4C4C4;
-    } 
+  small {
+    padding: 10px;
+    color: #c4c4c4;
+  }
 `;
 
 export const Button = styled.button`

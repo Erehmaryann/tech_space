@@ -145,8 +145,8 @@ const NetData = () => {
         ))
       ) : (
         <EmptyState
-          text={`No topic on programming yet`}
-          para={`Posts on programming will appear here`}
+          text={`No topic on Networking yet`}
+          para={`Posts on Networking will appear here`}
         />
       )}
     </PostsDataContainer>

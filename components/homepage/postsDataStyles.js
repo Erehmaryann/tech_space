@@ -17,11 +17,12 @@ export const PostsDataContainer = styled.main`
 `;
 
 export const HomeItemContainer = styled.section`
-  margin: 16px 0;
+  margin: 25px 0;
   background: white;
   padding: 20px;
   box-sizing: border-box;
   border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(55, 73, 86, 0.07);
 `;
 
 export const PostsDataHeader = styled.div`
@@ -109,22 +110,22 @@ export const BottomDiv = styled.div`
     font-weight: normal;
     font-size: 10px;
     line-height: 15px;
-    color: #C4C4C4;
+    color: #c4c4c4;
   }
   .bottom-div_text-right {
     text-align: right;
     cursor: pointer;
   }
   .bottom-div_text-blue {
-    color: #409DE0;
+    color: #409de0;
     cursor: pointer;
   }
-  p{
+  p {
     font-style: normal;
     font-weight: normal;
     font-size: 10px;
     line-height: 15px;
-    color: #C4C4C4;
+    color: #c4c4c4;
     width: auto;
     justify-self: flex-end;
   }

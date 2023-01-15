@@ -144,8 +144,8 @@ const Android = () => {
         ))
       ) : (
         <EmptyState
-          text={`No topic on programming yet`}
-          para={`Posts on programming will appear here`}
+          text={`No topic on android yet`}
+          para={`Posts on android will appear here`}
         />
       )}
     </PostsDataContainer>

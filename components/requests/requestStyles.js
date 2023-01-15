@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const PostsDataContainer = styled.main`
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
   padding: 20px;
 
   h5,
@@ -21,7 +20,6 @@ export const HomeItemContainer = styled.section`
   margin: 25px 0;
   background: white;
   padding: 20px;
-  position: relative;
   box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(55, 73, 86, 0.07);
@@ -47,7 +45,6 @@ export const PostName = styled.div`
     font-size: 15px;
     color: #374956;
     margin: 5px 0;
-    text-align: start;
   }
   .post-name-time {
     font-style: normal;
@@ -64,6 +61,7 @@ export const PostName = styled.div`
   }
   .save-icon {
     cursor: pointer;
+    position: relative;
   }
 `;
 
@@ -101,29 +99,40 @@ export const PostBody = styled.div`
 
 export const BottomDiv = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  width: 100%;
-  span {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 10px;
-    line-height: 15px;
-    color: #c4c4c4;
+  padding-top: 36px;
+  .first-btn {
+    border: 1px solid #56c568;
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 12px;
+    background: #fff;
+    color: #56c568;
+    &:hover {
+      background: #56c568;
+      color: #fff;
+    }
   }
-  .bottom-div_text-right {
-    text-align: right;
+  .sec-btn {
+    border: 1px solid #eb5757;
+    background: #fff;
+    color: #eb5757;
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 12px;
+    &:hover {
+      background: #eb5757;
+      color: #fff;
+    }
   }
-  .bottom-div_text-blue {
-    color: #409de0;
-  }
-  p {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 10px;
-    line-height: 15px;
-    color: #c4c4c4;
-    width: auto;
-    justify-self: flex-end;
-  }
+`;
+
+export const Button = styled.button`
+  width: 112px;
+  height: 30px;
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.1);
 `;

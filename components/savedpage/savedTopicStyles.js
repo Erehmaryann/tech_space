@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const PostsDataContainer = styled.main`
+export const SavedDataContainer = styled.main`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -12,7 +12,7 @@ export const PostsDataContainer = styled.main`
     margin: 0;
     padding: 0;
   }
-  .PostsDataContainer__margin-class {
+  .SavedDataContainer__margin-class {
     margin: 10px 0;
   }
 `;
@@ -21,13 +21,12 @@ export const HomeItemContainer = styled.section`
   margin: 25px 0;
   background: white;
   padding: 20px;
-  position: relative;
   box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(55, 73, 86, 0.07);
 `;
 
-export const PostsDataHeader = styled.div`
+export const SavedDataHeader = styled.div`
   display: flex;
   width: 100%;
   height: 50px;
@@ -35,7 +34,7 @@ export const PostsDataHeader = styled.div`
   align-items: center;
 `;
 
-export const PostName = styled.div`
+export const SavedName = styled.div`
   display: flex;
   width: 91%;
   justify-content: space-between;
@@ -47,7 +46,6 @@ export const PostName = styled.div`
     font-size: 15px;
     color: #374956;
     margin: 5px 0;
-    text-align: start;
   }
   .post-name-time {
     font-style: normal;
@@ -113,9 +111,11 @@ export const BottomDiv = styled.div`
   }
   .bottom-div_text-right {
     text-align: right;
+    cursor: pointer;
   }
   .bottom-div_text-blue {
     color: #409de0;
+    cursor: pointer;
   }
   p {
     font-style: normal;

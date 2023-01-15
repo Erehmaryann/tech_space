@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Request from "../components/requests";
 import styled from "styled-components";
 
 const Requests = () => {
@@ -9,7 +10,7 @@ const Requests = () => {
         <title>Tech Space | Requests</title>
       </Head>
       <Container>
-        <h2>Admin Dashboard</h2>
+        <Request />
       </Container>
     </>
   );

@@ -128,10 +128,7 @@ const SideBar = () => {
             </>
           )}
       </div>
-      {(path === "/requests" ||
-        path === "/topics" ||
-        path === "/members" ||
-        path === "/reports") && (
+      {(path === "/requests" || path === "/topics" || path === "/reports") && (
         <div className="contributors">
           <h2>Active Members</h2>
           {conData.map((data, index) => (
@@ -142,6 +139,16 @@ const SideBar = () => {
               name={data.name}
             />
           ))}
+        </div>
+      )}
+      {path === "/members" && (
+        <div
+          style={{
+            paddingLeft: "70px",
+            paddingTop: "220px",
+          }}
+        >
+          <Navlink variant="link" name="Log-out" href="/" />
         </div>
       )}
     </Div>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import EmptyState from "../empty-state/empty-state";
 import Comments from "../common/comment/comments";
-import { phoneData } from "./phoneData";
+import { phoneData } from "../phone/phoneData";
 import {
   PostsDataContainer,
   HomeItemContainer,
@@ -12,16 +12,17 @@ import {
   PostName,
   PostBody,
   BottomDiv,
-} from "./phoneStyles";
+} from "./topicStyles";
 import Popup from "../popup/popup";
+import { DeleteIcon } from "./icons";
 
-const Phone = () => {
+const Topic = () => {
   const [clicked, setClicked] = useState("");
   const [clickedComment, setClickedComment] = useState("");
 
   return (
     <PostsDataContainer>
-      <h2 style={{ color: "#374956" }}>Phone and Technology Topics</h2>
+      <h2 style={{ color: "#374956" }}>Topics</h2>
 
       {phoneData.length !== 0 ? (
         phoneData.map((post, index) => (
@@ -40,20 +41,8 @@ const Phone = () => {
                         ))}
                       </p>
                     </div>
-                    <div
-                      className="save-icon"
-                      onClick={() =>
-                        setClicked((prevState) =>
-                          prevState === post.id ? "" : post.id
-                        )
-                      }
-                    >
-                      {clicked === post.id ? (
-                        <img src="/assets/svg/savedTopic.svg" alt="save-icon" />
-                      ) : (
-                        <img src="/assets/svg/saveicon.svg" alt="save-icon" />
-                      )}
-                      {clicked === post.id && <Popup key={index} />}
+                    <div className="save-icon">
+                      <DeleteIcon />
                     </div>
                   </PostName>
                 </PostsDataHeader>
@@ -95,33 +84,19 @@ const Phone = () => {
                       </p>
                     </div>
                   </BottomDiv>
-                  <BottomDiv className="like-comment-container PostsDataContainer__margin-class">
-                    <p className="bottom-div_text-blue">Like</p>
-                    <p
-                      className="bottom-div_text-blue"
-                      onClick={() =>
-                        setClickedComment((prevState) =>
-                          prevState === post.id ? "" : post.id
-                        )
-                      }
-                    >
-                      Comment
-                    </p>
-                  </BottomDiv>
                 </PostBody>
               </div>
             </HomeItemContainer>
-            {clickedComment === post.id && <Comments currentUserId="1" />}
           </div>
         ))
       ) : (
         <EmptyState
-          text={`No topic on Phone and Technology yet`}
-          para={`Posts on phone and technology will appear here`}
+          text={`No topic have been approved yet`}
+          para={`Approved topics will appear here`}
         />
       )}
     </PostsDataContainer>
   );
 };
 
-export default Phone;
+export default Topic;
