@@ -1,22 +1,8 @@
 import React from "react";
-import { MembersContainer, StyledTable } from "./memberStyles";
+import { MembersContainer, StyledTable, ImgDiv, Div } from "./memberStyles";
 import { Table } from "./table/table";
-import styled from "styled-components";
+import Image from "next/image";
 
-const ImgDiv = styled.div`
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 1px solid red;
-`;
-
-const Div = styled.div`
-  display: flex;
-  align-items: center;
-  p {
-    margin-left: 20px;
-  }
-`;
 const Member = () => {
   const columns = React.useMemo(
     () => [
@@ -31,8 +17,12 @@ const Member = () => {
             //   // handleApproval("approve")
             // }
             >
-              {/* <p className="text-[#EF8A0E]">{value}</p> */}
-              {/* <div className="merchant-name__span-dot"></div> {value} */}
+              <Image
+                src="/assets/svg/profilepix.svg"
+                alt="dp"
+                width={100}
+                height={100}
+              />
             </ImgDiv>
             <p>{value}</p>
           </Div>
@@ -57,46 +47,46 @@ const Member = () => {
   const data = React.useMemo(
     () => [
       {
-        member: "Bala Blu",
-        date_joined: "5115EW231",
-        last_visited: "500",
-        contact: "500",
+        member: "Savannah Nguyen",
+        date_joined: "1/15/12",
+        last_visited: "8/30/14",
+        contact: "achurebeccatakim@gmail.com",
       },
       {
-        member: "Bala Blu",
-        date_joined: "5115EW231",
-        last_visited: "500",
-        contact: "500",
+        member: "Jenny Wilson",
+        date_joined: "1/15/12",
+        last_visited: "8/30/14",
+        contact: "achurebeccatakim@gmail.com",
       },
       {
-        member: "Bala Blu",
-        date_joined: "5115EW231",
-        last_visited: "500",
-        contact: "500",
+        member: "Annette Black",
+        date_joined: "1/15/12",
+        last_visited: "8/30/14",
+        contact: "achurebeccatakim@gmail.com",
       },
       {
-        member: "Bala Blu",
-        date_joined: "5115EW231",
-        last_visited: "500",
-        contact: "500",
+        member: "Kathryn Murphy",
+        date_joined: "1/15/12",
+        last_visited: "8/30/14",
+        contact: "achurebeccatakim@gmail.com",
       },
       {
-        member: "Bala Blu",
-        date_joined: "5115EW231",
-        last_visited: "500",
-        contact: "500",
+        member: "Cameron Williamson",
+        date_joined: "1/15/12",
+        last_visited: "8/30/14",
+        contact: "achurebeccatakim@gmail.com",
       },
       {
-        member: "Bala Blu",
-        date_joined: "5115EW231",
-        last_visited: "500",
-        contact: "500",
+        member: "Kristin Watson",
+        date_joined: "1/15/12",
+        last_visited: "8/30/14",
+        contact: "achurebeccatakim@gmail.com",
       },
       {
-        member: "Bala Blu",
-        date_joined: "5115EW231",
-        last_visited: "500",
-        contact: "500",
+        member: "Eleanor Pena",
+        date_joined: "1/15/12",
+        last_visited: "8/30/14",
+        contact: "achurebeccatakim@gmail.com",
       },
     ],
     []
