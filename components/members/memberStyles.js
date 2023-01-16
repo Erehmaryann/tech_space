@@ -21,6 +21,7 @@ export const StyledTable = styled.div`
     width: 100%;
     border-collapse: collapse;
   }
+
   thead {
     background: #fff;
     width: 100%;
@@ -28,6 +29,7 @@ export const StyledTable = styled.div`
     text-align: left;
     color: #374956;
   }
+
   th {
     padding-left: 10px;
     padding-right: 10px;
@@ -37,16 +39,20 @@ export const StyledTable = styled.div`
     white-space: nowrap;
     cursor: pointer;
   }
+
   tr {
     height: 58px;
     padding: 21px 0;
   }
+
   tr:nth-child(even) {
     background: #f6f6f6;
   }
+
   tr:hover {
     transform: scaleY(1.07);
   }
+
   td {
     padding-left: 10px;
     font-weight: 500;
@@ -56,6 +62,7 @@ export const StyledTable = styled.div`
     white-space: nowrap;
     border: none;
   }
+
   td:first-child {
     color: #409de0;
   }

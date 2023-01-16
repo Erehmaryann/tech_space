@@ -11,12 +11,7 @@ const Member = () => {
         accessor: "member",
         Cell: ({ cell: { value, row } }) => (
           <Div>
-            <ImgDiv
-            // onClick={() =>
-            //   // history.push(`/dashboard/allmerchants/${row.original.id}`)
-            //   // handleApproval("approve")
-            // }
-            >
+            <ImgDiv>
               <Image
                 src="/assets/svg/profilepix.svg"
                 alt="dp"
@@ -92,7 +87,6 @@ const Member = () => {
     []
   );
 
-  // const Styled.div``
   return (
     <MembersContainer>
       <h2>Members</h2>

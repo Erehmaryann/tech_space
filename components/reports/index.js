@@ -1,90 +1,76 @@
-import React, { PureComponent } from "react";
+import React, { useMemo } from "react";
+import { ReportTable } from "./table/table";
 import {
-  BarChart,
-  Bar,
-  Cell,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+  MemberHeader,
+  OverContainer,
+  ReportContainer,
+  Status,
+  TableContainer,
+} from "./reportStyles";
+import ReportChart from "./chart";
+import Link from "next/link";
 
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+const Report = () => {
+  const columns = useMemo(
+    () => [
+      {
+        Header: "Member’s name",
+        accessor: "member_name",
+      },
+      {
+        Header: "Status",
+        accessor: "status",
+        Cell: ({ cell: { value, row } }) => (
+          <Status status={value}>{value}</Status>
+        ),
+      },
+      {
+        Header: "Date registered",
+        accessor: "date_joined",
+      },
+    ],
+    []
+  );
 
-export default class ReportChart extends PureComponent {
-  //   static demoUrl = "https://codesandbox.io/s/tiny-bar-chart-35meb";
+  const data = useMemo(
+    () => [
+      {
+        member_name: "Savannah Nguyen",
+        status: "Online",
+        date_joined: "2nd May 2022",
+      },
+      {
+        member_name: "Ereh Maryann",
+        status: "Online",
+        date_joined: "18th Aug 2022",
+      },
+      {
+        member_name: "Eleanor Pena",
+        status: "Offline",
+        date_joined: "18th Nov 2022",
+      },
+    ],
+    []
+  );
 
-  render() {
-    return (
-      <ResponsiveContainer width="100%" height="100%">
-        {/* <BarChart width={100} height={40} data={data}>
-          <Bar dataKey="uv" fill="#8884d8" />
-        </BarChart> */}
-        <BarChart
-          width={500}
-          height={300}
-          data={data}
-          margin={{
-            top: 5,
-            right: 0,
-            left: 0,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="pv" fill="#8884d8" />
-          {/* <Bar dataKey="uv" fill="#82ca9d" /> */}
-        </BarChart>
-      </ResponsiveContainer>
-    );
-  }
-}
+  return (
+    <ReportContainer>
+      <h2>Overview</h2>
+      <OverContainer>
+        <div className="chart-table-container">
+          <ReportChart />
+          <TableContainer>
+            <MemberHeader>
+              <h4>New Members</h4>
+              <Link href="/members">View all</Link>
+            </MemberHeader>
+            <ReportTable data={data} columns={columns} />
+          </TableContainer>
+        </div>
+        <div className="total-num-post"></div>
+      </OverContainer>
+    </ReportContainer>
+  );
+};
+
+export default Report;
