@@ -87,6 +87,17 @@ a {
   transform: scale(1.5) !important;
 }
 
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
 @media only screen and (max-width: 819px) {
   #__next {
     display: none;
