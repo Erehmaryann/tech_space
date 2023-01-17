@@ -2,7 +2,6 @@ import React from "react";
 import Head from "next/head";
 import styled from "styled-components";
 import ReportChart from "../components/reports";
-import Styled from "styled-components";
 
 const Reports = () => {
   return (

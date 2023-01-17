@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const Div = styled.div`
+  width: 25%;
   padding: 3rem 1.5rem;
   height: 50vh;
-  width: 25%;
   position: -webkit-sticky;
   position: sticky;
   top: 5rem;

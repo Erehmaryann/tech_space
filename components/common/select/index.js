@@ -28,7 +28,7 @@ const SelectStyle = {
     textALign: "center",
     fontStyle: "normal",
     fontWeight: "500",
-    fontSize: "16px",
+    fontSize: "14px",
     paddingLeft: "10px",
     color: "#374956",
   }),
@@ -38,7 +38,7 @@ const SelectStyle = {
     color: "#374956",
     fontStyle: "normal",
     fontWeight: "500",
-    fontSize: "16px",
+    fontSize: "14px",
     letterSpacing: "0.06em",
   }),
   placeholder: (provided) => ({
@@ -46,7 +46,7 @@ const SelectStyle = {
     color: "#374956",
     fontStyle: "normal",
     fontWeight: "500",
-    fontSize: "16px",
+    fontSize: "12px",
     letterSpacing: "0.06em",
   }),
   indicatorSeparator: (provided) => ({

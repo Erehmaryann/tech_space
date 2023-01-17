@@ -2,8 +2,6 @@ import styled from "styled-components";
 
 export const ReportContainer = styled.div`
   width: 100%;
-  height: 100%;
-  padding: 12px 46px 46px 0;
 
   h2 {
     font-weight: 500;
@@ -14,7 +12,7 @@ export const ReportContainer = styled.div`
 `;
 
 export const ChartContainer = styled.div`
-  width: 782px;
+  width: 100%;
   height: 448px;
   padding: 27px;
   background: #ffffff;
@@ -23,18 +21,46 @@ export const ChartContainer = styled.div`
 `;
 
 export const OverContainer = styled.div`
-  /* width: 100% */
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   .chart-table-container {
-    width: 50%;
+    width: 700px;
   }
 
   .total-num-post {
-    width: 25%;
+    width: 300px;
   }
+`;
+
+export const BgContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 210px;
+  padding: 12px 20px;
+  background: ${(props) => props.bg};
+  box-shadow: 0px 4px 4px rgba(55, 73, 86, 0.07);
+  border-radius: 10px;
+`;
+
+export const IconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  background: ${(props) => props.bg};
+  border-radius: 10px;
+`;
+
+export const H4 = styled.div`
+  font-weight: 600;
+  font-size: 20px;
+  color: ${(props) => props.color};
 `;
 
 export const MemberHeader = styled.div`
@@ -61,7 +87,7 @@ export const MemberHeader = styled.div`
 `;
 
 export const TableContainer = styled.div`
-  width: 782px;
+  width: 100%;
   height: 280px;
   overflow-y: scroll;
   margin-top: 26px;
@@ -120,6 +146,90 @@ export const TableContainer = styled.div`
   td:nth-child(2),
   td:nth-child(3) {
     text-align: center;
+  }
+`;
+
+export const Div = styled.div`
+  display: flex;
+  align-items: center;
+  p {
+    margin-left: 20px;
+  }
+`;
+
+export const ImgDiv = styled.div`
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+
+  img {
+    border-radius: 50%;
+  }
+`;
+
+export const ActivityTableContainer = styled.div`
+  margin-top: 25px;
+  width: 100%;
+  height: 280px;
+  overflow-y: scroll;
+  padding: 19px;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(55, 73, 86, 0.07);
+  border-radius: 10px;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead {
+    background: #fff;
+    width: 100%;
+    text-align: left;
+  }
+
+  th {
+    font-weight: 400;
+    font-size: 14px;
+    color: #9c9c9c;
+    padding-top: 12px;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  tr {
+    width: 100%;
+    height: 58px;
+  }
+
+  tr:hover {
+    transform: scaleY(1.07);
+  }
+
+  td {
+    font-weight: 400;
+    font-size: 14px;
+    cursor: pointer;
+    color: #374956;
+    white-space: nowrap;
+    border: none;
+  }
+
+  td:last-child {
+    color: #409de0;
+  }
+`;
+
+export const ActivityTableHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.5px solid #eaeaea;
+
+  h4 {
+    font-weight: 500;
+    font-size: 18px;
+    color: #374956;
   }
 `;
 
