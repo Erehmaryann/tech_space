@@ -16,7 +16,6 @@ const Layout = ({ children }) => {
     path === "/404" ||
     path === "/forgot-password" ||
     path === "/create-new-password";
-  const report = path === "/reports";
 
   return (
     <div>
@@ -24,7 +23,7 @@ const Layout = ({ children }) => {
       <Container>
         {!sideNavDisplay && <SideBar />}
         {children}
-        {!sideNavDisplay && <SideProfile report={report} />}
+        {!sideNavDisplay && <SideProfile />}
       </Container>
     </div>
   );

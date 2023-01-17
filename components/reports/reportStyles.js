@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const ReportContainer = styled.div`
+  padding-right: 46px;
+  padding-top: 12px;
+  padding-bottom: 50px;
   width: 100%;
 
   h2 {
