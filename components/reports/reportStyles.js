@@ -15,12 +15,83 @@ export const ReportContainer = styled.div`
 `;
 
 export const ChartContainer = styled.div`
-  width: 100%;
+  padding-top: 28px;
   height: 448px;
-  padding: 27px;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(55, 73, 86, 0.07);
   border-radius: 10px;
+  position: relative;
+  .first-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 24px;
+
+    .download-button {
+      width: 118.7px;
+      height: 37px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 21px;
+      /* identical to box height */
+      color: #374956;
+      cursor: pointer;
+    }
+  }
+
+  .second-div {
+    width: 100%;
+    // padding-top: 13px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    p {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+      /* identical to box height */
+      margin: 0;
+      display: flex;
+      align-items: center;
+
+      color: #374956;
+    }
+
+    h6 {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      margin: 0;
+
+      /* identical to box height */
+
+      display: flex;
+      align-items: center;
+
+      color: #409de0;
+    }
+  }
+`;
+
+export const ChartStyles = styled.div`
+  width: 100%;
+  height: 291px;
+  padding-right: 24px;
+  position: absolute;
+  bottom: 0;
 `;
 
 export const OverContainer = styled.div`

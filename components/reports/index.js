@@ -4,6 +4,7 @@ import {
   ActivityTableContainer,
   ActivityTableHeader,
   BgContainer,
+  ChartContainer,
   H4,
   IconContainer,
   MemberHeader,
@@ -18,7 +19,12 @@ import Image from "next/image";
 import Link from "next/link";
 import ReactSelect from "../common/select";
 import { options } from "./report-dummyData";
-import { RightIcon, TotalMembersIcon, TotalPostsIcon } from "./icon";
+import {
+  DownloadIcon,
+  RightIcon,
+  TotalMembersIcon,
+  TotalPostsIcon,
+} from "./icon";
 
 const Report = () => {
   const [option, setOption] = useState(options);
@@ -115,7 +121,25 @@ const Report = () => {
       <h2>Overview</h2>
       <OverContainer>
         <div className="chart-table-container">
-          <ReportChart />
+          <ChartContainer>
+            <div className="first-div">
+              <button className="download-button">
+                Dowload &nbsp;
+                <DownloadIcon />
+              </button>
+
+              <ReactSelect
+                setOption={setOption}
+                options={options}
+                placeholder="pick"
+              />
+            </div>
+            <div className="second-div">
+              <p>Monthly visits</p>
+              <h6>40k Avg Visits</h6>
+            </div>
+            <ReportChart />
+          </ChartContainer>
           <TableContainer>
             <MemberHeader>
               <h4>New Members</h4>

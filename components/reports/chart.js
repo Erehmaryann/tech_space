@@ -10,7 +10,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { ChartContainer } from "./reportStyles";
+import { ChartStyles } from "./reportStyles";
 
 const data = [
   {
@@ -78,7 +78,7 @@ const data = [
 export default class ReportChart extends PureComponent {
   render() {
     return (
-      <ChartContainer>
+      <ChartStyles>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             width={672}
@@ -96,10 +96,10 @@ export default class ReportChart extends PureComponent {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="pv" fill="#F7F8F8" />
+            <Bar dataKey="pv" fill="blue" />
           </BarChart>
         </ResponsiveContainer>
-      </ChartContainer>
+      </ChartStyles>
     );
   }
 }

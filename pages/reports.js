@@ -10,7 +10,9 @@ const Reports = () => {
         <title>Tech Space | Reports</title>
       </Head>
       <Container>
-        <ReportChart />
+        <div className="div">
+          <ReportChart />
+        </div>
       </Container>
     </>
   );
@@ -19,6 +21,9 @@ const Reports = () => {
 const Container = styled.div`
   background: #e5e5e5;
   width: 75%;
+  .div {
+    width: 100%;
+  }
 `;
 
 export default Reports;
