@@ -5,7 +5,7 @@ export const postsData = [
     name: "Maryann Ereh",
     time: "54 mins ago",
     category: ["Phone and Technology"],
-    postImage: "/assets/laptop.png",
+    postImage: "/assets/laptop.webp",
     topicTitle: "New Ipad!",
     description:
       "Everyone’s talking about the new Ipad. What new features do you guys like? It’s definitely the OS for me.",

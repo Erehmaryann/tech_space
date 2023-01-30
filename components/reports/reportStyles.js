@@ -42,8 +42,6 @@ export const ChartContainer = styled.div`
       font-style: normal;
       font-weight: 500;
       font-size: 14px;
-      line-height: 21px;
-      /* identical to box height */
       color: #374956;
       cursor: pointer;
     }
@@ -51,7 +49,6 @@ export const ChartContainer = styled.div`
 
   .second-div {
     width: 100%;
-    // padding-top: 13px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -60,12 +57,9 @@ export const ChartContainer = styled.div`
       font-style: normal;
       font-weight: 400;
       font-size: 14px;
-      line-height: 21px;
-      /* identical to box height */
       margin: 0;
       display: flex;
       align-items: center;
-
       color: #374956;
     }
 

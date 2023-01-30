@@ -3,7 +3,6 @@ import NotFound from "../components/404/404";
 import Head from "next/head";
 import Link from "next/link";
 const NotFoundPage = () => {
-
   return (
     <>
       <Head>
@@ -13,13 +12,12 @@ const NotFoundPage = () => {
         <NotFound />
         <h3>Page Not Found!!!</h3>
         <p>
-          <Link href="/home">
+          <Link href="/">
             <a>Go Back to Homepage</a>
           </Link>
         </p>
       </Container>
     </>
-
   );
 };
 const Container = styled.main`
@@ -29,7 +27,7 @@ const Container = styled.main`
   align-items: center;
   width: 100%;
   background: white;
-  /* height: 80vh; */
+  height: 100vh;
 
   p {
     cursor: pointer;

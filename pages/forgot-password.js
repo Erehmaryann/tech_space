@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import LoginButtons from "../components/buttons/LoginButtons";
-import forgotPassword from "../public/assets/forgotpassword.png";
+import forgotPassword from "../public/assets/forgotpassword.webp";
 import LoginInputs from "../components/inputs/LoginInputs";
 import {
   Container,
@@ -32,7 +32,11 @@ const ForgotPassword = () => {
               Enter the email address you registered with and we’ll help you
               recover it
             </p>
-            <LoginInputs type={`email`} placeholder={`Email address`} name={`email`} />
+            <LoginInputs
+              type={`email`}
+              placeholder={`Email address`}
+              name={`email`}
+            />
             <Link href={`/`} replace>
               <a className="tech-space__forgot-password-small-text">
                 Already have an account?

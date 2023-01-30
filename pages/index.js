@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import LoginButtons from "../components/buttons/LoginButtons";
-import DevImage from "../public/assets/Developer.png";
+import DevImage from "../public/assets/Developer.webp";
 import LoginInputs from "../components/inputs/LoginInputs";
 import {
   Container,

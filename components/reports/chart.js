@@ -96,7 +96,7 @@ export default class ReportChart extends PureComponent {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="pv" fill="blue" />
+            <Bar dataKey="pv" fill="#f9f9f9" />
           </BarChart>
         </ResponsiveContainer>
       </ChartStyles>
