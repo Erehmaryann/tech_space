@@ -22,11 +22,11 @@ export const ProfileItemContainer = styled.section`
 
   h4 {
     color: #409de0;
-    margin-bottom: -9px;
   }
+
   p {
     color: #374956;
-    margin-bottom: 4px;
+    padding: 4px 0;
   }
   small {
     color: #c4c4c4;

@@ -40,7 +40,7 @@ export const ProfileItemContainer = styled.section`
 
     h3 {
       font-size: 17px;
-      margin-bottom: -12px;
+      margin-bottom: 5px;
     }
 
     p {
