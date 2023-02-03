@@ -12,14 +12,14 @@ export const Input = styled.input`
   height: 43px;
   margin: 10px 0;
   /* background: transparent; */
-  background: #F6F6F6;;
+  background: #f6f6f6;
   color: #000;
   outline: none;
   padding: 10px;
 
   ::placeholder {
     padding-left: 20px;
-    color: #EBEBEB;
+    color: #374956;
   }
 `;
 

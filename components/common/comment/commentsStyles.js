@@ -4,8 +4,6 @@ export const CommentDiv = styled.div`
   background: rgb(255, 255, 255);
   width: inherit;
   box-shadow: 0px 4px 4px rgba(55, 73, 86, 0.07);
-  border-radius: 15px;
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,6 +16,7 @@ export const CommentDiv = styled.div`
 
   .comment_load-more {
     cursor: pointer;
+
     p {
       position: absolute;
       right: 18px;
