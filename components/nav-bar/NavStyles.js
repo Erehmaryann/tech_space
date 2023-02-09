@@ -14,8 +14,10 @@ export const Nav = styled.nav`
   background: #fff;
   padding: 0 50px;
   filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.05));
+
   a {
     text-decoration: none;
+    cursor: pointer;
   }
   @media ${device.mobile} {
     padding: 0 20px;
@@ -42,6 +44,7 @@ export const Button = styled.button`
   font-size: 15px;
   line-height: 22px;
   color: #ebebeb;
+  cursor: pointer;
   text-decoration: none;
 `;
 
