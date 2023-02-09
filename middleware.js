@@ -26,6 +26,8 @@ export default function middleware(req) {
     url.includes("/404")
   ) {
     return NextResponse.redirect("http://localhost:3000/");
+    //   ||
+    //  NextResponse.redirect("tech-space-eight.vercel.app");
   }
 
   if (verify && url === "http://localhost:3000/") {
