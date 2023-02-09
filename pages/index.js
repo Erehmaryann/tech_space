@@ -22,7 +22,7 @@ export default function Home() {
       <Container>
         <Main>
           <ImageDiv>
-            <Image src={DevImage} alt="hero Image" />
+            <Image src={DevImage} alt="hero Image" priority />
           </ImageDiv>
 
           <Form>
