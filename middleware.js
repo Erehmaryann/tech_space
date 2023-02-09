@@ -27,4 +27,8 @@ export default function middleware(req) {
   ) {
     return NextResponse.redirect("http://localhost:3000/");
   }
+
+  if (verify && url === "http://localhost:3000/") {
+    return NextResponse.redirect("http://localhost:3000/home");
+  }
 }
