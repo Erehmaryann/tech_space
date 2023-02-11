@@ -1,16 +1,16 @@
 import Head from "next/head";
 import Image from "next/image";
-import LoginButtons from "../components/buttons/LoginButtons";
-import forgotPassword from "../public/assets/forgotpassword.webp";
-import LoginInputs from "../components/inputs/LoginInputs";
+import LoginButtons from "../../components/buttons/LoginButtons";
+import forgotPassword from "../../public/assets/forgotpassword.webp";
+import LoginInputs from "../../components/inputs/LoginInputs";
 import {
   Container,
   Form,
   ImageDiv,
   Main,
-} from "../components/styles/AuthStyles";
+} from "../../components/styles/AuthStyles";
 import Link from "next/link";
-import Modal from "../components/modal/Modal";
+import Modal from "../../components/modal/Modal";
 import { useState } from "react";
 
 const ForgotPassword = () => {

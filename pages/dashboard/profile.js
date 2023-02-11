@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styled from "styled-components";
-import ProfilePage from "../components/profile-page/profilepage";
+import ProfilePage from "../../components/profile-page/profilepage";
 
 const Profile = () => {
   return (

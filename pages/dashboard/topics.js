@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import styled from "styled-components";
-import Topic from "../components/topics";
+import Topic from "../../components/topics";
 
 const Topics = () => {
   return (

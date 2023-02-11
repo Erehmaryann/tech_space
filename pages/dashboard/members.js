@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import styled from "styled-components";
-import Member from "../components/members";
+import Member from "../../components/members";
 
 const Members = () => {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import styled from "styled-components";
-import ReportChart from "../components/reports";
+import ReportChart from "../../components/reports";
 
 const Reports = () => {
   return (
