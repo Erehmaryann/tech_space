@@ -2,37 +2,37 @@ export const categoriesdata = [
   {
     img: "",
     name: "All",
-    link: "/home",
+    link: "/dashboard/home",
   },
   {
     img: "",
     name: "Programming",
-    link: "/programming",
+    link: "/dashboard/programming",
   },
   {
     img: "",
     name: "Web development",
-    link: "/web-development",
+    link: "/dashboard/web-development",
   },
   {
     img: "",
     name: "Networking",
-    link: "/networking",
+    link: "/dashboard/networking",
   },
   {
     img: "",
     name: "Computer repair/ maintenance",
-    link: "/computer-repair",
+    link: "/dashboard/computer-repair",
   },
   {
     img: "",
     name: "Android/IOS",
-    link: "/android-ios",
+    link: "/dashboard/android-ios",
   },
   {
     img: "",
     name: "Phone and Technology",
-    link: "/phone-technology",
+    link: "/dashboard/phone-technology",
   },
 ];
 export const conData = [

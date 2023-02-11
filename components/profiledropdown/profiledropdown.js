@@ -8,17 +8,17 @@ const Profiledropdown = ({ toggleProfileHidden }) => {
   const router = useRouter();
   const path = router.pathname;
   return (
-    path !== "/requests" &&
-    path !== "/topics" &&
-    path !== "/members" &&
-    path !== "/reports" && (
+    path !== "/dashboard/requests" &&
+    path !== "/dashboard/topics" &&
+    path !== "/dashboard/members" &&
+    path !== "/dashboard/reports" && (
       <ProDiv className="pro-dropdown">
         <div className="pro-items">
           <span onClick={toggleProfileHidden}>
-            <Link href="/profile">My Profile</Link>
+            <Link href="/dashboard/profile">My Profile</Link>
           </span>
           <span onClick={toggleProfileHidden}>
-            <Link href="/settings">Settings</Link>
+            <Link href="/dashboard/settings">Settings</Link>
           </span>
           <span onClick={toggleProfileHidden}>
             <Link href="/">Logout</Link>

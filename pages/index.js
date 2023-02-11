@@ -47,7 +47,7 @@ export default function Home() {
                 </Link>
               </div>
             </SmallDiv>
-            <Link href={`/home`} replace>
+            <Link href={`/dashboard/home`} replace>
               <a>
                 <LoginButtons text={`Log in`} />
               </a>
@@ -57,7 +57,7 @@ export default function Home() {
                 <a>Don&apos;t have an account? </a>
               </Link>
             </NoAcc>
-            <Link href={`/home`} replace>
+            <Link href={`/dashboard/home`} replace>
               <a>
                 <LoginButtons isGoogleSignIn text={`Log in with Google`} />
               </a>

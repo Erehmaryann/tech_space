@@ -55,10 +55,10 @@ const MainNav = ({
           height: "37px",
         }}
       >
-        {(path === "/requests" ||
-          path === "/topics" ||
-          path === "/members" ||
-          path === "/reports") && (
+        {(path === "/dashboard/requests" ||
+          path === "/dashboard/topics" ||
+          path === "/dashboard/members" ||
+          path === "/dashboard/reports") && (
           <SelectDiv>
             <ReactSelect
               setOption={setOption}

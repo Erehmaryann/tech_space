@@ -18,11 +18,11 @@ const SideProfile = () => {
 
   return (
     <>
-      {path !== "/reports" && (
+      {path !== "/dashboard/reports" && (
         <Div>
-          {path !== "/requests" &&
-            path !== "/topics" &&
-            path !== "/members" && (
+          {path !== "/dashboard/requests" &&
+            path !== "/dashboard/topics" &&
+            path !== "/dashboard/members" && (
               <div
                 style={{
                   padding: "3rem 0rem",
@@ -67,9 +67,9 @@ const SideProfile = () => {
                 </div>
               </div>
             )}
-          {(path === "/requests" ||
-            path === "/topics" ||
-            path === "/members") && (
+          {(path === "/dashboard/requests" ||
+            path === "/dashboard/topics" ||
+            path === "/dashboard/members") && (
             <>
               {activeMem.map((item, idx) => (
                 <div className="num-of-mem" key={idx}>

@@ -21,17 +21,17 @@ const SideBar = () => {
     {
       img: <HomeIcon color={active === "Home"} />,
       name: "Home",
-      link: "/home",
+      link: "/dashboard/home",
     },
     {
       img: <SavedIcon color={active === "Saved"} />,
       name: "Saved",
-      link: "/saved-topics",
+      link: "/dashboard/saved-topics",
     },
     {
       img: <TrendIcon color={active === "Trending"} />,
       name: "Trending",
-      link: "/trending",
+      link: "/dashboard/trending",
     },
   ];
 
@@ -39,22 +39,22 @@ const SideBar = () => {
     {
       img: <RequestsIcon color={active === "Requests"} />,
       name: "Requests",
-      link: "/requests",
+      link: "/dashboard/requests",
     },
     {
       img: <TopicsIcon color={active === "Topics"} />,
       name: "Topics",
-      link: "/topics",
+      link: "/dashboard/topics",
     },
     {
       img: <MembersIcon color={active === "Members"} />,
       name: "Members",
-      link: "/members",
+      link: "/dashboard/members",
     },
     {
       img: <ReportsIcon color={active === "Reports"} />,
       name: "Reports",
-      link: "/reports",
+      link: "/dashboard/reports",
     },
   ];
 
@@ -65,10 +65,10 @@ const SideBar = () => {
   return (
     <Div>
       <div className="link-con">
-        {path !== "/requests" &&
-          path !== "/topics" &&
-          path !== "/members" &&
-          path !== "/reports" &&
+        {path !== "/dashboard/requests" &&
+          path !== "/dashboard/topics" &&
+          path !== "/dashboard/members" &&
+          path !== "/dashboard/reports" &&
           data.map((item, index) => (
             <div
               key={index}
@@ -83,10 +83,10 @@ const SideBar = () => {
               />
             </div>
           ))}
-        {(path === "/requests" ||
-          path === "/topics" ||
-          path === "/members" ||
-          path === "/reports") &&
+        {(path === "/dashboard/requests" ||
+          path === "/dashboard/topics" ||
+          path === "/dashboard/members" ||
+          path === "/dashboard/reports") &&
           adminData.map((item, index) => (
             <div
               key={index}
@@ -103,10 +103,10 @@ const SideBar = () => {
           ))}
       </div>
       <div className="cate-con">
-        {path !== "/requests" &&
-          path !== "/topics" &&
-          path !== "/members" &&
-          path !== "/reports" && (
+        {path !== "/dashboard/requests" &&
+          path !== "/dashboard/topics" &&
+          path !== "/dashboard/members" &&
+          path !== "/dashboard/reports" && (
             <>
               <h3>CATEGORIES</h3>
               <div className="cate-link-con">
@@ -128,7 +128,9 @@ const SideBar = () => {
             </>
           )}
       </div>
-      {(path === "/requests" || path === "/topics" || path === "/reports") && (
+      {(path === "/dashboard/requests" ||
+        path === "/dashboard/topics" ||
+        path === "/dashboard/reports") && (
         <div className="contributors">
           <h2>Active Members</h2>
           {conData.map((data, index) => (
@@ -141,7 +143,7 @@ const SideBar = () => {
           ))}
         </div>
       )}
-      {path === "/members" && (
+      {path === "/dashboard/members" && (
         <div
           style={{
             paddingLeft: "70px",
