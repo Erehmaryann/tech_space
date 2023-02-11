@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import Request from "../components/requests";
+import Request from "../../components/requests";
 import styled from "styled-components";
 
 const Requests = () => {
