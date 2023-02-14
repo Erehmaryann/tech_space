@@ -17,12 +17,17 @@ import { useRouter } from "next/router";
 
 export default function Home() {
   const router = useRouter();
-  const handleLogin = () => {
-    console.log("clicked");
-    Cookies.set("loggedin", true);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    Cookies.set("loggedin", "true");
     router.push("/dashboard/home");
   };
-  console.log(router, "val");
+
+  // logout
+  const handleLogout = () => {
+    Cookies.remove("loggedin");
+    router.push("/");
+  };
 
   return (
     <>
@@ -35,7 +40,7 @@ export default function Home() {
             <Image src={DevImage} alt="hero Image" priority />
           </ImageDiv>
 
-          <Form>
+          <Form onSubmit={(e) => handleLogin(e)}>
             <h4>Login to your account</h4>
             <LoginInputs
               type={`email`}
@@ -59,8 +64,9 @@ export default function Home() {
             {/* <Link href={`/dashboard/home`} replace> */}
             {/* <LoginButtons text={`Log in`} onClick={handleLogin} /> */}
             <button
-              onClick={handleLogin}
+              // onClick={handleLogin}
               style={{ width: "100px", height: "42px", cursor: "pointer" }}
+              type="submit"
             >
               Log in
             </button>
