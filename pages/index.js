@@ -12,8 +12,18 @@ import {
   Main,
 } from "../components/styles/AuthStyles";
 import Link from "next/link";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
+  const handleLogin = () => {
+    console.log("clicked");
+    Cookies.set("loggedin", true);
+    router.push("/dashboard/home");
+  };
+  console.log(router, "val");
+
   return (
     <>
       <Head>
@@ -39,7 +49,6 @@ export default function Home() {
             />
             <SmallDiv>
               <input type="checkbox" name="" id="" />
-
               <div>
                 <div>Keep me signed in</div>
                 <Link href={`/forgot-password`} replace>
@@ -47,11 +56,15 @@ export default function Home() {
                 </Link>
               </div>
             </SmallDiv>
-            <Link href={`/dashboard/home`} replace>
-              <a>
-                <LoginButtons text={`Log in`} />
-              </a>
-            </Link>
+            {/* <Link href={`/dashboard/home`} replace> */}
+            {/* <LoginButtons text={`Log in`} onClick={handleLogin} /> */}
+            <button
+              onClick={handleLogin}
+              style={{ width: "100px", height: "42px", cursor: "pointer" }}
+            >
+              Log in
+            </button>
+            {/* </Link> */}
             <NoAcc>
               <Link href={`/signup`} replace>
                 <a>Don&apos;t have an account? </a>
