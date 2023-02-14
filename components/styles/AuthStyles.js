@@ -25,7 +25,7 @@ export const ImageDiv = styled.div`
   } ;
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
   width: 35.4%;
   display: flex;
   flex-direction: column;
