@@ -1,12 +1,20 @@
 import { connect } from "react-redux";
 import { toggleProfileHidden } from "../../redux/profile/profile.actions";
 import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 import { ProDiv } from "./proStyles";
 import Link from "next/link";
 
 const Profiledropdown = ({ toggleProfileHidden }) => {
   const router = useRouter();
   const path = router.pathname;
+
+  // logout
+  const handleLogout = () => {
+    Cookies.remove("loggedin");
+    router.push("/");
+  };
+
   return (
     path !== "/dashboard/requests" &&
     path !== "/dashboard/topics" &&
@@ -20,8 +28,8 @@ const Profiledropdown = ({ toggleProfileHidden }) => {
           <span onClick={toggleProfileHidden}>
             <Link href="/dashboard/settings">Settings</Link>
           </span>
-          <span onClick={toggleProfileHidden}>
-            <Link href="/">Logout</Link>
+          <span onClick={handleLogout}>
+            <span onClick={toggleProfileHidden}>Logout</span>
           </span>
         </div>
       </ProDiv>

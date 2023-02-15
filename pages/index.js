@@ -11,22 +11,53 @@ import {
   NoAcc,
   Main,
 } from "../components/styles/AuthStyles";
+import { Button } from "../components/buttons/ButtonStyle";
 import Link from "next/link";
+import Spinner from "../components/common/spinner/spinner";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import { makeApiCall } from "../lib/api";
+import React from "react";
 
 export default function Home() {
   const router = useRouter();
-  const handleLogin = (e) => {
-    e.preventDefault();
-    Cookies.set("loggedin", "true");
-    router.push("/dashboard/home");
+  const [loading, setLoading] = React.useState(false);
+  const [loginDetails, setLoginDetails] = React.useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setLoginDetails((values) => ({
+      ...values,
+      [name]: value,
+    }));
   };
 
-  // logout
-  const handleLogout = () => {
-    Cookies.remove("loggedin");
-    router.push("/");
+  const handleAuth = async () => {
+    setLoading(true);
+    const response = (await makeApiCall)("/v1/api/login", "POST", loginDetails);
+    console.log(response);
+    // setLoading(false);
+
+    // if (response) {
+    //   // const signature = await signMessageAsync({ message });
+    //   console.log(response);
+    //   // if (verified) {
+    //   //   doGetRequest();
+    //   //   setAuthState("connected");
+    //   //   setLoading(false);
+    //   // }
+    //   // console.log(verified);
+    // }
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Cookies.set("loggedin", "true");
+    // router.push("/dashboard/home");
   };
 
   return (
@@ -46,11 +77,15 @@ export default function Home() {
               type={`email`}
               placeholder={`Email address`}
               name={`email`}
+              value={loginDetails.email}
+              onChange={handleChange}
             />
             <LoginInputs
               type={`password`}
               placeholder={`Password`}
               name={`password`}
+              value={loginDetails.password}
+              onChange={handleChange}
             />
             <SmallDiv>
               <input type="checkbox" name="" id="" />
@@ -61,16 +96,9 @@ export default function Home() {
                 </Link>
               </div>
             </SmallDiv>
-            {/* <Link href={`/dashboard/home`} replace> */}
-            {/* <LoginButtons text={`Log in`} onClick={handleLogin} /> */}
-            <button
-              // onClick={handleLogin}
-              style={{ width: "100px", height: "42px", cursor: "pointer" }}
-              type="submit"
-            >
-              Log in
-            </button>
-            {/* </Link> */}
+            <Button onClick={handleAuth} type="submit">
+              {loading === true ? <Spinner color="#fff" /> : "Log in"}
+            </Button>
             <NoAcc>
               <Link href={`/signup`} replace>
                 <a>Don&apos;t have an account? </a>

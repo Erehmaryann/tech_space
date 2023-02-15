@@ -1,5 +1,5 @@
-export default function Spinner() {
-        const css = `
+export default function Spinner({ color = "#8e8e93" }) {
+  const css = `
         .ispinner {
                 position: relative;
                 width: 28px;
@@ -11,7 +11,7 @@ export default function Spinner() {
                 left: 13.3px;
                 width: 2.5px;
                 height: 6.5px;
-                background-color: #8e8e93;
+                background-color: ${color};
                 border-radius: 1.25px;
                 -webkit-animation: iSpinnerBlade 1s linear infinite;
                         animation: iSpinnerBlade 1s linear infinite;
@@ -89,19 +89,19 @@ export default function Spinner() {
                 } 
         }
 `;
-        return (
-                <>
-                        <div className="ispinner">
-                                <div className="ispinner-blade"></div>
-                                <div className="ispinner-blade"></div>
-                                <div className="ispinner-blade"></div>
-                                <div className="ispinner-blade"></div>
-                                <div className="ispinner-blade"></div>
-                                <div className="ispinner-blade"></div>
-                                <div className="ispinner-blade"></div>
-                                <div className="ispinner-blade"></div>
-                        </div>
-                        <style>{css}</style>
-                </>
-        );
+  return (
+    <>
+      <div className="ispinner">
+        <div className="ispinner-blade"></div>
+        <div className="ispinner-blade"></div>
+        <div className="ispinner-blade"></div>
+        <div className="ispinner-blade"></div>
+        <div className="ispinner-blade"></div>
+        <div className="ispinner-blade"></div>
+        <div className="ispinner-blade"></div>
+        <div className="ispinner-blade"></div>
+      </div>
+      <style>{css}</style>
+    </>
+  );
 }

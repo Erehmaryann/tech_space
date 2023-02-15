@@ -9,7 +9,7 @@ const Loading = () => {
     <Loader>
       <Image src={Logo} alt="logo" />
       &nbsp;
-      <Spinner />
+      <Spinner color="#409DE0" />
     </Loader>
   );
 };

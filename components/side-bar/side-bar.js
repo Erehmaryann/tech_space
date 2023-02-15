@@ -17,6 +17,12 @@ const SideBar = () => {
   const router = useRouter();
   const path = router.pathname;
   const [active, setActive] = useState("Home");
+  // logout
+  const handleLogout = () => {
+    Cookies.remove("loggedin");
+    router.push("/");
+  };
+
   const data = [
     {
       img: <HomeIcon color={active === "Home"} />,
@@ -149,6 +155,7 @@ const SideBar = () => {
             paddingLeft: "70px",
             paddingTop: "220px",
           }}
+          onClick={handleLogout}
         >
           <Navlink variant="link" name="Log-out" href="/" />
         </div>

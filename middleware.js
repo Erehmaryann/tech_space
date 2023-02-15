@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-server-import-in-page */
 import { NextResponse } from "next/server";
-import Cookies from "js-cookie";
 
 export default function middleware(req) {
   let verify = req.cookies.get("loggedin");
