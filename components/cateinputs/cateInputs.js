@@ -83,7 +83,7 @@ const CateInputs = ({ setShowFirstModal }) => {
               <Image
                 className="rev"
                 width={40}
-                height={20}
+                height={40}
                 src={imageSrc}
                 alt="topic-image"
               />

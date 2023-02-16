@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const PostsDataContainer = styled.main`
   width: 100%;
   height: 100%;
-  padding: 20px;
 
   h5,
   h6,
@@ -19,7 +18,7 @@ export const PostsDataContainer = styled.main`
 export const HomeItemContainer = styled.section`
   margin: 25px 0;
   background: white;
-  padding: 20px;
+  padding: 24px 51px 41px 18px;
   box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(55, 73, 86, 0.07);

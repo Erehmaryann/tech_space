@@ -38,19 +38,16 @@ const SignUp = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(signUpDetails, "signUpDetails");
     setLoading(true);
     const response = await makeApiCall("/registerUser", "POST", signUpDetails);
     if (response.message) {
       router.push("/");
       toast.success("User Created Successfully");
-      // console.log(response.status);
       return;
     }
 
     if (response.status !== 200) {
       setLoading(false);
-      // console.log(response, "error response");
       toast.error("User Creation Failed");
       return;
     }
@@ -117,11 +114,6 @@ const SignUp = () => {
             <Button type="submit" disabled={loading}>
               {loading === true ? <Spinner color="#fff" /> : "Sign up"}
             </Button>
-            {/* <Link href={`/`} replace>
-              <a>
-                <LoginButtons text={`Sign up`} />
-              </a>
-            </Link> */}
             <Link href={`/`} replace>
               <a>
                 <LoginButtons isGoogleSignIn text={`Sign up with Google`} />

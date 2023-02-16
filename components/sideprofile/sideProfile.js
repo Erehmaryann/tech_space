@@ -48,8 +48,9 @@ const SideProfile = () => {
                   <Image
                     src="/assets/svg/sideDp.svg"
                     width={158}
-                    height={150}
+                    height={154}
                     alt="side-profile-pix"
+                    className="rev"
                   />
                   <h4>Ereh Maryann</h4>
                   <span>22 topics</span>

@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 
 export default function middleware(req) {
   let verify = req.cookies.get("user_token");
-  // let verify = req.cookies.get("loggedin");
   let url = req.url;
   const { origin } = req.nextUrl;
 
@@ -18,5 +17,3 @@ export default function middleware(req) {
     return NextResponse.redirect(`${origin}/dashboard/home`);
   }
 }
-
-// https://tech-space.onrender.com

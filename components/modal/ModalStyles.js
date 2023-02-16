@@ -39,6 +39,7 @@ export const StyledModalButton = styled.button`
   font-size: 15px;
   margin-top: 20px;
   margin-bottom: 50px;
+  cursor: pointer;
   color: #ffffff;
 `;
 
@@ -57,7 +58,7 @@ export const StyledModal = styled.div`
   width: 464px;
   height: 430px;
   border-radius: 15px;
-  padding:  15px;
+  padding: 15px;
   position: relative;
 
   .close-icon {

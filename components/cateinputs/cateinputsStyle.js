@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ButDiv = styled.div`
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 export const Button = styled.button`
@@ -24,36 +24,39 @@ export const Button = styled.button`
 `;
 
 export const CateDiv = styled.div`
-    width: 400px;
-    .input-group {
-        padding: 5px;
-        label {
-            text-align: justify !important;
-        }
-        .input {
-            margin-top: 5px;
-            display: block;
-            width: 100%;
-            background: #f5f5f5;
-            border: none;
-            border-radius: 10px;
-            outline: none;
-            margin-bottom: 10px;
-            padding: 12px
-        }
-        textarea {
-            margin-top: 5px;
-            display: block;
-            width: 100%;
-            background: #f5f5f5;
-            border: none;
-            border-radius: 10px;
-            outline: none;
-            margin-bottom: 10px;
-            padding: 15px
-        }
-        input[type="file"] {
-            display: none;
-        }
+  width: 400px;
+  .input-group {
+    padding: 5px;
+    label {
+      text-align: justify !important;
     }
+    .input {
+      margin-top: 5px;
+      display: block;
+      width: 100%;
+      background: #f5f5f5;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      margin-bottom: 10px;
+      padding: 12px;
+    }
+    textarea {
+      margin-top: 5px;
+      display: block;
+      width: 100%;
+      background: #f5f5f5;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      margin-bottom: 10px;
+      padding: 15px;
+    }
+    input[type="file"] {
+      display: none;
+    }
+  }
+  .rev {
+    object-fit: cover;
+  }
 `;

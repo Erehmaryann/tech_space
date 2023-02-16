@@ -46,11 +46,9 @@ export default function Home() {
       Cookies.set("user_token", response.message);
       router.push("/dashboard/home");
       toast.success("login attempt successful");
-      // console.log(response.status);
       return;
     }
 
-    console.log(response);
     setLoading(false);
     if (response.status !== 200) {
       toast.error("login attempt failed");

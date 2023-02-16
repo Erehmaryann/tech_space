@@ -9,7 +9,6 @@ const LoginInputs = ({
   onChange,
   required,
 }) => {
-  console.log(required);
   return (
     <Div className="bottom">
       <Label>{label}</Label>

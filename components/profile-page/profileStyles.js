@@ -18,6 +18,7 @@ export const ProfileItemContainer = styled.section`
 
   .rev {
     border-radius: 50%;
+    object-fit: cover;
   }
 
   h4 {

@@ -4,7 +4,6 @@ export const PostsDataContainer = styled.main`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: 20px;
 
   h5,
   h6,
@@ -20,7 +19,7 @@ export const PostsDataContainer = styled.main`
 export const HomeItemContainer = styled.section`
   margin: 25px 0;
   background: white;
-  padding: 20px;
+  padding: 24px 51px 41px 18px;
   position: relative;
   box-sizing: border-box;
   border-radius: 10px;

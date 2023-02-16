@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import ProfileHome from "../profilehome/profilehome";
+import { makeApiCall } from "../../lib/api";
 import { ProfileDiv, HomeDiv, ProfileItemContainer } from "./profileStyles";
 import MyTopic from "../mytopic/mytopic";
 
@@ -8,6 +9,8 @@ const ProfilePage = () => {
   const [show, setShow] = useState("home");
   const [images, setImages] = useState([]);
   const [imageURLs, setImageURLs] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [getUser, setGetUser] = useState([]);
 
   useEffect(() => {
     if (images.length < 1) return;
@@ -21,6 +24,31 @@ const ProfilePage = () => {
   const onImageChange = (e) => {
     setImages([...e.target.files]);
   };
+
+  // useEffect(() => {
+  //   const userData = async () => {
+  //     setLoading(true);
+  //     const response = await makeApiCall(`/getuser/testemail@gmail.com`, "GET");
+  //     console.log(response, "mannnn");
+  //   };
+  //   userData();
+  // }, []);
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   if (response.user) {
+  //     Cookies.set("user_token", response.message);
+  //     router.push("/dashboard/home");
+  //     toast.success("login attempt successful");
+  //     return;
+  //   }
+
+  //   setLoading(false);
+  //   if (response.status !== 200) {
+  //     toast.error("login attempt failed");
+  //   }
+  // };
 
   return (
     <ProfileDiv>

@@ -40,6 +40,10 @@ export const Div = styled.div`
     span {
       color: #c4c4c4;
     }
+    .rev {
+      object-fit: cover;
+      border-radius: 21px;
+    }
   }
   .contributors {
     padding-top: 3rem;
