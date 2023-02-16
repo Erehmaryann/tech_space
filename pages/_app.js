@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/layouts/Layout";
 import Preloader from "../components/common/preloader/preloader";
-import { createWrapper } from 'next-redux-wrapper';
-import { Provider } from 'react-redux';
-import store from '../redux/store';
+import { createWrapper } from "next-redux-wrapper";
+import { Provider } from "react-redux";
+import store from "../redux/store";
+import { Toaster } from "react-hot-toast";
+
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
@@ -19,6 +21,26 @@ function MyApp({ Component, pageProps }) {
           <Provider store={store}>
             <Layout>
               <Component {...pageProps} />
+              <Toaster
+                position="top-right"
+                reverseOrder={false}
+                toastOptions={{
+                  success: {
+                    style: {
+                      background: "#183F3F",
+                      color: "white",
+                      fontSize: "14px",
+                    },
+                  },
+                  error: {
+                    style: {
+                      background: "red",
+                      color: "white",
+                      fontSize: "14px",
+                    },
+                  },
+                }}
+              />
             </Layout>
           </Provider>
         </>
