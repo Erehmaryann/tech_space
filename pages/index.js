@@ -1,8 +1,11 @@
+import React from "react";
 import Head from "next/head";
 import Image from "next/image";
-import LoginButtons from "../components/buttons/LoginButtons";
-import DevImage from "../public/assets/Developer.webp";
-import LoginInputs from "../components/inputs/LoginInputs";
+import Link from "next/link";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
+import toast from "react-hot-toast";
+
 import {
   Container,
   Form,
@@ -12,12 +15,11 @@ import {
   Main,
 } from "../components/styles/AuthStyles";
 import { Button } from "../components/buttons/ButtonStyle";
-import Link from "next/link";
 import Spinner from "../components/common/spinner/spinner";
-import Cookies from "js-cookie";
-import { useRouter } from "next/router";
 import { makeApiCall } from "../lib/api";
-import React from "react";
+import LoginButtons from "../components/buttons/LoginButtons";
+import DevImage from "../public/assets/Developer.webp";
+import LoginInputs from "../components/inputs/LoginInputs";
 
 export default function Home() {
   const router = useRouter();
@@ -36,28 +38,23 @@ export default function Home() {
     }));
   };
 
-  const handleAuth = async () => {
-    setLoading(true);
-    const response = (await makeApiCall)("/v1/api/login", "POST", loginDetails);
-    console.log(response);
-    // setLoading(false);
-
-    // if (response) {
-    //   // const signature = await signMessageAsync({ message });
-    //   console.log(response);
-    //   // if (verified) {
-    //   //   doGetRequest();
-    //   //   setAuthState("connected");
-    //   //   setLoading(false);
-    //   // }
-    //   // console.log(verified);
-    // }
-  };
-
-  const handleLogin = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Cookies.set("loggedin", "true");
-    // router.push("/dashboard/home");
+    setLoading(true);
+    const response = await makeApiCall("/login", "POST", loginDetails);
+    if (response.user) {
+      Cookies.set("user_token", response.message);
+      router.push("/dashboard/home");
+      toast.success("login attempt successful");
+      // console.log(response.status);
+      return;
+    }
+
+    console.log(response);
+    setLoading(false);
+    if (response.status !== 200) {
+      toast.error("login attempt failed");
+    }
   };
 
   return (
@@ -71,7 +68,7 @@ export default function Home() {
             <Image src={DevImage} alt="hero Image" priority />
           </ImageDiv>
 
-          <Form onSubmit={(e) => handleLogin(e)}>
+          <Form onSubmit={(e) => handleSubmit(e)}>
             <h4>Login to your account</h4>
             <LoginInputs
               type={`email`}
@@ -79,6 +76,7 @@ export default function Home() {
               name={`email`}
               value={loginDetails.email}
               onChange={handleChange}
+              required
             />
             <LoginInputs
               type={`password`}
@@ -86,6 +84,7 @@ export default function Home() {
               name={`password`}
               value={loginDetails.password}
               onChange={handleChange}
+              required
             />
             <SmallDiv>
               <input type="checkbox" name="" id="" />
@@ -96,7 +95,7 @@ export default function Home() {
                 </Link>
               </div>
             </SmallDiv>
-            <Button onClick={handleAuth} type="submit">
+            <Button type="submit">
               {loading === true ? <Spinner color="#fff" /> : "Log in"}
             </Button>
             <NoAcc>

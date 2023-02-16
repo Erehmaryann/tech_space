@@ -1,6 +1,15 @@
 import { Div, Input, Label } from "./loginInputsStyles";
 
-const LoginInputs = ({ type, placeholder, label, name, value, onChange }) => {
+const LoginInputs = ({
+  type,
+  placeholder,
+  label,
+  name,
+  value,
+  onChange,
+  required,
+}) => {
+  console.log(required);
   return (
     <Div className="bottom">
       <Label>{label}</Label>
@@ -10,6 +19,7 @@ const LoginInputs = ({ type, placeholder, label, name, value, onChange }) => {
         name={name}
         value={value}
         onChange={onChange}
+        required={required}
       />
     </Div>
   );
