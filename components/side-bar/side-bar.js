@@ -11,6 +11,8 @@ import {
 } from "./Icon";
 import Navlink from "../navlink/navlink";
 import { categoriesdata, conData } from "./data";
+import Cookies from "js-cookie";
+
 import { Div } from "./sidebarStyles";
 
 const SideBar = () => {
@@ -19,7 +21,7 @@ const SideBar = () => {
   const [active, setActive] = useState("Home");
   // logout
   const handleLogout = () => {
-    Cookies.remove("loggedin");
+    Cookies.remove("user_token");
     router.push("/");
   };
 
@@ -154,10 +156,11 @@ const SideBar = () => {
           style={{
             paddingLeft: "70px",
             paddingTop: "220px",
+            cursor: "pointer",
           }}
           onClick={handleLogout}
         >
-          <Navlink variant="link" name="Log-out" href="/" />
+          <span>Log-out</span>
         </div>
       )}
     </Div>

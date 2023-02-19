@@ -45,6 +45,10 @@ export default function Home() {
     if (response.user) {
       Cookies.set("user_token", response.message);
       router.push("/dashboard/home");
+      response.user.role === "admin"
+        ? router.push("/dashboard/requests")
+        : router.push("/dashboard/home");
+
       toast.success("login attempt successful");
       return;
     }
