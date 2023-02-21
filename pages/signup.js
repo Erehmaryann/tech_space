@@ -27,6 +27,7 @@ const SignUp = () => {
     email: "",
     username: "",
     password: "",
+    confirmPassword: "",
   });
   const handleChange = (e) => {
     const name = e.target.name;
@@ -39,6 +40,12 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    if (signUpDetails.password !== signUpDetails.confirmPassword) {
+      // toast.error('Password and confirm password does not match`);
+      setLoading(false);
+      toast.error("Password and confirm password does not match");
+      return;
+    }
     const response = await makeApiCall("/registerUser", "POST", signUpDetails);
     if (response.message) {
       router.push("/");
@@ -97,11 +104,14 @@ const SignUp = () => {
               onChange={handleChange}
               required
             />
-            {/* <LoginInputs
+            <LoginInputs
               type={`password`}
               placeholder={`Confirm password`}
-              name={`confirm-password`}
-            /> */}
+              name={`confirmPassword`}
+              value={signUpDetails.confirmPassword}
+              onChange={handleChange}
+              required
+            />
             <SmallDiv>
               <input type="checkbox" name="" id="" />
               <div>
