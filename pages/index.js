@@ -21,7 +21,7 @@ import LoginButtons from "../components/buttons/LoginButtons";
 import DevImage from "../public/assets/Developer.webp";
 import LoginInputs from "../components/inputs/LoginInputs";
 
-export default function Home() {
+export default function Login() {
   const router = useRouter();
   const [loading, setLoading] = React.useState(false);
   const [loginDetails, setLoginDetails] = React.useState({
