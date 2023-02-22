@@ -44,6 +44,8 @@ export default function Login() {
     const response = await makeApiCall("/login", "POST", loginDetails);
     if (response.user) {
       Cookies.set("user_token", response.message);
+      Cookies.set("user_details", JSON.stringify(response.user));
+      // Cookies.set("user_details", response.user);
       router.push("/dashboard/home");
       response.user.role === "admin"
         ? router.push("/dashboard/requests")
@@ -55,7 +57,8 @@ export default function Login() {
 
     setLoading(false);
     if (response.status !== 200) {
-      toast.error("login attempt failed");
+      // console.log(response, "god abeg");
+      toast.error(response?.response?.data?.message);
     }
   };
 

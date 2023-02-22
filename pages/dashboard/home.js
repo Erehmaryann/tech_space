@@ -1,9 +1,18 @@
 import PostsData from "../../components/homepage/posts-data";
 import Head from "next/head";
 import styled from "styled-components";
+import Cookies from "js-cookie";
+import { UseUser } from "../../helper/get-user";
 //  since you want the login to be the home page.\, we would conditionally render either log in or home page here and then pass it to the index page
 
-const home = () => {
+const Home = () => {
+  // const userDetails = JSON.parse(Cookies.get("user_details"));
+  // console.log(userDetails);
+
+  const user = useUser();
+
+  console.log(user, "user");
+
   return (
     <>
       <Head>
@@ -21,4 +30,4 @@ const HomeItemContainer = styled.div`
   width: 50%;
 `;
 
-export default home;
+export default Home;

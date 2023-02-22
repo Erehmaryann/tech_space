@@ -12,6 +12,7 @@ const Profiledropdown = ({ toggleProfileHidden }) => {
   // logout
   const handleLogout = () => {
     Cookies.remove("user_token");
+    Cookies.remove("user_details");
     router.push("/");
   };
 
