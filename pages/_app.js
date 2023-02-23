@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/layouts/Layout";
 import Preloader from "../components/common/preloader/preloader";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import { createWrapper } from "next-redux-wrapper";
 import { Provider } from "react-redux";
 import store from "../redux/store";
@@ -17,7 +18,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <div style={{ margin: 0 }}>
       {loading ? (
-        <>
+        <GoogleOAuthProvider
+          clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
+        >
           <Provider store={store}>
             <Layout>
               <Component {...pageProps} />
@@ -43,7 +46,7 @@ function MyApp({ Component, pageProps }) {
               />
             </Layout>
           </Provider>
-        </>
+        </GoogleOAuthProvider>
       ) : (
         <Preloader />
       )}

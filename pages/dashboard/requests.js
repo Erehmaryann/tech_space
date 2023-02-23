@@ -24,7 +24,7 @@ const Requests = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [user._id]);
 
   console.log(data, "daat");
 

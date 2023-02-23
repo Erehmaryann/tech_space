@@ -29,6 +29,7 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
   });
+
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -59,6 +60,7 @@ const SignUp = () => {
       return;
     }
   };
+
   return (
     <>
       <Head>
@@ -124,11 +126,6 @@ const SignUp = () => {
             <Button type="submit" disabled={loading}>
               {loading === true ? <Spinner color="#fff" /> : "Sign up"}
             </Button>
-            <Link href={`/`} replace>
-              <a>
-                <LoginButtons isGoogleSignIn text={`Sign up with Google`} />
-              </a>
-            </Link>
           </Form>
         </Main>
       </Container>
