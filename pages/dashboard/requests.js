@@ -17,7 +17,7 @@ const Requests = () => {
 
   useEffect(() => {
     // make a GET request to retrieve data from the API endpoint
-    makeApiCall("/getuser/testemail@gmail.com")
+    makeApiCall(`/getuser/${user._id}`)
       .then((responseData) => {
         setData(responseData);
       })

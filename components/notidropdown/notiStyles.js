@@ -17,5 +17,6 @@ export const NotDiv = styled.div`
     margin-top: -2px;
     color: #374956;
     font-size: 15px;
+    padding-bottom: 15px;
   }
 `;
