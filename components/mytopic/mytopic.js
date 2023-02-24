@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Popup from "../popup/popup";
+// import Popup from "../popup/popup";
 import EmptyState from "../empty-state/empty-state";
 import {
   PostsDataContainer,
@@ -48,7 +48,7 @@ const myTopicData = [
 ];
 
 const MyTopic = () => {
-  const [clicked, setClicked] = useState(false);
+  // const [clicked, setClicked] = useState(false);
 
   return (
     <PostsDataContainer>
@@ -68,7 +68,7 @@ const MyTopic = () => {
                       ))}
                     </p>
                   </div>
-                  <div
+                  {/* <div
                     className="save-icon"
                     onClick={() =>
                       setClicked((prevState) =>
@@ -82,7 +82,7 @@ const MyTopic = () => {
                       <img src="/assets/svg/saveicon.svg" alt="save-icon" />
                     )}
                     {clicked === post.id && <Popup key={index} />}
-                  </div>
+                  </div> */}
                 </PostName>
               </PostsDataHeader>
               <PostBody className="post-body">
