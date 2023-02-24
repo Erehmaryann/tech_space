@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const ProfileDiv = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   padding: 20px;
   background: #ececec;
+  overflow-y: scroll;
 `;
 
 export const ProfileItemContainer = styled.section`
