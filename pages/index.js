@@ -22,7 +22,6 @@ import {
 import { Button } from "../components/buttons/ButtonStyle";
 import Spinner from "../components/common/spinner/spinner";
 import { makeApiCall } from "../lib/api";
-import LoginButtons from "../components/buttons/LoginButtons";
 import DevImage from "../public/assets/Developer.webp";
 import LoginInputs from "../components/inputs/LoginInputs";
 
@@ -40,9 +39,9 @@ export default function Login() {
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => {
       setUser(codeResponse);
-      router.push("/dashboard/home");
-      toast.success("login attempt successful");
-      console.log(codeResponse, "hmmmmmmm");
+      // router.push("/dashboard/home");
+      // toast.success("login attempt successful");
+      // console.log(codeResponse, "hmmmmmmm");
     },
     onError: (error) => console.log("Login Failed:", error),
   });
@@ -60,7 +59,7 @@ export default function Login() {
           }
         )
         .then((res) => {
-          // console.log(res, "nawa for you");
+          console.log(res, "nawa for you");
           setProfile(res.data);
           if (res.status === 200) {
             router.push("/dashboard/home");
@@ -94,7 +93,6 @@ export default function Login() {
       Cookies.set("user_token", response.message);
       Cookies.set("user_details", JSON.stringify(response.user));
       // Cookies.set("user_details", response.user);
-      // router.push("/dashboard/home");
       response.user.role === "admin"
         ? router.push("/dashboard/requests")
         : router.push("/dashboard/home");
@@ -168,9 +166,29 @@ export default function Login() {
                 <button onClick={logOut}>Log out</button>
               </div>
             ) : ( */}
-            <button type="submit" onClick={() => login()}>
-              {/* <LoginButtons isGoogleSignIn text={`Log in with Google`} /> */}
-              <span>
+            <button
+              type="submit"
+              onClick={() => login()}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "100%",
+                borderRadius: "5px",
+                height: "41px",
+                margin: "10px 0",
+                cursor: "pointer",
+                boxShadow: "0px 5px 8px rgba(64, 157, 224, 0.15)",
+                background: "#fff",
+                color: "#109FEF",
+                border: "none",
+              }}
+            >
+              <span
+                style={{
+                  marginRight: "10px",
+                }}
+              >
                 <GoogleIcon />
               </span>
               Log in with Google

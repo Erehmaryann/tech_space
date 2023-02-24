@@ -14,7 +14,6 @@ import {
 } from "../components/styles/AuthStyles";
 import Spinner from "../components/common/spinner/spinner";
 import { makeApiCall } from "../lib/api";
-import LoginButtons from "../components/buttons/LoginButtons";
 import LoginInputs from "../components/inputs/LoginInputs";
 import signup from "../public/assets/signup.webp";
 import { Button } from "../components/buttons/ButtonStyle";
