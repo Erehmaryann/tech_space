@@ -100,6 +100,7 @@ const MyTopic = () => {
                     <Image
                       src={post.postImage}
                       alt="post-image"
+                      priority
                       width="100%"
                       height="60%"
                       layout="responsive"

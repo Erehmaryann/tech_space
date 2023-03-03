@@ -59,10 +59,12 @@ export default function ReactSelect({
   options,
   placeholder = "Select a category",
   setOption,
+  handleChange,
+  ...others
 }) {
-  const handleChange = (selectedOption) => {
-    setOption(selectedOption);
-  };
+  // const handleChange = (selectedOption) => {
+  //   setOption(selectedOption);
+  // };
 
   return (
     <Select
@@ -72,6 +74,7 @@ export default function ReactSelect({
       defaultValue={placeholder}
       onChange={handleChange}
       isSearchable={false}
+      {...others}
     />
   );
 }

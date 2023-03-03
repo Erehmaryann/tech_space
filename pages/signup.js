@@ -37,11 +37,11 @@ const SignUp = () => {
       [name]: value,
     }));
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     if (signUpDetails.password !== signUpDetails.confirmPassword) {
-      // toast.error('Password and confirm password does not match`);
       setLoading(false);
       toast.error("Password and confirm password does not match");
       return;

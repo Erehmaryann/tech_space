@@ -23,7 +23,7 @@ export const Button = styled.button`
   text-decoration: none;
 `;
 
-export const CateDiv = styled.div`
+export const CateDiv = styled.form`
   width: 400px;
   .input-group {
     padding: 5px;
@@ -57,6 +57,6 @@ export const CateDiv = styled.div`
     }
   }
   .rev {
-    object-fit: cover;
+    object-fit: contain;
   }
 `;
