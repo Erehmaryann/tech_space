@@ -46,9 +46,14 @@ const CateInputs = ({ setShowFirstModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // if (signUpDetails.password !== signUpDetails.confirmPassword) {
+    // if (
+    //   newTopicDetails.topic === "" ||
+    //   newTopicDetails.category === "" ||
+    //   newTopicDetails.description === "" ||
+    //   newTopicDetails.image === ""
+    // ) {
     //   setLoading(false);
-    //   toast.error("Password and confirm password does not match");
+    //   toast.error("Please fill all the necessary form data correctly");
     //   return;
     // }
     const response = await makeApiCall("/createtopic", "POST", newTopicDetails);
@@ -63,6 +68,8 @@ const CateInputs = ({ setShowFirstModal }) => {
     setLoading(false);
     if (response.status !== 200) {
       setLoading(false);
+      setShowModal(false);
+      setShowFirstModal(true);
       toast.error(response.message);
       return;
     }
