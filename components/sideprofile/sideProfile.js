@@ -1,16 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { makeApiCall } from "../../lib/api";
 import Image from "next/image";
 import { conData, activeMem } from "./data";
 import CateInputs from "../cateinputs/cateInputs";
 import Modal from "../modal/Modal";
+import { toast } from "react-hot-toast";
 import Navlink from "../navlink/navlink";
+import { useUser } from "../../helper/get-user";
 import { Button, Div } from "./sideProfileStyles";
 
 const SideProfile = () => {
   const router = useRouter();
   const path = router.pathname;
   const [showFirstModal, setShowFirstModal] = useState(false);
+  const user = useUser();
+  const [getUserTopicNum, setGetUserTopicNum] = useState([]);
+
+  useEffect(() => {
+    // make a GET request to retrieve data from the API endpoint
+    makeApiCall(`/getTopicCountsperuser/${user._id}`)
+      .then((responseData) => {
+        setGetUserTopicNum(responseData?.message);
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+  }, [user._id]);
+
+  console.log(user, "arabbbbbb");
 
   const showModalHandler = () => {
     setShowFirstModal(true);
@@ -52,8 +70,11 @@ const SideProfile = () => {
                     alt="side-profile-pix"
                     className="rev"
                   />
-                  <h4>Ereh Maryann</h4>
-                  <span>22 topics</span>
+                  <h4>
+                    {/* {user.fullname !== null ? user?.fullname : "Ereh Maryann"} */}
+                    Ereh, Maryann Edward
+                  </h4>
+                  <span>{`${getUserTopicNum} topics`}</span>
                 </div>
                 <div className="contributors">
                   <h2>Top Contributors</h2>

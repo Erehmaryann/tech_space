@@ -18,9 +18,9 @@ const CateInputs = ({ setShowFirstModal }) => {
     topic: "",
     category: "",
     description: "",
-    image: "",
+    // image: "",
   });
-  console.log(newTopicDetails);
+
   const handleFormChange = (e) => {
     setNewTopicDetails((prev) => ({
       ...prev,
@@ -28,37 +28,28 @@ const CateInputs = ({ setShowFirstModal }) => {
     }));
   };
 
-  const onImageChange = (e) => {
-    const files = e.target.files[0];
-    if (files.size > 4096)
-      return toast.error("File size cannot be more than 4MB");
-    else
-      toast.success(
-        `The file with size ${Math.round(
-          files.size / 1024
-        )}MB has been selected successfully `
-      );
-    const img = URL.createObjectURL(files);
-    setImagePreview(img);
-    setNewTopicDetails((prev) => ({ ...prev, image: files }));
-  };
+  // const onImageChange = (e) => {
+  //   const files = e.target.files[0];
+  //   if (files.size > 4096)
+  //     return toast.error("File size cannot be more than 4MB");
+  //   else
+  //     toast.success(
+  //       `The file with size ${Math.round(
+  //         files.size / 1024
+  //       )}MB has been selected successfully `
+  //     );
+  //   const img = URL.createObjectURL(files);
+  //   setImagePreview(img);
+  //   setNewTopicDetails((prev) => ({ ...prev, image: files }));
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // if (
-    //   newTopicDetails.topic === "" ||
-    //   newTopicDetails.category === "" ||
-    //   newTopicDetails.description === "" ||
-    //   newTopicDetails.image === ""
-    // ) {
-    //   setLoading(false);
-    //   toast.error("Please fill all the necessary form data correctly");
-    //   return;
-    // }
+
     const response = await makeApiCall("/createtopic", "POST", newTopicDetails);
     console.log(response);
-    if (response.message) {
+    if (response.status === 200) {
       setShowModal(true);
       toast.success(
         "Topic was created successfully. Your topic is pending approval"
@@ -120,7 +111,7 @@ const CateInputs = ({ setShowFirstModal }) => {
           required
         />
       </div>
-      <div className="input-group">
+      {/* <div className="input-group">
         <label htmlFor="file-upload" className="file-upload">
           <p style={{ fontSize: "12px", paddingBottom: "8px" }}>
             File size should not be more than 4MB
@@ -168,7 +159,7 @@ const CateInputs = ({ setShowFirstModal }) => {
             </>
           )}
         </label>
-      </div>
+      </div> */}
       <ButDiv>
         <Button
           type="submit"

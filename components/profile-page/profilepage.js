@@ -29,8 +29,6 @@ const ProfilePage = () => {
       });
   }, [user._id]);
 
-  console.log(user, "daat");
-
   return (
     <ProfileDiv>
       {loading ? (
