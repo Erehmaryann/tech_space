@@ -29,7 +29,7 @@ const ProfilePage = () => {
       });
   }, [user._id]);
 
-  console.log(getUser, "daat");
+  console.log(user, "daat");
 
   return (
     <ProfileDiv>

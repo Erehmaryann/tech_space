@@ -1,5 +1,5 @@
-import ProfileActionTypes from './profile.types';
+import ProfileActionTypes from "./profile.types";
 
 export const toggleProfileHidden = () => ({
-    type: ProfileActionTypes.TOGGLE_PROFILE_HIDDEN
+  type: ProfileActionTypes.TOGGLE_PROFILE_HIDDEN,
 });

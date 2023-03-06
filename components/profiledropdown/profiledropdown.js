@@ -2,6 +2,8 @@ import { connect } from "react-redux";
 import { toggleProfileHidden } from "../../redux/profile/profile.actions";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
+import { googleLogout } from "@react-oauth/google";
+
 import { ProDiv } from "./proStyles";
 import Link from "next/link";
 
@@ -13,6 +15,9 @@ const Profiledropdown = ({ toggleProfileHidden }) => {
   const handleLogout = () => {
     Cookies.remove("user_token");
     Cookies.remove("user_details");
+    Cookies.remove("access_token");
+    googleLogout();
+    // setProfile(null);
     router.push("/");
   };
 

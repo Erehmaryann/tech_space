@@ -7,7 +7,7 @@ import Link from "next/link";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { GoogleIcon } from "../components/Icons/Icon";
-import { googleLogout, useGoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -36,17 +36,21 @@ export default function Login() {
   const [user, setUser] = useState([]);
   const [profile, setProfile] = useState([]);
 
+  const data = {
+    email: profile?.email,
+    fullname: profile?.name,
+    profileimg: profile?.picture,
+    username: profile?.given_name,
+  };
+
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => {
       setUser(codeResponse);
-      // router.push("/dashboard/home");
-      // toast.success("login attempt successful");
-      // console.log(codeResponse, "hmmmmmmm");
     },
-    onError: (error) => console.log("Login Failed:", error),
+    onError: (error) => toast.error("Login Failed:", error.message),
   });
 
-  useEffect(() => {
+  useEffect(async () => {
     if (user) {
       axios
         .get(
@@ -59,16 +63,27 @@ export default function Login() {
           }
         )
         .then((res) => {
-          console.log(res, "nawa for you");
           setProfile(res.data);
-          if (res.status === 200) {
-            router.push("/dashboard/home");
-            toast.success("login attempt successful");
-          }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => toast.error(err.message));
     }
-  }, [user]);
+
+    const response = await makeApiCall("/loginwithgoogle", "POST", data);
+    if (response.user) {
+      Cookies.set("user_token", response.message);
+      Cookies.set("user_details", JSON.stringify(response.user));
+      response.user.role === "admin"
+        ? router.push("/dashboard/requests")
+        : router.push("/dashboard/home");
+
+      toast.success("login attempt successful");
+      return;
+    }
+
+    if (response.status !== 200) {
+      toast.error(response?.response?.data?.message);
+    }
+  }, []);
 
   // log out function to log the user out of google and set the profile array to null
   // const logOut = () => {
@@ -89,10 +104,11 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     const response = await makeApiCall("/login", "POST", loginDetails);
+
     if (response.user) {
       Cookies.set("user_token", response.message);
       Cookies.set("user_details", JSON.stringify(response.user));
-      // Cookies.set("user_details", response.user);
+
       response.user.role === "admin"
         ? router.push("/dashboard/requests")
         : router.push("/dashboard/home");
@@ -103,7 +119,6 @@ export default function Login() {
 
     setLoading(false);
     if (response.status !== 200) {
-      // console.log(response, "god abeg");
       toast.error(response?.response?.data?.message);
     }
   };
@@ -155,17 +170,7 @@ export default function Login() {
                 </Link>
               </NoAcc>
             </Form>
-            {/* {profile ? (
-              <div>
-                <img src={profile.picture} alt="user image" />
-                <h3>User Logged in</h3>
-                <p>Name: {profile.name}</p>
-                <p>Email Address: {profile.email}</p>
-                <br />
-                <br />
-                <button onClick={logOut}>Log out</button>
-              </div>
-            ) : ( */}
+
             <button
               type="submit"
               onClick={() => login()}
@@ -193,7 +198,6 @@ export default function Login() {
               </span>
               Log in with Google
             </button>
-            {/* )} */}
           </div>
         </Main>
       </Container>
