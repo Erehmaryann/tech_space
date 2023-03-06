@@ -38,13 +38,16 @@ const ProfilePage = () => {
       ) : (
         <ProfileItemContainer>
           <Image
-            src="/assets/svg/dpavatar.svg"
+            src={getUser?.profileimg || "/assets/svg/dpavatar.svg"}
             alt="profile-pix"
             width={100}
             height={100}
+            style={{ borderRadius: "50%" }}
           />
           <h4>{getUser?.fullname}</h4>
-          <p>Hi, I am a frontend developer.</p>
+          <p>
+            {getUser.bio ? getUser?.bio : "Please go and update your profile"}
+          </p>
           <small>
             Joined{" "}
             <Moment format="D MMM YYYY" withTitle>

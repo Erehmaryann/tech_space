@@ -15,6 +15,7 @@ import {
   ImageDiv,
   SelectDiv,
 } from "./NavStyles";
+import { useUser } from "../../helper/get-user";
 import logo from "../../public/assets/Logo.png";
 import { SearchIcon } from "../Icons/Icon";
 import NotIcon from "../notIcon/notIcon";
@@ -37,6 +38,7 @@ const MainNav = ({
   const router = useRouter();
   const path = router.pathname;
   const [option, setOption] = useState(options);
+  const user = useUser();
 
   return (
     <Nav>
@@ -79,7 +81,9 @@ const MainNav = ({
         {notiHidden ? null : <NotiDropdown />}
         <ImageDiv>
           <Image
-            src={ProfileImg}
+            src={user?.profileimg || ProfileImg}
+            width={50}
+            height={50}
             alt="profile-img"
             onClick={toggleProfileHidden}
             style={{ borderRadius: "50%" }}

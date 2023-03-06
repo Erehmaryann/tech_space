@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { makeApiCall } from "../../lib/api";
 import Image from "next/image";
-import { conData, activeMem } from "./data";
+import { conData } from "./data";
 import CateInputs from "../cateinputs/cateInputs";
 import Modal from "../modal/Modal";
 import { toast } from "react-hot-toast";
@@ -12,10 +12,12 @@ import { Button, Div } from "./sideProfileStyles";
 
 const SideProfile = () => {
   const router = useRouter();
+  const user = useUser();
   const path = router.pathname;
   const [showFirstModal, setShowFirstModal] = useState(false);
-  const user = useUser();
   const [getUserTopicNum, setGetUserTopicNum] = useState([]);
+  const [totalNumOfMembers, setTotalNumOfMembers] = useState([]);
+  const [getUserProfile, setGetUserProfile] = useState([]);
 
   useEffect(() => {
     // make a GET request to retrieve data from the API endpoint
@@ -26,9 +28,23 @@ const SideProfile = () => {
       .catch((error) => {
         toast.error(error);
       });
+    // make a GET request to retrieve totalmembers data from the API endpoint
+    makeApiCall(`/totalmembers/`)
+      .then((responseData) => {
+        setTotalNumOfMembers(responseData?.message);
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+    // make a GET request to retrieve userprofile data from the API endpoint
+    makeApiCall(`/userprofile/${user._id}`)
+      .then((responseData) => {
+        setGetUserProfile(responseData?.message);
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   }, [user._id]);
-
-  console.log(user, "arabbbbbb");
 
   const showModalHandler = () => {
     setShowFirstModal(true);
@@ -64,16 +80,17 @@ const SideProfile = () => {
                 </Modal>
                 <div className="profile-pix">
                   <Image
-                    src="/assets/svg/sideDp.svg"
+                    src={
+                      getUserProfile.profileimg
+                        ? getUserProfile?.profileimg
+                        : "/assets/svg/sideDp.svg"
+                    }
                     width={158}
                     height={154}
                     alt="side-profile-pix"
                     className="rev"
                   />
-                  <h4>
-                    {/* {user.fullname !== null ? user?.fullname : "Ereh Maryann"} */}
-                    Ereh, Maryann Edward
-                  </h4>
+                  <h4>{getUserProfile?.fullname}</h4>
                   <span>{`${getUserTopicNum} topics`}</span>
                 </div>
                 <div className="contributors">
@@ -93,18 +110,36 @@ const SideProfile = () => {
             path === "/dashboard/topics" ||
             path === "/dashboard/members") && (
             <>
-              {activeMem.map((item, idx) => (
-                <div className="num-of-mem" key={idx}>
-                  <h1
-                    style={{
-                      background: item.bg,
-                    }}
-                  >
-                    {item.num}
-                  </h1>
-                  <h4>{item.text}</h4>
-                </div>
-              ))}
+              <div className="num-of-mem">
+                <h1
+                  style={{
+                    background: "#409de0",
+                  }}
+                >
+                  {totalNumOfMembers ?? ""}
+                </h1>
+                <h4>Number of Members</h4>
+              </div>
+              <div className="num-of-mem">
+                <h1
+                  style={{
+                    background: "#56C568",
+                  }}
+                >
+                  {1}
+                </h1>
+                <h4>Members online</h4>
+              </div>
+              <div className="num-of-mem">
+                <h1
+                  style={{
+                    background: "#EB5757",
+                  }}
+                >
+                  {3}
+                </h1>
+                <h4>Members offline</h4>
+              </div>
             </>
           )}
         </Div>

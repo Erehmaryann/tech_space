@@ -33,40 +33,33 @@ export default function Login() {
     password: "",
   });
 
-  const [user, setUser] = useState([]);
-  const [profile, setProfile] = useState([]);
-
-  const data = {
-    email: profile?.email,
-    fullname: profile?.name,
-    profileimg: profile?.picture,
-    username: profile?.given_name,
-  };
-
   const googleLogin = useGoogleLogin({
     onSuccess: (codeResponse) => {
-      setUser(codeResponse);
       axios
         .get(
-          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${codeResponse.access_token}`,
+          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${codeResponse?.access_token}`,
           {
             headers: {
-              Authorization: `Bearer ${codeResponse.access_token}`,
+              Authorization: `Bearer ${codeResponse?.access_token}`,
               Accept: "application/json",
             },
           }
         )
         .then((res) => {
-          setProfile(res.data);
-          handleGoogleLogin();
+          handleGoogleLogin(res);
         })
         .catch((err) => toast.error(err.message));
     },
     onError: (error) => toast.error("Login Failed:", error.message),
   });
 
-  const handleGoogleLogin = async () => {
-    const response = await makeApiCall("/loginwithgoogle", "POST", data);
+  const handleGoogleLogin = async (res) => {
+    const response = await makeApiCall("/loginwithgoogle", "POST", {
+      email: res.data.email,
+      fullname: res.data.name,
+      profileimg: res.data.picture,
+      username: res.data.given_name,
+    });
     if (response.user) {
       Cookies.set("user_token", response.message);
       Cookies.set("user_details", JSON.stringify(response.user));
@@ -82,47 +75,6 @@ export default function Login() {
       toast.error(response?.response?.data?.message);
     }
   };
-
-  // useEffect(async () => {
-  //   if (user) {
-  //     axios
-  //       .get(
-  //         `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${user.access_token}`,
-  //             Accept: "application/json",
-  //           },
-  //         }
-  //       )
-  //       .then((res) => {
-  //         setProfile(res.data);
-  //       })
-  //       .catch((err) => toast.error(err.message));
-  //   }
-
-  //   const response = await makeApiCall("/loginwithgoogle", "POST", data);
-  //   if (response.user) {
-  //     Cookies.set("user_token", response.message);
-  //     Cookies.set("user_details", JSON.stringify(response.user));
-  //     response.user.role === "admin"
-  //       ? router.push("/dashboard/requests")
-  //       : router.push("/dashboard/home");
-
-  //     toast.success("login attempt successful");
-  //     return;
-  //   }
-
-  //   if (response.status !== 200) {
-  //     toast.error(response?.response?.data?.message);
-  //   }
-  // }, []);
-
-  // log out function to log the user out of google and set the profile array to null
-  // const logOut = () => {
-  //   googleLogout();
-  //   setProfile(null);
-  // };
 
   const handleChange = (e) => {
     const name = e.target.name;

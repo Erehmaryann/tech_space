@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
 import ReactSelect from "../common/select";
-import Image from "next/image";
+// import Image from "next/image";
 import { useState } from "react";
 import { ButDiv, Button, CateDiv } from "./cateinputsStyle";
 import { options } from "./cateData";
@@ -13,7 +13,7 @@ import { toast } from "react-hot-toast";
 const CateInputs = ({ setShowFirstModal }) => {
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [imagePreview, setImagePreview] = useState("");
+  // const [imagePreview, setImagePreview] = useState("");
   const [newTopicDetails, setNewTopicDetails] = useState({
     topic: "",
     category: "",
@@ -48,16 +48,14 @@ const CateInputs = ({ setShowFirstModal }) => {
     setLoading(true);
 
     const response = await makeApiCall("/createtopic", "POST", newTopicDetails);
-    console.log(response);
-    if (response.status === 200) {
+    if (response.message === "success creating topic") {
       setShowModal(true);
-      toast.success(
-        "Topic was created successfully. Your topic is pending approval"
-      );
+      toast.success(response.message);
       return;
     }
     setLoading(false);
-    if (response.status !== 200) {
+
+    if (response.status !== "success creating topic") {
       setLoading(false);
       setShowModal(false);
       setShowFirstModal(true);
@@ -161,11 +159,7 @@ const CateInputs = ({ setShowFirstModal }) => {
         </label>
       </div> */}
       <ButDiv>
-        <Button
-          type="submit"
-          disabled={loading}
-          // onClick={() => setShowModal(true)}
-        >
+        <Button type="submit" disabled={loading}>
           {loading === true ? <Spinner color="#fff" /> : "Create"}
         </Button>
       </ButDiv>

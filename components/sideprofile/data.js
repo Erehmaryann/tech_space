@@ -20,21 +20,3 @@ export const conData = [
     img: "/assets/svg/profilepix.svg",
   },
 ];
-
-export const activeMem = [
-  {
-    bg: "#409de0",
-    text: "Number of Members",
-    num: "94",
-  },
-  {
-    bg: "#56C568",
-    text: "Members online",
-    num: "29",
-  },
-  {
-    bg: "#EB5757",
-    text: "Members offline",
-    num: "65",
-  },
-];
