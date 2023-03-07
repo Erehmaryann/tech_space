@@ -60,9 +60,10 @@ export default function Login() {
       profileimg: res.data.picture,
       username: res.data.given_name,
     });
-    if (response.user) {
-      Cookies.set("user_token", response.message);
-      Cookies.set("user_details", JSON.stringify(response.user));
+    console.log(response);
+    if (response?.user) {
+      Cookies.set("user_token", response?.message);
+      Cookies.set("user_details", JSON.stringify(response?.user));
       response.user.role === "admin"
         ? router.push("/dashboard/requests")
         : router.push("/dashboard/home");
@@ -119,7 +120,7 @@ export default function Login() {
             <Image src={DevImage} alt="hero Image" priority />
           </ImageDiv>
           <div style={{ width: "35.4%" }}>
-            <Form onSubmit={(e) => handleSubmit(e)}>
+            <Form onSubmit={(e) => handleSubmit(e)} autoComplete="off">
               <h4>Login to your account</h4>
               <LoginInputs
                 type={`email`}

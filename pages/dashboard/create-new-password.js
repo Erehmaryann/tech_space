@@ -25,7 +25,7 @@ const CreateNewPassword = () => {
             <Image src={createNewPassword} alt="hero Image" />
           </ImageDiv>
 
-          <Form>
+          <Form autoComplete="off">
             <h4>Create a new password</h4>
             <p>Enter a strong password that you can remember</p>
             <LoginInputs

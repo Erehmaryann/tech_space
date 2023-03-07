@@ -13,6 +13,7 @@ const LoginInputs = ({
     <Div className="bottom">
       <Label>{label}</Label>
       <Input
+        autoComplete="false"
         type={type}
         placeholder={placeholder}
         name={name}

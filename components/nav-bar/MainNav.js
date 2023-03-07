@@ -38,7 +38,7 @@ const MainNav = ({
   const router = useRouter();
   const path = router.pathname;
   const [option, setOption] = useState(options);
-  const user = useUser();
+  const user = useUser() || null;
 
   return (
     <Nav>
