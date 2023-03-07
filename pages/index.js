@@ -28,6 +28,8 @@ import LoginInputs from "../components/inputs/LoginInputs";
 export default function Login() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
+
   const [loginDetails, setLoginDetails] = useState({
     email: "",
     password: "",
@@ -46,6 +48,7 @@ export default function Login() {
           }
         )
         .then((res) => {
+          setGoogleLoading(true);
           handleGoogleLogin(res);
         })
         .catch((err) => toast.error(err.message));
@@ -60,7 +63,7 @@ export default function Login() {
       profileimg: res.data.picture,
       username: res.data.given_name,
     });
-    console.log(response);
+    setGoogleLoading(true);
     if (response?.user) {
       Cookies.set("user_token", response?.message);
       Cookies.set("user_details", JSON.stringify(response?.user));
@@ -73,6 +76,7 @@ export default function Login() {
     }
 
     if (response.status !== 200) {
+      setGoogleLoading(false);
       toast.error(response?.response?.data?.message);
     }
   };
@@ -175,14 +179,20 @@ export default function Login() {
                 border: "none",
               }}
             >
-              <span
-                style={{
-                  marginRight: "10px",
-                }}
-              >
-                <GoogleIcon />
-              </span>
-              Log in with Google
+              {googleLoading ? (
+                <Spinner color="#409DE0" />
+              ) : (
+                <>
+                  <span
+                    style={{
+                      marginRight: "10px",
+                    }}
+                  >
+                    <GoogleIcon />
+                  </span>
+                  Log in with Google
+                </>
+              )}
             </button>
           </div>
         </Main>

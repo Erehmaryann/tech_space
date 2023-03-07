@@ -5,6 +5,6 @@ module.exports = {
     styledComponents: true,
   },
   images: {
-    domains: ["lh3.googleusercontent.com"],
+    domains: ["lh3.googleusercontent.com", "cdn.mos.cms.futurecdn.net"],
   },
 };

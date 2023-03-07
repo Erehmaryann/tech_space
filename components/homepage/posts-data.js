@@ -1,11 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import EmptyState from "../empty-state/empty-state";
 import Comments from "../common/comment/comments";
 import Popup from "../popup/popup";
 import { postsData } from "./data";
+import { makeApiCall } from "../../lib/api";
 import Emojis from "../emoji/emoji";
 import { Emoji } from "emoji-mart";
 import {
@@ -23,7 +24,22 @@ const PostsData = () => {
   const [reactionShown, setReactionShown] = useState("");
   const [selectedEmoji, setSelectedEmoji] = useState([]);
   const [total, setTotal] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [getTopics, setGetTopics] = useState([]);
 
+  useEffect(() => {
+    // make a GET request to retrieve data from the API endpoint
+    makeApiCall(`/getTopics`)
+      .then((responseData) => {
+        setGetTopics(responseData?.message);
+        setLoading(false);
+      })
+      .catch((error) => {
+        toast.error(error);
+        setLoading(false);
+      });
+  }, []);
+  console.log(getTopics, "heyyyyyy");
   return (
     <PostsDataContainer>
       {postsData.length !== 0 ? (

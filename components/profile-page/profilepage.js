@@ -10,16 +10,15 @@ import Spinner from "../common/spinner/spinner";
 import { toast } from "react-hot-toast";
 
 const ProfilePage = () => {
-  const [show, setShow] = useState("home");
-  const [loading, setLoading] = useState(false);
   const user = useUser();
+  const [show, setShow] = useState("home");
+  const [loading, setLoading] = useState(true);
   const [getUser, setGetUser] = useState([]);
 
   useEffect(() => {
     // make a GET request to retrieve data from the API endpoint
     makeApiCall(`/userprofile/${user._id}`)
       .then((responseData) => {
-        setLoading(true);
         setGetUser(responseData?.message);
         setLoading(false);
       })
@@ -33,7 +32,7 @@ const ProfilePage = () => {
     <ProfileDiv>
       {loading ? (
         <ProfileItemContainer>
-          <Spinner />
+          <Spinner color="#409DE0" />
         </ProfileItemContainer>
       ) : (
         <ProfileItemContainer>

@@ -1,8 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
+// import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import EmptyState from "../empty-state/empty-state";
 import { phoneData } from "../phone/phoneData";
+// import { makeApiCall } from "../../lib/api";
 import {
   PostsDataContainer,
   HomeItemContainer,
@@ -14,6 +16,22 @@ import {
 } from "./requestStyles";
 
 const Request = () => {
+  // const [loading, setLoading] = useState(true);
+  // const [getTopics, setGetTopics] = useState([]);
+
+  // useEffect(() => {
+  //   // make a GET request to retrieve data from the API endpoint
+  //   makeApiCall(`/getTopics`)
+  //     .then((responseData) => {
+  //       setGetTopics(responseData?.message);
+  //       setLoading(false);
+  //     })
+  //     .catch((error) => {
+  //       toast.error(error);
+  //       setLoading(false);
+  //     });
+  // }, []);
+  // console.log(getTopics, "heyyyyyy");
   return (
     <PostsDataContainer>
       <h2 style={{ color: "#374956" }}>Requests</h2>
