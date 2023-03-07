@@ -31,7 +31,7 @@ const Profiledropdown = ({ toggleProfileHidden }) => {
             <Link href="/dashboard/settings">Settings</Link>
           </span>
           <span onClick={handleLogout}>
-            <span onClick={toggleProfileHidden}>Logout</span>
+            <span>Logout</span>
           </span>
         </div>
       </ProDiv>
