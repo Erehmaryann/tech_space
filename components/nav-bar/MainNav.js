@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -28,6 +28,7 @@ import { createStructuredSelector } from "reselect";
 import { selectProfileHidden } from "../../redux/profile/profile.selectors";
 import { selectNotiHidden } from "../../redux/notification/noti.selectors";
 import { toggleProfileHidden } from "../../redux/profile/profile.actions";
+import { makeApiCall } from "../../lib/api";
 
 const MainNav = ({
   hidden,
@@ -39,6 +40,20 @@ const MainNav = ({
   const path = router.pathname;
   const [option, setOption] = useState(options);
   const user = useUser() || null;
+
+  const [getUserProfile, setGetUserProfile] = useState([]);
+
+  useEffect(() => {
+    // make a GET request to retrieve data from the API endpoint
+    // make a GET request to retrieve userprofile data from the API endpoint
+    makeApiCall(`/userprofile/${user._id}`)
+      .then((responseData) => {
+        setGetUserProfile(responseData?.message);
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+  }, [user._id]);
 
   return (
     <Nav>
@@ -81,7 +96,12 @@ const MainNav = ({
         {notiHidden ? null : <NotiDropdown />}
         <ImageDiv>
           <Image
-            src={user?.profileimg || ProfileImg}
+            // src={user?.profileimg !== undefined ? user?.profileimg : ProfileImg}
+            src={
+              getUserProfile.profileimg
+                ? getUserProfile?.profileimg
+                : "/assets/svg/sideDp.svg"
+            }
             width={50}
             height={50}
             alt="profile-img"
