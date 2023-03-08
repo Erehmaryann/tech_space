@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
+import { useUser } from "../../helper/get-user";
 import Link from "next/link";
 import Image from "next/image";
 import EmptyState from "../empty-state/empty-state";
@@ -16,12 +17,14 @@ import {
 } from "./requestStyles";
 
 const Request = () => {
+  const user = useUser();
+  console.log(user, "Imeneeee");
   const [loading, setLoading] = useState(true);
   const [getTopics, setGetTopics] = useState([]);
 
   useEffect(() => {
     // make a GET request to retrieve data from the API endpoint
-    makeApiCall(`/getTopics/role`)
+    makeApiCall(`/getTopics/${user?.role}`)
       .then((responseData) => {
         setGetTopics(responseData?.message);
         setLoading(false);
