@@ -17,6 +17,7 @@ const SideProfile = () => {
   const [showFirstModal, setShowFirstModal] = useState(false);
   const [getUserTopicNum, setGetUserTopicNum] = useState([]);
   const [totalNumOfMembers, setTotalNumOfMembers] = useState([]);
+  const [totalNumOfTopics, setTotalNumOfTopics] = useState([]);
   const [getUserProfile, setGetUserProfile] = useState([]);
 
   useEffect(() => {
@@ -36,6 +37,14 @@ const SideProfile = () => {
       .catch((error) => {
         toast.error(error);
       });
+    // make a GET request to retrieve totaltopics data from the API endpoint
+    makeApiCall(`totaltopic`)
+      .then((responseData) => {
+        setTotalNumOfTopics(responseData?.message);
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
     // make a GET request to retrieve userprofile data from the API endpoint
     makeApiCall(`/userprofile/${user._id}`)
       .then((responseData) => {
@@ -45,7 +54,7 @@ const SideProfile = () => {
         toast.error(error);
       });
   }, [user._id]);
-
+  console.log(totalNumOfTopics, "maziii");
   const showModalHandler = () => {
     setShowFirstModal(true);
   };
@@ -128,7 +137,7 @@ const SideProfile = () => {
                 >
                   {1}
                 </h1>
-                <h4>Members online</h4>
+                <h4>Total Posts</h4>
               </div>
               <div className="num-of-mem">
                 <h1
