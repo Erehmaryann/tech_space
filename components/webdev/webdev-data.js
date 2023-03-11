@@ -70,7 +70,7 @@ const WebdevData = () => {
         </div>
       ) : getTopics?.length == 0 ? (
         <EmptyState
-          text={`No post yet`}
+          text={`No post on Web development yet`}
           para={`Posts on web development will appear here`}
         />
       ) : (
