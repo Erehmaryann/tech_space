@@ -18,7 +18,7 @@ const CateInputs = ({ setShowFirstModal }) => {
     topic: "",
     category: "",
     description: "",
-    // image: "",
+    path: "",
   });
 
   const handleFormChange = (e) => {
@@ -107,6 +107,19 @@ const CateInputs = ({ setShowFirstModal }) => {
           onChange={(e) => handleFormChange(e)}
           style={{ resize: "none" }}
           required
+        />
+      </div>
+      <div className="input-group">
+        <label htmlFor="topic-image">Title Image Url</label>
+        <input
+          type="url"
+          name="path"
+          value={newTopicDetails.path}
+          onChange={(e) => handleFormChange(e)}
+          id="topic-image"
+          // required
+          className="input"
+          placeholder="Topic Image Url"
         />
       </div>
       {/* <div className="input-group">

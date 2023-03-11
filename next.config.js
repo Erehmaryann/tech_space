@@ -9,6 +9,7 @@ module.exports = {
       "lh3.googleusercontent.com",
       "cdn.mos.cms.futurecdn.net",
       "scontent.flos2-1.fna.fbcdn.net",
+      "images.unsplash.com",
     ],
   },
 };

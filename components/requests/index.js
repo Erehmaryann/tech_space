@@ -2,9 +2,8 @@
 import { useState, useEffect } from "react";
 import { useUser } from "../../helper/get-user";
 import Link from "next/link";
-import Image from "next/image";
+import { toast } from "react-hot-toast";
 import EmptyState from "../empty-state/empty-state";
-import { phoneData } from "../phone/phoneData";
 import { makeApiCall } from "../../lib/api";
 import {
   PostsDataContainer,
@@ -15,45 +14,96 @@ import {
   BottomDiv,
   Button,
 } from "./requestStyles";
+import Moment from "react-moment";
+import Spinner from "../common/spinner/spinner";
 
 const Request = () => {
   const user = useUser();
-  console.log(user, "Imeneeee");
   const [loading, setLoading] = useState(true);
   const [getTopics, setGetTopics] = useState([]);
+  const [isApproved, setIsApproved] = useState(false);
 
   useEffect(() => {
     // make a GET request to retrieve data from the API endpoint
-    makeApiCall(`/getTopics/${user?.role}`)
+    const fetchData = makeApiCall(`/getTopics/${user?.role}`)
       .then((responseData) => {
-        setGetTopics(responseData?.message);
-        setLoading(false);
+        if (responseData.message !== "no post available yet") {
+          setGetTopics(responseData?.message);
+          setLoading(false);
+        } else {
+          setGetTopics([]);
+          setLoading(false);
+        }
       })
       .catch((error) => {
         toast.error(error);
         setLoading(false);
       });
-  }, []);
-  console.log(getTopics, "heyyyyyy");
+
+    fetchData;
+  }, [user?.role, isApproved, getTopics]);
+
+  const handleClick = async (item, value) => {
+    const response = await makeApiCall(`updatestatus/${item?._id}`, "PATCH", {
+      status: value,
+    });
+    setIsApproved(true);
+    toast.success(response?.message);
+  };
   return (
     <PostsDataContainer>
       <h2 style={{ color: "#374956" }}>Requests</h2>
-
-      {phoneData.length !== 0 ? (
-        phoneData.map((post) => (
-          <div key={post.id}>
+      {loading ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <Spinner color="#409de0" />
+        </div>
+      ) : getTopics?.length == 0 ? (
+        <EmptyState
+          text={`No topic has been created yet`}
+          para={`Topics sent for approval will appear here`}
+        />
+      ) : (
+        getTopics !== [] &&
+        getTopics.map((post) => (
+          <div key={post._id}>
             <HomeItemContainer>
               <div className="post-container">
                 <PostsDataHeader>
-                  <img src={post.profilePix} alt="profile-pix" />
+                  <img
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      borderRadius: "50%",
+                    }}
+                    id={post?.user?._id}
+                    src={
+                      post?.user?.profileimg
+                        ? post?.user?.profileimg
+                        : "/assets/svg/sideDp.svg"
+                    }
+                    alt="profile-pix"
+                  />
                   <PostName className="name">
                     <div>
-                      <h5 className="post-name-title">{post.name}</h5>
+                      <h5
+                        className="post-name-title"
+                        style={{ textTransform: "capitalize" }}
+                      >
+                        {post?.user?.fullname}
+                      </h5>
                       <p className="post-name-time">
-                        {post.time} &nbsp; &nbsp;
-                        {post.category.map((category, idx) => (
-                          <span key={idx}>{category}</span>
-                        ))}
+                        <Moment fromNow ago>
+                          {post?.date}
+                        </Moment>
+                        &nbsp; &nbsp;
+                        <span>{post?.category}</span>
                       </p>
                     </div>
                   </PostName>
@@ -61,40 +111,74 @@ const Request = () => {
                 <PostBody className="post-body">
                   <div>
                     <Link
-                      href={`https://www.google.com/search?q=${post.topicTitle}`}
+                      href={`https://www.google.com/search?q=${post?.topic}`}
                       replace
                     >
-                      <a>
-                        <h6>{post.topicTitle}</h6>
+                      <a target={"_blank"}>
+                        <h6 style={{ textTransform: "capitalize" }}>
+                          {post?.topic}
+                        </h6>
                       </a>
                     </Link>
                     <p>{post.description}</p>
-                    {post.postImage && (
-                      <Image
-                        src={post.postImage}
+                    {post.image ? (
+                      <img
+                        style={{
+                          marginTop: "10px",
+                          width: "100%",
+                          height: "200px",
+                          objectFit: "cover",
+                        }}
+                        src={post.image}
                         alt="post-image"
-                        width="100%"
-                        height="60%"
-                        layout="responsive"
-                        objectFit="contain"
                       />
+                    ) : (
+                      <div
+                        style={{
+                          width: "100%",
+                          height: "150px",
+                          objectFit: "cover",
+                          background: "#409de0",
+                          textShadow: "2px 2px #56C568",
+                          marginTop: "10px",
+                          display: "grid",
+                          placeContent: "center",
+                          textAlign: "center",
+                          fontSize: "2rem",
+                          color: "#fff",
+                          borderRadius: "5px",
+                        }}
+                      >
+                        {post?.topic}
+                      </div>
                     )}
                   </div>
-                  <BottomDiv>
-                    <Button className="first-btn">Approve</Button>
-                    &nbsp; &nbsp;
-                    <Button className="sec-btn">Decline</Button>
-                  </BottomDiv>
+                  {post?.status === "PENDING" ? (
+                    <BottomDiv>
+                      <Button
+                        className="first-btn"
+                        value={"APPROVED"}
+                        onClick={() => handleClick(post, "APPROVED")}
+                      >
+                        {loading ? <Spinner color="#409de0" /> : " Approve"}
+                      </Button>
+                      &nbsp; &nbsp;
+                      <Button
+                        className="sec-btn"
+                        value={"REJECT"}
+                        onClick={() => handleClick(post, "REJECT")}
+                      >
+                        {loading ? <Spinner color="#409de0" /> : "Decline"}
+                      </Button>
+                    </BottomDiv>
+                  ) : (
+                    ""
+                  )}
                 </PostBody>
               </div>
             </HomeItemContainer>
           </div>
         ))
-      ) : (
-        <EmptyState
-          text={`No topic has been sent for approval yet`}
-          para={`Topics sent for approval will appear here`}
-        />
       )}
     </PostsDataContainer>
   );

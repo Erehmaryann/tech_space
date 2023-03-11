@@ -54,7 +54,7 @@ export const Div = styled.div`
   }
   .num-of-mem {
     margin-top: 85px;
-    display: flex:
+    display: flex;
     flex-direction: column;
     justify-content: center;
     h1 {
@@ -73,6 +73,8 @@ export const Div = styled.div`
     h4 {
       font-family: "Poppins";
       font-style: normal;
+      text-align: center;
+      padding-top: 8px;
       font-weight: 400;
       font-size: 14px;
       color: #c4c4c4;

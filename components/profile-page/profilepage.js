@@ -17,7 +17,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     // make a GET request to retrieve data from the API endpoint
-    makeApiCall(`/userprofile/${user._id}`)
+    const fetchData = makeApiCall(`/userprofile/${user._id}`)
       .then((responseData) => {
         setGetUser(responseData?.message);
         setLoading(false);
@@ -26,6 +26,8 @@ const ProfilePage = () => {
         toast.error(error);
         setLoading(false);
       });
+
+    fetchData;
   }, [user._id]);
 
   return (

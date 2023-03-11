@@ -23,7 +23,7 @@ const Comments = ({ currentUserId }) => {
   useEffect(() => {
     getCommentsApi().then((data) => {
       setBackendcomments(data);
-      console.log(limit);
+      // console.log(limit);
     });
   }, [limit]);
 
@@ -33,7 +33,7 @@ const Comments = ({ currentUserId }) => {
         r.push(backendComments[i]);
       }
     }
-    console.log(r);
+    // console.log(r);
   }, [backendComments, limit, r]);
 
   /*

@@ -22,39 +22,47 @@ const SideProfile = () => {
 
   useEffect(() => {
     // make a GET request to retrieve data from the API endpoint
-    makeApiCall(`/getTopicCountsperuser/${user._id}`)
+    const fetchData = makeApiCall(`/getTopicCountsperuser/${user._id}`)
       .then((responseData) => {
         setGetUserTopicNum(responseData?.message);
       })
       .catch((error) => {
         toast.error(error);
       });
+
+    fetchData;
     // make a GET request to retrieve totalmembers data from the API endpoint
-    makeApiCall(`/totalmembers/`)
+    const fetchMembers = makeApiCall(`/totalmembers/`)
       .then((responseData) => {
         setTotalNumOfMembers(responseData?.message);
       })
       .catch((error) => {
         toast.error(error);
       });
+
+    fetchMembers;
     // make a GET request to retrieve totaltopics data from the API endpoint
-    makeApiCall(`totaltopic`)
+    const fetchTopic = makeApiCall(`totaltopic`)
       .then((responseData) => {
         setTotalNumOfTopics(responseData?.message);
       })
       .catch((error) => {
         toast.error(error);
       });
+
+    fetchTopic;
     // make a GET request to retrieve userprofile data from the API endpoint
-    makeApiCall(`/userprofile/${user._id}`)
+    const fetchProfile = makeApiCall(`/userprofile/${user._id}`)
       .then((responseData) => {
         setGetUserProfile(responseData?.message);
       })
       .catch((error) => {
         toast.error(error);
       });
-  }, [user._id]);
-  console.log(totalNumOfTopics, "maziii");
+
+    fetchProfile;
+  }, [user?._id]);
+
   const showModalHandler = () => {
     setShowFirstModal(true);
   };
@@ -135,7 +143,7 @@ const SideProfile = () => {
                     background: "#56C568",
                   }}
                 >
-                  {1}
+                  {totalNumOfTopics ?? ""}
                 </h1>
                 <h4>Total Posts</h4>
               </div>

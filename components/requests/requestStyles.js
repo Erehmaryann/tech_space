@@ -92,6 +92,7 @@ export const PostBody = styled.div`
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
+    text-transform: capitalize;
     line-height: 18px;
     color: #374956;
   }

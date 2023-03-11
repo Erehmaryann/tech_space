@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -93,11 +93,11 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     const response = await makeApiCall("/login", "POST", loginDetails);
-
+    // Save token and user details in cookies
     if (response.user) {
       Cookies.set("user_token", response.message);
       Cookies.set("user_details", JSON.stringify(response.user));
-
+      // Redirect to appropriate page
       response.user.role === "admin"
         ? router.push("/dashboard/requests")
         : router.push("/dashboard/home");
@@ -111,6 +111,27 @@ export default function Login() {
       toast.error(response?.response?.data?.message);
     }
   };
+
+  // const checkTokenExpiration = () => {
+  //   const token = Cookies.get("user_token");
+  //   const userDetails = Cookies.get("user_details");
+
+  //   if (token && userDetails) {
+  //     const { exp } = JSON.parse(atob(token.split(".")[1]));
+
+  //     if (Date.now() >= exp * 1000) {
+  //       Cookies.remove("user_token");
+  //       Cookies.remove("user_details");
+  //       router.push("/");
+  //     }
+  //   } else {
+  //     router.push("/");
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   checkTokenExpiration();
+  // }, []);
 
   return (
     <>

@@ -12,7 +12,7 @@ const Member = () => {
 
   useEffect(() => {
     // make a GET request to retrieve data from the API endpoint
-    makeApiCall(`/allMembers`)
+    const fetchData = makeApiCall(`/allMembers`)
       .then((responseData) => {
         setGetAllMembers(responseData?.message);
         setLoading(false);
@@ -21,6 +21,8 @@ const Member = () => {
         toast.error(error);
         setLoading(false);
       });
+
+    fetchData;
   }, []);
 
   const columns = React.useMemo(

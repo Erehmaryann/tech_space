@@ -61,6 +61,9 @@ export const PostName = styled.div`
   }
   .save-icon {
     cursor: pointer;
+    outline: none;
+    border: none;
+    background: transparent;
     position: relative;
   }
 `;

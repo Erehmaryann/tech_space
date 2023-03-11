@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,7 +20,6 @@ import { useUser } from "../../helper/get-user";
 import logo from "../../public/assets/Logo.png";
 import { SearchIcon } from "../Icons/Icon";
 import NotIcon from "../notIcon/notIcon";
-import ProfileImg from "../../public/assets/svg/profilepix.svg";
 import Profiledropdown from "../profiledropdown/profiledropdown";
 import NotiDropdown from "../notidropdown/notidropdown";
 
@@ -95,8 +95,7 @@ const MainNav = ({
         <NotIcon onClick={toggleNotiHidden} />
         {notiHidden ? null : <NotiDropdown />}
         <ImageDiv>
-          <Image
-            // src={user?.profileimg !== undefined ? user?.profileimg : ProfileImg}
+          <img
             src={
               getUserProfile.profileimg
                 ? getUserProfile?.profileimg
