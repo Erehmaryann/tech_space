@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from "react";
 import { useUser } from "../../helper/get-user";
 import Moment from "react-moment";
-import Image from "next/image";
 import ProfileHome from "../profilehome/profilehome";
 import { makeApiCall } from "../../lib/api";
 import { ProfileDiv, HomeDiv, ProfileItemContainer } from "./profileStyles";
@@ -29,7 +29,7 @@ const ProfilePage = () => {
 
     fetchData;
   }, [user._id]);
-  console.log(getUser);
+
   return (
     <ProfileDiv>
       {loading ? (
@@ -38,11 +38,11 @@ const ProfilePage = () => {
         </ProfileItemContainer>
       ) : (
         <ProfileItemContainer>
-          <Image
+          <img
             src={getUser?.profileimg || "/assets/svg/dpavatar.svg"}
             alt="profile-pix"
-            width={100}
-            height={100}
+            width={"100px"}
+            height={"100px"}
             style={{ borderRadius: "50%" }}
           />
           <h4>{getUser?.fullname}</h4>

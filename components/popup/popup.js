@@ -6,7 +6,7 @@ const Popup = ({ closePopup }) => {
     <PopupDiv>
       <span>Topic has been saved.</span>
       <div onClick={() => closePopup} className="view">
-        <Link href="/saved-topics">
+        <Link href="/dashboard/saved-topics">
           <a>View</a>
         </Link>
       </div>

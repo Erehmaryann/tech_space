@@ -109,6 +109,7 @@ export const BgContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 210px;
+  cursor: pointer;
   padding: 12px 20px;
   background: ${(props) => props.bg};
   box-shadow: 0px 4px 4px rgba(55, 73, 86, 0.07);
@@ -291,6 +292,7 @@ export const ActivityTableContainer = styled.div`
 export const ActivityTableHeader = styled.div`
   display: flex;
   align-items: center;
+  padding-bottom: 10px;
   justify-content: space-between;
   border-bottom: 0.5px solid #eaeaea;
 

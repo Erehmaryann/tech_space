@@ -103,6 +103,9 @@ export const BottomDiv = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  .like-comment-container {
+    position: relative;
+  }
   span {
     font-style: normal;
     font-weight: normal;
@@ -112,9 +115,11 @@ export const BottomDiv = styled.div`
   }
   .bottom-div_text-right {
     text-align: right;
+    cursor: pointer;
   }
   .bottom-div_text-blue {
     color: #409de0;
+    cursor: pointer;
   }
   p {
     font-style: normal;

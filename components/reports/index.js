@@ -1,4 +1,6 @@
-import React, { useMemo, useState } from "react";
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable @next/next/no-html-link-for-pages */
+import React, { useMemo, useState, useEffect } from "react";
 import { ReportTable } from "./table/table";
 import {
   ActivityTableContainer,
@@ -15,8 +17,9 @@ import {
 } from "./reportStyles";
 import { Div, ImgDiv } from "./reportStyles";
 import ReportChart from "./chart";
-import Image from "next/image";
 import Link from "next/link";
+import Spinner from "../common/spinner/spinner";
+import { makeApiCall } from "../../lib/api";
 import ReactSelect from "../common/select";
 import { options } from "./report-dummyData";
 import {
@@ -28,12 +31,28 @@ import {
 
 const Report = () => {
   const [option, setOption] = useState(options);
+  const [loading, setLoading] = useState(true);
+  const [activeMembers, setActiveMembers] = useState([]);
+
+  useEffect(() => {
+    const getActiveMembers = makeApiCall(`/topContributors`)
+      .then((responseData) => {
+        setActiveMembers(responseData?.message);
+        setLoading(false);
+      })
+      .catch((error) => {
+        toast.error(error);
+        setLoading(false);
+      });
+
+    getActiveMembers;
+  }, []);
 
   const columns = useMemo(
     () => [
       {
         Header: "Member’s name",
-        accessor: "member_name",
+        accessor: "name",
       },
       {
         Header: "Status",
@@ -53,17 +72,17 @@ const Report = () => {
   const data = useMemo(
     () => [
       {
-        member_name: "Savannah Nguyen",
+        name: "Savannah Nguyen",
         status: "Online",
         date_joined: "2nd May 2022",
       },
       {
-        member_name: "Ereh Maryann",
+        name: "Ereh Maryann",
         status: "Online",
         date_joined: "18th Aug 2022",
       },
       {
-        member_name: "Eleanor Pena",
+        name: "Eleanor Pena",
         status: "Offline",
         date_joined: "18th Nov 2022",
       },
@@ -75,15 +94,15 @@ const Report = () => {
     () => [
       {
         Header: "Member’s name",
-        accessor: "member_name",
+        accessor: "name",
         Cell: ({ cell: { value, row } }) => (
           <Div>
             <ImgDiv>
-              <Image
-                src="/assets/svg/profilepix.svg"
+              <img
+                src={row?.original?.profileimg || "/assets/svg/profilepix.svg"}
                 alt="dp"
-                width={100}
-                height={100}
+                width={"30px"}
+                height={"30px"}
               />
             </ImgDiv>
             <p>{value}</p>
@@ -92,25 +111,7 @@ const Report = () => {
       },
       {
         Header: "Posts",
-        accessor: "posts",
-      },
-    ],
-    []
-  );
-
-  const activityData = useMemo(
-    () => [
-      {
-        member_name: "Savannah Nguyen",
-        posts: 7,
-      },
-      {
-        member_name: "Ereh Maryann",
-        posts: 5,
-      },
-      {
-        member_name: "Eleanor Pena",
-        posts: 2,
+        accessor: "count",
       },
     ],
     []
@@ -143,36 +144,48 @@ const Report = () => {
           <TableContainer>
             <MemberHeader>
               <h4>New Members</h4>
-              <Link href="/members">View all</Link>
+              <Link href="/dashboard/members">View all</Link>
             </MemberHeader>
             <ReportTable data={data} columns={columns} />
           </TableContainer>
         </div>
         <div className="total-num-post">
-          <BgContainer bg="#409DE0">
-            <IconContainer className="icon-container" bg="#FFFFFF">
-              <TotalMembersIcon />
-            </IconContainer>
-            <H4 color="#fff">Total members</H4>
-            <RightIcon color="#fff" />
-          </BgContainer>
-          <BgContainer bg="#fff" style={{ marginTop: "25px" }}>
-            <IconContainer className="icon-container" bg="#f7f8f8">
-              <TotalPostsIcon />
-            </IconContainer>
-            <H4 color="#374956">Total posts</H4>
-            <RightIcon color="#374956" />
-          </BgContainer>
+          <a href="/dashboard/requests">
+            <BgContainer bg="#409DE0">
+              <IconContainer className="icon-container" bg="#FFFFFF">
+                <TotalMembersIcon />
+              </IconContainer>
+              <H4 color="#fff">Total members</H4>
+              <RightIcon color="#fff" />
+            </BgContainer>
+          </a>
+          <a href="/dashboard/requests">
+            <BgContainer bg="#fff" style={{ marginTop: "25px" }}>
+              <IconContainer className="icon-container" bg="#f7f8f8">
+                <TotalPostsIcon />
+              </IconContainer>
+              <H4 color="#374956">Total posts</H4>
+              <RightIcon color="#374956" />
+            </BgContainer>
+          </a>
           <ActivityTableContainer>
             <ActivityTableHeader>
               <h4>Activity</h4>
-              <ReactSelect
-                setOption={setOption}
-                options={options}
-                placeholder="pick"
-              />
             </ActivityTableHeader>
-            <ReportTable data={activityData} columns={activityColumns} />
+            {loading ? (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "200px",
+                }}
+              >
+                <Spinner color="#409de0" />
+              </div>
+            ) : (
+              <ReportTable data={activeMembers} columns={activityColumns} />
+            )}
           </ActivityTableContainer>
         </div>
       </OverContainer>

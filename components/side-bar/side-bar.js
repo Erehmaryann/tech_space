@@ -10,25 +10,28 @@ import {
   ReportsIcon,
 } from "./Icon";
 import Navlink from "../navlink/navlink";
+import Spinner from "../common/spinner/spinner";
 import { makeApiCall } from "../../lib/api";
 import { categoriesdata } from "./data";
 import Cookies from "js-cookie";
-
 import { Div } from "./sidebarStyles";
 
 const SideBar = () => {
   const router = useRouter();
   const path = router.pathname;
   const [active, setActive] = useState("Home");
+  const [loading, setLoading] = useState(true);
   const [activeMembers, setActiveMembers] = useState([]);
 
   useEffect(() => {
     const getActiveMembers = makeApiCall(`/topContributors`)
       .then((responseData) => {
         setActiveMembers(responseData?.message);
+        setLoading(false);
       })
       .catch((error) => {
         toast.error(error);
+        setLoading(false);
       });
 
     getActiveMembers;
@@ -157,14 +160,27 @@ const SideBar = () => {
         path === "/dashboard/reports") && (
         <div className="contributors">
           <h2>Active Members</h2>
-          {activeMembers.map((data) => (
-            <Navlink
-              key={data?._id}
-              variant="div"
-              img={data?.profileimg}
-              name={data?.name}
-            />
-          ))}
+          {loading ? (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "200px",
+              }}
+            >
+              <Spinner color="#409de0" />
+            </div>
+          ) : (
+            activeMembers.map((data) => (
+              <Navlink
+                key={data?._id}
+                variant="div"
+                img={data?.profileimg}
+                name={data?.name}
+              />
+            ))
+          )}
         </div>
       )}
       {path === "/dashboard/members" && (

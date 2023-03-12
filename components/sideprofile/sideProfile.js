@@ -6,6 +6,7 @@ import CateInputs from "../cateinputs/cateInputs";
 import Modal from "../modal/Modal";
 import { toast } from "react-hot-toast";
 import Navlink from "../navlink/navlink";
+import Spinner from "../common/spinner/spinner";
 import { useUser } from "../../helper/get-user";
 import { Button, Div } from "./sideProfileStyles";
 
@@ -14,6 +15,7 @@ const SideProfile = () => {
   const user = useUser();
   const path = router.pathname;
   const [showFirstModal, setShowFirstModal] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [getUserTopicNum, setGetUserTopicNum] = useState([]);
   const [totalNumOfMembers, setTotalNumOfMembers] = useState([]);
   const [totalNumOfTopics, setTotalNumOfTopics] = useState([]);
@@ -25,9 +27,11 @@ const SideProfile = () => {
     const fetchData = makeApiCall(`/getTopicCountsperuser/${user._id}`)
       .then((responseData) => {
         setGetUserTopicNum(responseData?.message);
+        setLoading(false);
       })
       .catch((error) => {
         toast.error(error);
+        setLoading(false);
       });
 
     fetchData;
@@ -35,9 +39,11 @@ const SideProfile = () => {
     const fetchMembers = makeApiCall(`/totalmembers/`)
       .then((responseData) => {
         setTotalNumOfMembers(responseData?.message);
+        setLoading(false);
       })
       .catch((error) => {
         toast.error(error);
+        setLoading(false);
       });
 
     fetchMembers;
@@ -45,9 +51,11 @@ const SideProfile = () => {
     const fetchTopic = makeApiCall(`totaltopic`)
       .then((responseData) => {
         setTotalNumOfTopics(responseData?.message);
+        setLoading(false);
       })
       .catch((error) => {
         toast.error(error);
+        setLoading(false);
       });
 
     fetchTopic;
@@ -55,9 +63,11 @@ const SideProfile = () => {
     const fetchProfile = makeApiCall(`/userprofile/${user._id}`)
       .then((responseData) => {
         setGetUserProfile(responseData?.message);
+        setLoading(false);
       })
       .catch((error) => {
         toast.error(error);
+        setLoading(false);
       });
 
     fetchProfile;
@@ -65,9 +75,11 @@ const SideProfile = () => {
     const getTopContributors = makeApiCall(`/topContributors`)
       .then((responseData) => {
         setTopContributors(responseData?.message);
+        setLoading(false);
       })
       .catch((error) => {
         toast.error(error);
+        setLoading(false);
       });
 
     getTopContributors;
@@ -106,30 +118,60 @@ const SideProfile = () => {
                   <CateInputs setShowFirstModal={setShowFirstModal} />
                 </Modal>
                 <div className="profile-pix">
-                  <img
-                    src={
-                      getUserProfile.profileimg
-                        ? getUserProfile?.profileimg
-                        : "/assets/svg/sideDp.svg"
-                    }
-                    width={"158"}
-                    height={"154"}
-                    alt="side-profile-pix"
-                    className="rev"
-                  />
-                  <h4>{getUserProfile?.fullname}</h4>
-                  <span>{`${getUserTopicNum} topics`}</span>
+                  {loading ? (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        // height: "200px",
+                      }}
+                    >
+                      <Spinner color="#409de0" />
+                    </div>
+                  ) : (
+                    <>
+                      <img
+                        src={
+                          getUserProfile.profileimg
+                            ? getUserProfile?.profileimg
+                            : "/assets/svg/sideDp.svg"
+                        }
+                        width={"158px"}
+                        height={"154px"}
+                        alt="side-profile-pix"
+                        className="rev"
+                      />
+                      <h4>{getUserProfile?.fullname}</h4>
+                      <span>{`${getUserTopicNum} topics`}</span>
+                    </>
+                  )}
                 </div>
                 <div className="contributors">
                   <h2>Top Contributors</h2>
-                  {topContributors.map((data) => (
-                    <Navlink
-                      key={data?._id}
-                      variant="div"
-                      img={data?.profileimg}
-                      name={data?.name}
-                    />
-                  ))}
+                  {loading ? (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        height: "200px",
+                      }}
+                    >
+                      <Spinner color="#409de0" />
+                    </div>
+                  ) : (
+                    <>
+                      {topContributors.map((data) => (
+                        <Navlink
+                          key={data?._id}
+                          variant="div"
+                          img={data?.profileimg}
+                          name={data?.name}
+                        />
+                      ))}
+                    </>
+                  )}
                 </div>
               </div>
             )}
@@ -143,7 +185,7 @@ const SideProfile = () => {
                     background: "#409de0",
                   }}
                 >
-                  {totalNumOfMembers ?? ""}
+                  {loading ? <Spinner color="#fff" /> : totalNumOfMembers ?? ""}
                 </h1>
                 <h4>Number of Members</h4>
               </div>
@@ -153,7 +195,7 @@ const SideProfile = () => {
                     background: "#56C568",
                   }}
                 >
-                  {totalNumOfTopics ?? ""}
+                  {loading ? <Spinner color="#fff" /> : totalNumOfTopics ?? ""}
                 </h1>
                 <h4>Total Posts</h4>
               </div>
@@ -163,7 +205,11 @@ const SideProfile = () => {
                     background: "#EB5757",
                   }}
                 >
-                  {topContributors.length ?? ""}
+                  {loading ? (
+                    <Spinner color="#fff" />
+                  ) : (
+                    topContributors.length ?? ""
+                  )}
                 </h1>
                 <h4>Active Members Count</h4>
               </div>
