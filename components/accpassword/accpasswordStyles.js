@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const AccParent = styled.div`
+export const AccParent = styled.form`
   background: #fff;
   padding: 20px;
 

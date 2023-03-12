@@ -1,9 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import { makeApiCall } from "../../lib/api";
 import { MembersContainer, StyledTable, ImgDiv, Div } from "./memberStyles";
 import { Table } from "./table/table";
 import { toast } from "react-hot-toast";
-import Image from "next/image";
 import Moment from "react-moment";
 
 const Member = () => {
@@ -33,11 +33,11 @@ const Member = () => {
         Cell: ({ cell: { value, row } }) => (
           <Div>
             <ImgDiv>
-              <Image
+              <img
                 src={row?.original?.profileimg || "/assets/svg/profilepix.svg"}
                 alt="dp"
-                width={100}
-                height={100}
+                width={"30px"}
+                height={"30px"}
               />
             </ImgDiv>
             <p>{value || "No name"}</p>

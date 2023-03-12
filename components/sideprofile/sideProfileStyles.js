@@ -34,7 +34,7 @@ export const Div = styled.div`
     padding-bottom: 3rem;
     border-bottom: 3px solid #f6f6f6;
     h4 {
-      margin-bottom: 2px;
+      margin: 8px 0;
       color: #374956;
     }
     span {

@@ -59,7 +59,7 @@ const CateInputs = ({ setShowFirstModal }) => {
       setLoading(false);
       setShowModal(false);
       setShowFirstModal(true);
-      toast.error(response.message);
+      toast.error(response?.response?.data?.message);
       return;
     }
     setLoading(false);
@@ -117,7 +117,6 @@ const CateInputs = ({ setShowFirstModal }) => {
           value={newTopicDetails.path}
           onChange={(e) => handleFormChange(e)}
           id="topic-image"
-          // required
           className="input"
           placeholder="Topic Image Url"
         />

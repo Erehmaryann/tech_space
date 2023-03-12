@@ -179,8 +179,8 @@ const PostsData = () => {
                         <Emoji emoji={emoji} size={16} key={emoji.id} />
                       ))}
                       &nbsp;&nbsp;
-                      <span>{post?.reaction} and </span>
-                      <span>{post?.reaction?.length} others</span>
+                      {/* <span>{post?.reaction} and </span> */}
+                      {/* <span>{post?.reaction?.length} others</span> */}
                     </div>
                     {/* )} */}
                     <div>

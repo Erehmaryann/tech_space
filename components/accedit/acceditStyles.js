@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const AccParent = styled.div`
+export const AccParent = styled.form`
   background: #fff;
   padding: 20px;
 
@@ -9,12 +9,10 @@ export const AccParent = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    h3 {
-      color: #409de0;
-      font-size: 17px;
-      margin-top: -2px;
-    }
+  }
+  h3 {
+    font-size: 17px;
+    padding-bottom: 8px;
   }
 
   .button {

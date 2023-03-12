@@ -41,7 +41,7 @@ const Request = () => {
       });
 
     fetchData;
-  }, [user?.role, isApproved, getTopics]);
+  }, [user?.role, isApproved]);
 
   const handleClick = async (item, value) => {
     const response = await makeApiCall(`updatestatus/${item?._id}`, "PATCH", {

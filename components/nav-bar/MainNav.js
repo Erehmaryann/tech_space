@@ -101,8 +101,8 @@ const MainNav = ({
                 ? getUserProfile?.profileimg
                 : "/assets/svg/sideDp.svg"
             }
-            width={50}
-            height={50}
+            width={"50px"}
+            height={"50px"}
             alt="profile-img"
             onClick={toggleProfileHidden}
             style={{ borderRadius: "50%" }}

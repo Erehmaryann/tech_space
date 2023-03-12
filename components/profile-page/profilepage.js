@@ -29,7 +29,7 @@ const ProfilePage = () => {
 
     fetchData;
   }, [user._id]);
-
+  console.log(getUser);
   return (
     <ProfileDiv>
       {loading ? (

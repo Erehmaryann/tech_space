@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const AccSettingsContainer = styled.div`
+export const AccSettingsContainer = styled.form`
   background: #fff;
   padding: 20px;
 

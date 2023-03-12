@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import {
   SavedIcon,
@@ -10,7 +10,8 @@ import {
   ReportsIcon,
 } from "./Icon";
 import Navlink from "../navlink/navlink";
-import { categoriesdata, conData } from "./data";
+import { makeApiCall } from "../../lib/api";
+import { categoriesdata } from "./data";
 import Cookies from "js-cookie";
 
 import { Div } from "./sidebarStyles";
@@ -19,6 +20,20 @@ const SideBar = () => {
   const router = useRouter();
   const path = router.pathname;
   const [active, setActive] = useState("Home");
+  const [activeMembers, setActiveMembers] = useState([]);
+
+  useEffect(() => {
+    const getActiveMembers = makeApiCall(`/topContributors`)
+      .then((responseData) => {
+        setActiveMembers(responseData?.message);
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+
+    getActiveMembers;
+  }, []);
+
   // logout
   const handleLogout = () => {
     Cookies.remove("user_token");
@@ -142,12 +157,12 @@ const SideBar = () => {
         path === "/dashboard/reports") && (
         <div className="contributors">
           <h2>Active Members</h2>
-          {conData.map((data, index) => (
+          {activeMembers.map((data) => (
             <Navlink
-              key={index}
+              key={data?._id}
               variant="div"
-              img={data.img}
-              name={data.name}
+              img={data?.profileimg}
+              name={data?.name}
             />
           ))}
         </div>

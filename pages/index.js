@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -77,6 +77,7 @@ export default function Login() {
     if (response.status !== 200) {
       setGoogleLoading(false);
       toast.error(response?.response?.data?.message);
+      return;
     }
   };
 

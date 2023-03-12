@@ -1,8 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { makeApiCall } from "../../lib/api";
-import Image from "next/image";
-import { conData } from "./data";
 import CateInputs from "../cateinputs/cateInputs";
 import Modal from "../modal/Modal";
 import { toast } from "react-hot-toast";
@@ -19,6 +18,7 @@ const SideProfile = () => {
   const [totalNumOfMembers, setTotalNumOfMembers] = useState([]);
   const [totalNumOfTopics, setTotalNumOfTopics] = useState([]);
   const [getUserProfile, setGetUserProfile] = useState([]);
+  const [topContributors, setTopContributors] = useState([]);
 
   useEffect(() => {
     // make a GET request to retrieve data from the API endpoint
@@ -61,6 +61,16 @@ const SideProfile = () => {
       });
 
     fetchProfile;
+
+    const getTopContributors = makeApiCall(`/topContributors`)
+      .then((responseData) => {
+        setTopContributors(responseData?.message);
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+
+    getTopContributors;
   }, [user?._id]);
 
   const showModalHandler = () => {
@@ -81,10 +91,10 @@ const SideProfile = () => {
               >
                 <Button onClick={() => showModalHandler()}>
                   Add a new topic &nbsp;
-                  <Image
+                  <img
                     src="/assets/svg/plusIcon.svg"
-                    width={10}
-                    height={10}
+                    width={"10"}
+                    height={"10"}
                     alt="addIcon"
                   />
                 </Button>
@@ -96,14 +106,14 @@ const SideProfile = () => {
                   <CateInputs setShowFirstModal={setShowFirstModal} />
                 </Modal>
                 <div className="profile-pix">
-                  <Image
+                  <img
                     src={
                       getUserProfile.profileimg
                         ? getUserProfile?.profileimg
                         : "/assets/svg/sideDp.svg"
                     }
-                    width={158}
-                    height={154}
+                    width={"158"}
+                    height={"154"}
                     alt="side-profile-pix"
                     className="rev"
                   />
@@ -112,12 +122,12 @@ const SideProfile = () => {
                 </div>
                 <div className="contributors">
                   <h2>Top Contributors</h2>
-                  {conData.map((data, index) => (
+                  {topContributors.map((data) => (
                     <Navlink
-                      key={index}
+                      key={data?._id}
                       variant="div"
-                      img={data.img}
-                      name={data.name}
+                      img={data?.profileimg}
+                      name={data?.name}
                     />
                   ))}
                 </div>
@@ -153,9 +163,9 @@ const SideProfile = () => {
                     background: "#EB5757",
                   }}
                 >
-                  {3}
+                  {topContributors.length ?? ""}
                 </h1>
-                <h4>Members offline</h4>
+                <h4>Active Members Count</h4>
               </div>
             </>
           )}

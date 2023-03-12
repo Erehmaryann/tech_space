@@ -1,15 +1,15 @@
 import Head from "next/head";
 import Image from "next/image";
-import LoginButtons from "../../components/buttons/LoginButtons";
-import createNewPassword from "../../public/assets/svg/createnewpassword.svg";
-import LoginInputs from "../../components/inputs/LoginInputs";
+import LoginButtons from "../components/buttons/LoginButtons";
+import createNewPassword from "../public/assets/svg/createnewpassword.svg";
+import LoginInputs from "../components/inputs/LoginInputs";
 import {
   Container,
   Form,
   ImageDiv,
   Main,
-} from "../../components/styles/AuthStyles";
-import Modal from "../../components/modal/Modal";
+} from "../components/styles/AuthStyles";
+import Modal from "../components/modal/Modal";
 import { useState } from "react";
 
 const CreateNewPassword = () => {
