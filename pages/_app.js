@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
     <div style={{ margin: 0 }}>
       {loading ? (
         <GoogleOAuthProvider
-          clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
+          clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`}
         >
           <Provider store={store}>
             <Layout>
