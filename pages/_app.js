@@ -4,6 +4,7 @@ import Preloader from "../components/common/preloader/preloader";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { createWrapper } from "next-redux-wrapper";
 import { Provider } from "react-redux";
+import ErrorBoundary from "../components/ErrorBoundary";
 import store from "../redux/store";
 import { Toaster } from "react-hot-toast";
 
@@ -23,7 +24,9 @@ function MyApp({ Component, pageProps }) {
         >
           <Provider store={store}>
             <Layout>
-              <Component {...pageProps} />
+              <ErrorBoundary>
+                <Component {...pageProps} />
+              </ErrorBoundary>
               <Toaster
                 position="top-right"
                 reverseOrder={false}

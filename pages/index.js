@@ -76,7 +76,7 @@ export default function Login() {
 
     if (response.status !== 200) {
       setGoogleLoading(false);
-      toast.error(response?.response?.data?.message);
+      toast.error(response?.message);
       return;
     }
   };
