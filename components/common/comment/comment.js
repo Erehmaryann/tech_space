@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Div } from "./commentStyles";
 import Image from "next/image";
 import CommentForm from "./commentForm";
@@ -10,6 +11,8 @@ const Comment = ({
   comment,
   replies,
   addComment,
+  topicId,
+  commentUserto,
   updateComment,
   currentUserId, // deleteComment,
   activeComment,
@@ -32,35 +35,40 @@ const Comment = ({
     activeComment.type === "editing" &&
     activeComment.id === comment.id;
   const replyId = parentId ? parentId : comment.id;
-
+  // console.log(comment, "let's confirm");
   return (
     <Div>
       <div className="comment-image-container">
-        <Image
-          src="/assets/svg/profilepix.svg"
-          width={28}
-          height={28}
+        <img
+          src={
+            comment?.from?.profileimg
+              ? comment?.from?.profileimg
+              : "/assets/svg/profilepix.svg"
+          }
+          width={"28px"}
+          height={"28px"}
           alt="user-image"
+          loading="lazy"
           style={{ borderRadius: "50%" }}
         />
       </div>
       <div className="comment-right-part">
         <div className="grey-bg">
           <div className="comment-content">
-            <div className="comment-author">{comment.username}</div>
+            <div className="comment-author">{comment?.from?.username}</div>
             <div className="time">
               <Moment fromNow ago>
-                {createdAt}
+                {comment?.date}
               </Moment>
             </div>
           </div>
-          {!isEditing && <div className="comment-text">{comment.body}</div>}
+          {!isEditing && <div className="comment-text">{comment?.text}</div>}
         </div>
         {isEditing && (
           <CommentForm
             submitLabel="+"
             handleCancel={() => setActiveComment(null)}
-            handleSubmit={(text) => updateComment(text, comment.id)}
+            handleSubmit={(text) => updateComment(text, comment._id)}
             initialText={comment.body}
             hasCancelButton
           />
@@ -97,10 +105,13 @@ const Comment = ({
                     onClick={() => deleteComment(comment.id)}
                     >Delete</div>} */}
         </div>
+        {console.log(commentUserto, "Oleee")}
         {isReplying && (
           <CommentForm
             submitLabel="+"
-            handleSubmit={(text) => addComment(text, replyId)}
+            handleSubmit={(text, topicId, commentUserto) =>
+              addComment(text, topicId, type, commentUserto, comment?._id)
+            }
           />
         )}
         {replies.length > 0 && (

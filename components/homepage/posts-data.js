@@ -237,7 +237,7 @@ const PostsData = () => {
                 commentUserto={post?.user?._id}
                 topicId={post?._id}
                 postComments={post?.comment}
-                currentUserId="1"
+                currentUserId={user?._id}
               />
 
               // <Comment

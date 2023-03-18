@@ -4,6 +4,8 @@ import { FormDiv } from "./commentFormStyles";
 
 const CommentForm = ({
   handleSubmit,
+  topicId,
+  commentUserto,
   hasCancelButton = false,
   initialText = "",
   handleCancel,
@@ -14,7 +16,10 @@ const CommentForm = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    handleSubmit(text);
+    handleSubmit(text, topicId, commentUserto);
+    console.log(topicId);
+    console.log(commentUserto, "I love you");
+
     setText("");
   };
 
