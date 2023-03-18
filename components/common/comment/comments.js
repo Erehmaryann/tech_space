@@ -10,14 +10,20 @@ import {
 import Comment from "./comment";
 import CommentForm from "./commentForm";
 import { CommentDiv } from "./commentsStyles";
+import { toast } from "react-hot-toast";
 
-const Comments = ({ currentUserId, commentUserto, topicId, postComments }) => {
+const Comments = ({
+  currentUserId,
+  commentUserto,
+  topicId,
+  postComments,
+  setUpdatePost,
+  updatePost,
+}) => {
   const [backendComments, setBackendcomments] = useState([]);
   const [originalComments, setOriginalComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
   const [limit, setLimit] = useState(1);
-  // const user = useUser();
-  console.log(postComments, "ballooon");
   const r = useMemo(() => [], []);
 
   useEffect(() => {
@@ -26,7 +32,8 @@ const Comments = ({ currentUserId, commentUserto, topicId, postComments }) => {
     //   // console.log(limit);
     // });
     setOriginalComments(postComments);
-  }, [limit]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [updatePost]);
 
   useEffect(() => {
     for (let i = 0; i <= limit; i++) {
@@ -71,7 +78,31 @@ const Comments = ({ currentUserId, commentUserto, topicId, postComments }) => {
   //     parentId,
   //     userId: "1",
   //     username: "John",
-  //     createdAt: new Date().toISOString(),
+  //     createdAt: new Date().toISOString(),\
+
+  const handleSubmit = async (text) => {
+    console.log(text, topicId, commentUserto, "god abeg");
+
+    const response = await makeApiCall("/createComment", "PATCH", {
+      comment_userto: commentUserto,
+      text: text,
+      topicId: topicId,
+      type: "comment",
+    });
+    // console.log(response, "went");
+    // if (response.message !== "comment created") {
+    //   toast.success('something went wrong)
+    //   return;
+    // }
+
+    if (response.message !== "comment created") {
+      toast.error("something went wrong");
+      return;
+    }
+    setUpdatePost(!updatePost);
+    toast.success(response.message);
+    console.log(response, "went");
+  };
   const addComment = async (text, topicId, type, commentUserto, comment_id) => {
     console.log(
       // text,
@@ -81,16 +112,15 @@ const Comments = ({ currentUserId, commentUserto, topicId, postComments }) => {
       // comment_id,
       "mannyy consoles"
     );
-    const response = await makeApiCall("/createComment", "POST", {
-      comment_userto: commentUserto,
-      text: text,
-      topicId: topicId,
-      type: "comment",
-    });
-    console.log(response, "went");
-    // if (response.message !== "Request failed with status code 404") {
-    //   setShowModal(true);
-    //   toast.success(response.message);
+    // const response = await makeApiCall("/createComment", "POST", {
+    //   comment_userto: commentUserto,
+    //   text: text,
+    //   topicId: topicId,
+    //   type: "comment",
+    // });
+    // console.log(response, "went");
+    // if (response.message !== "comment created") {
+    //   toast.error('something went wrong);
     //   return;
     // }
     // createCommentApi(text, parentId).then((comment) => {
@@ -129,7 +159,7 @@ const Comments = ({ currentUserId, commentUserto, topicId, postComments }) => {
         submitLabel="+"
         commentUserto={commentUserto}
         topicId={topicId}
-        handleSubmit={addComment}
+        handleSubmit={handleSubmit}
       />
       <div className="comments-container">
         {/* {rootComments.map((comment) => (

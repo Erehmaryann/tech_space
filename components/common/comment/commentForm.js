@@ -17,9 +17,6 @@ const CommentForm = ({
   const onSubmit = (e) => {
     e.preventDefault();
     handleSubmit(text, topicId, commentUserto);
-    console.log(topicId);
-    console.log(commentUserto, "I love you");
-
     setText("");
   };
 

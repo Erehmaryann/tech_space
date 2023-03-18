@@ -2,10 +2,11 @@
 import { Div } from "./commentStyles";
 import Image from "next/image";
 import CommentForm from "./commentForm";
-
+import { toast } from "react-hot-toast";
 // import { updateComment } from "./api";
 
 import Moment from "react-moment";
+import { makeApiCall } from "../../../lib/api";
 
 const Comment = ({
   comment,
@@ -29,13 +30,29 @@ const Comment = ({
   const isReplying =
     activeComment &&
     activeComment.type === "replying" &&
-    activeComment.id === comment.id;
+    activeComment.id === comment._id;
   const isEditing =
     activeComment &&
     activeComment.type === "editing" &&
     activeComment.id === comment.id;
   const replyId = parentId ? parentId : comment.id;
-  // console.log(comment, "let's confirm");
+  console.log(activeComment, "let's confirm");
+
+  const handleReply = async (text) => {
+    const response = await makeApiCall("/createComment", "PATCH", {
+      comment_userto: commentUserto,
+      text: text,
+      topicId: topicId,
+      type: "reply",
+      comment_id: comment?._id,
+    });
+
+    if (response.message !== "reply created") {
+      toast.error("something went wrong");
+      return;
+    }
+    toast.success(response.message);
+  };
   return (
     <Div>
       <div className="comment-image-container">
@@ -79,7 +96,7 @@ const Comment = ({
               className="comment-action"
               onClick={() =>
                 setActiveComment({
-                  id: comment.id,
+                  id: comment._id,
                   type: "replying",
                 })
               }
@@ -105,13 +122,13 @@ const Comment = ({
                     onClick={() => deleteComment(comment.id)}
                     >Delete</div>} */}
         </div>
-        {console.log(commentUserto, "Oleee")}
         {isReplying && (
           <CommentForm
             submitLabel="+"
-            handleSubmit={(text, topicId, commentUserto) =>
-              addComment(text, topicId, type, commentUserto, comment?._id)
-            }
+            // handleSubmit={(text, topicId, commentUserto) =>
+            //   addComment(text, topicId, type, commentUserto, comment?._id)
+            // }
+            handleSubmit={(text) => handleReply(text)}
           />
         )}
         {replies.length > 0 && (

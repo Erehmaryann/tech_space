@@ -29,6 +29,7 @@ const PostsData = () => {
   const [total, setTotal] = useState([]);
   const [loading, setLoading] = useState(true);
   const [getTopics, setGetTopics] = useState([]);
+  const [updatePost, setUpdatePost] = useState(false);
   const user = useUser();
 
   useEffect(() => {
@@ -49,7 +50,7 @@ const PostsData = () => {
       });
 
     fetchData;
-  }, [user?.role]);
+  }, [user?.role, updatePost]);
 
   return (
     <PostsDataContainer>
@@ -238,6 +239,8 @@ const PostsData = () => {
                 topicId={post?._id}
                 postComments={post?.comment}
                 currentUserId={user?._id}
+                setUpdatePost={setUpdatePost}
+                updatePost={updatePost}
               />
 
               // <Comment

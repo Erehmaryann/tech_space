@@ -126,6 +126,8 @@ export const FormDiv = styled.div`
     position: relative;
     margin-left: 1.1rem;
     margin-right: 1.1rem;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
     margin-bottom: -0.4rem;
 
     &::placeholder {
