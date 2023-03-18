@@ -10,7 +10,7 @@ import Comment from "./comment";
 import CommentForm from "./commentForm";
 import { CommentDiv } from "./commentsStyles";
 
-const Comments = ({ currentUserId }) => {
+const Comments = ({ currentUserId, commentUserto, topicId, postComments }) => {
   const [backendComments, setBackendcomments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
   const [limit, setLimit] = useState(1);
@@ -26,6 +26,8 @@ const Comments = ({ currentUserId }) => {
       // console.log(limit);
     });
   }, [limit]);
+
+  console.log(commentUserto, topicId, postComments, "foodstuff");
 
   useEffect(() => {
     for (let i = 0; i <= limit; i++) {

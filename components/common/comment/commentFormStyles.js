@@ -34,6 +34,7 @@ export const FormDiv = styled.div`
     padding: 2px;
     border: none;
     outline: none;
+    cursor: pointer;
     border-radius: 8px;
     color: grey;
   }

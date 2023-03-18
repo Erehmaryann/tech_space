@@ -113,27 +113,6 @@ export default function Login() {
     }
   };
 
-  // const checkTokenExpiration = () => {
-  //   const token = Cookies.get("user_token");
-  //   const userDetails = Cookies.get("user_details");
-
-  //   if (token && userDetails) {
-  //     const { exp } = JSON.parse(atob(token.split(".")[1]));
-
-  //     if (Date.now() >= exp * 1000) {
-  //       Cookies.remove("user_token");
-  //       Cookies.remove("user_details");
-  //       router.push("/");
-  //     }
-  //   } else {
-  //     router.push("/");
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   checkTokenExpiration();
-  // }, []);
-
   return (
     <>
       <Head>

@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import Link from "next/link";
 import EmptyState from "../empty-state/empty-state";
 import Comments from "../common/comment/comments";
@@ -19,6 +19,7 @@ import {
   PostBody,
   BottomDiv,
 } from "./postsDataStyles";
+// import Comment from "../comment";
 
 const PostsData = () => {
   const [clicked, setClicked] = useState("");
@@ -173,6 +174,8 @@ const PostsData = () => {
                       borderBottom: "1px solid #ECECEC",
                     }}
                   >
+                    {/* {console.log(post?.comment, "dream")} */}
+                    {/* {console.log(post, "dream-post")} */}
                     {/* {reactionShown === post._id && ( */}
                     <div className="emoji-reaction PostsDataContainer__margin-class">
                       {selectedEmoji.map((emoji) => (
@@ -180,11 +183,19 @@ const PostsData = () => {
                       ))}
                       &nbsp;&nbsp;
                       {/* <span>{post?.reaction} and </span> */}
-                      {/* <span>{post?.reaction?.length} others</span> */}
+                      <span>
+                        {post?.reaction_count
+                          ? `${post?.reaction_count} others`
+                          : "0 others"}
+                      </span>
                     </div>
                     {/* )} */}
                     <div>
-                      <p className="bottom-div_text-right ">{`${post?.comment?.length} comment`}</p>
+                      <p className="bottom-div_text-right ">
+                        {post?.comment_count
+                          ? `${post?.comment_count} comment`
+                          : "0 comment"}
+                      </p>
                     </div>
                   </BottomDiv>
                   {reactionShown === post._id && (
@@ -221,7 +232,20 @@ const PostsData = () => {
                 </PostBody>
               </div>
             </HomeItemContainer>
-            {clickedComment === post._id && <Comments currentUserId="1" />}
+            {clickedComment === post._id && (
+              <Comments
+                commentUserto={post?.user?._id}
+                topicId={post?._id}
+                postComments={post?.comment}
+                currentUserId="1"
+              />
+
+              // <Comment
+              //   comment={post}
+              //   currentUserId={user?._id}
+              //   postOwnerImg={post?.user?.profileimg}
+              // />
+            )}
           </div>
         ))
       )}
