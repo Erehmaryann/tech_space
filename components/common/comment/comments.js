@@ -81,7 +81,7 @@ const Comments = ({
   //     createdAt: new Date().toISOString(),\
 
   const handleSubmit = async (text) => {
-    console.log(text, topicId, commentUserto, "god abeg");
+    // console.log(text, topicId, commentUserto, "god abeg");
 
     const response = await makeApiCall("/createComment", "PATCH", {
       comment_userto: commentUserto,
