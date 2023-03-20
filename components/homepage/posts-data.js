@@ -9,8 +9,8 @@ import { toast } from "react-hot-toast";
 import Moment from "react-moment";
 import Spinner from "../common/spinner/spinner";
 import { makeApiCall } from "../../lib/api";
-import Emojis from "../emoji/emoji";
-import { Emoji } from "emoji-mart";
+// import Emojis from "../emoji/emoji";
+// import { Emoji } from "emoji-mart";
 import {
   PostsDataContainer,
   HomeItemContainer,
@@ -23,9 +23,9 @@ import {
 const PostsData = () => {
   const [clicked, setClicked] = useState("");
   const [clickedComment, setClickedComment] = useState("");
-  const [reactionShown, setReactionShown] = useState("");
-  const [selectedEmoji, setSelectedEmoji] = useState([]);
-  const [total, setTotal] = useState([]);
+  // const [reactionShown, setReactionShown] = useState("");
+  // const [selectedEmoji, setSelectedEmoji] = useState([]);
+  // const [total, setTotal] = useState([]);
   const [loading, setLoading] = useState(true);
   const [getTopics, setGetTopics] = useState([]);
   const [updatePost, setUpdatePost] = useState(false);
