@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import EmptyState from "../empty-state/empty-state";
 import Comments from "../common/comment/comments";
@@ -19,7 +19,6 @@ import {
   PostBody,
   BottomDiv,
 } from "./postsDataStyles";
-// import Comment from "../comment";
 
 const PostsData = () => {
   const [clicked, setClicked] = useState("");
@@ -31,7 +30,8 @@ const PostsData = () => {
   const [getTopics, setGetTopics] = useState([]);
   const [updatePost, setUpdatePost] = useState(false);
   const user = useUser();
-
+  const selectedEmojiNames = selectedEmoji.map((emoji) => emoji.name);
+  console.log(selectedEmojiNames, "take");
   useEffect(() => {
     // make a GET request to retrieve data from the API endpoint
     const fetchData = makeApiCall(`/getTopics/${user?.role}`)
@@ -51,6 +51,20 @@ const PostsData = () => {
 
     fetchData;
   }, [user?.role, updatePost]);
+
+  const handleSubmitEmoji = async (item, value) => {
+    const response = await makeApiCall("/reaction", "PATCH", {
+      topicId: item,
+      emojiname: value,
+    });
+
+    // if (response.message !== "comment created") {
+    //   toast.error("something went wrong");
+    //   return;
+    // }
+    // setUpdatePost(!updatePost);
+    // toast.success(response.message);
+  };
 
   return (
     <PostsDataContainer>
@@ -175,7 +189,7 @@ const PostsData = () => {
                       borderBottom: "1px solid #ECECEC",
                     }}
                   >
-                    {/* {console.log(post?.comment, "dream")} */}
+                    {console.log(post, "reaction")}
                     {/* {console.log(post, "dream-post")} */}
                     {/* {reactionShown === post._id && ( */}
                     <div className="emoji-reaction PostsDataContainer__margin-class">
@@ -205,8 +219,11 @@ const PostsData = () => {
                       selectedEmoji={selectedEmoji}
                       total={total}
                       setTotal={setTotal}
+                      // onClick={() => handleSubmitEmoji(post?._id, )}
                     />
                   )}
+                  {console.log(selectedEmoji, "emoji")}
+
                   <BottomDiv className="like-comment-container PostsDataContainer__margin-class">
                     <p
                       className="bottom-div_text-blue"
@@ -242,12 +259,6 @@ const PostsData = () => {
                 setUpdatePost={setUpdatePost}
                 updatePost={updatePost}
               />
-
-              // <Comment
-              //   comment={post}
-              //   currentUserId={user?._id}
-              //   postOwnerImg={post?.user?.profileimg}
-              // />
             )}
           </div>
         ))

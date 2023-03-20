@@ -5,7 +5,7 @@ export const Div = styled.div`
   margin-bottom: 10px;
 
   .comment-image-container {
-    margin-right: 12px;
+    margin-right: 1.2rem;
   }
 
   .comment-right-part {
@@ -13,6 +13,7 @@ export const Div = styled.div`
     .grey-bg {
       background: #f1f1f1;
       padding: 1rem 0 1rem 1rem;
+      min-width: 373px;
       box-sizing: border-box;
       border-radius: 0px 10px 10px 10px;
     }
@@ -36,7 +37,6 @@ export const Div = styled.div`
   }
 
   .comment-author {
-    /* margin-right: 8px; */
     font-size: 12px;
     font-weight: 600;
     color: #374956;
@@ -49,7 +49,6 @@ export const Div = styled.div`
 
   .comment-actions {
     display: flex;
-    /* font-size: 12px; */
     cursor: pointer;
     margin-top: 8px;
   }
@@ -65,11 +64,23 @@ export const Div = styled.div`
     }
   }
 
+  .reply-action {
+    margin-right: 8px;
+    font-size: 11px;
+    color: #0095f6;
+    font-weight: 400;
+    &::before {
+      content: "•";
+      padding-right: 0.2rem;
+    }
+  }
+
   .comment-action:hover {
     color: #409de0;
   }
 
   .replies {
     margin-top: 20px;
+    /* display: none; */
   }
 `;

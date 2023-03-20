@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 export default function middleware(req) {
   let verify = req.cookies.get("user_token");
   // const userDetails = JSON.parse(req.cookies.get("user_details"));
-  // console.log(userDetails);
   const userDetailsCookie = req.cookies.get("user_details");
   let userDetails = null;
 
