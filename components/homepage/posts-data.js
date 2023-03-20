@@ -29,9 +29,9 @@ const PostsData = () => {
   const [loading, setLoading] = useState(true);
   const [getTopics, setGetTopics] = useState([]);
   const [updatePost, setUpdatePost] = useState(false);
+  const [pickedEmoji, setPickedEmoji] = useState("");
   const user = useUser();
-  const selectedEmojiNames = selectedEmoji.map((emoji) => emoji.name);
-  console.log(selectedEmojiNames, "take");
+
   useEffect(() => {
     // make a GET request to retrieve data from the API endpoint
     const fetchData = makeApiCall(`/getTopics/${user?.role}`)
@@ -52,10 +52,10 @@ const PostsData = () => {
     fetchData;
   }, [user?.role, updatePost]);
 
-  const handleSubmitEmoji = async (item, value) => {
+  const handleSubmitEmoji = async (item) => {
     const response = await makeApiCall("/reaction", "PATCH", {
       topicId: item,
-      emojiname: value,
+      emojiname: pickedEmoji,
     });
 
     // if (response.message !== "comment created") {
@@ -189,7 +189,7 @@ const PostsData = () => {
                       borderBottom: "1px solid #ECECEC",
                     }}
                   >
-                    {console.log(post, "reaction")}
+                    {/* {console.log(post, "reaction")} */}
                     {/* {console.log(post, "dream-post")} */}
                     {/* {reactionShown === post._id && ( */}
                     <div className="emoji-reaction PostsDataContainer__margin-class">
@@ -219,10 +219,11 @@ const PostsData = () => {
                       selectedEmoji={selectedEmoji}
                       total={total}
                       setTotal={setTotal}
-                      // onClick={() => handleSubmitEmoji(post?._id, )}
+                      setPickedEmoji={setPickedEmoji}
+                      onClick={() => handleSubmitEmoji(post?._id)}
                     />
                   )}
-                  {console.log(selectedEmoji, "emoji")}
+                  {/* {console.log(selectedEmoji, "emoji")} */}
 
                   <BottomDiv className="like-comment-container PostsDataContainer__margin-class">
                     <p

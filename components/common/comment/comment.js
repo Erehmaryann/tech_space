@@ -63,7 +63,7 @@ const Comment = ({
           }
           width={"28px"}
           height={"28px"}
-          alt="user-image"
+          alt="img"
           loading="lazy"
           style={{ borderRadius: "50%" }}
         />
