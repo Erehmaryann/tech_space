@@ -29,7 +29,8 @@ const PostsData = () => {
   const [loading, setLoading] = useState(true);
   const [getTopics, setGetTopics] = useState([]);
   const [updatePost, setUpdatePost] = useState(false);
-  const [pickedEmoji, setPickedEmoji] = useState("");
+  const [liked, setLiked] = useState(false);
+  const [likedId, setLikedId] = useState(null);
   const user = useUser();
 
   useEffect(() => {
@@ -55,15 +56,16 @@ const PostsData = () => {
   const handleSubmitEmoji = async (item) => {
     const response = await makeApiCall("/reaction", "PATCH", {
       topicId: item,
-      emojiname: pickedEmoji,
+      emojiname: "love",
     });
+    // console.log(response, "response");
 
-    // if (response.message !== "comment created") {
-    //   toast.error("something went wrong");
-    //   return;
-    // }
-    // setUpdatePost(!updatePost);
-    // toast.success(response.message);
+    if (response.message !== "reacted") {
+      toast.error("something went wrong");
+      return;
+    }
+    setLiked(true);
+    setLikedId(item);
   };
 
   return (
@@ -189,22 +191,24 @@ const PostsData = () => {
                       borderBottom: "1px solid #ECECEC",
                     }}
                   >
-                    {/* {console.log(post, "reaction")} */}
-                    {/* {console.log(post, "dream-post")} */}
-                    {/* {reactionShown === post._id && ( */}
+                    {/* {((liked && likedId === post?._id) ||
+                      post?.reaction?.length > 0) && ( */}
                     <div className="emoji-reaction PostsDataContainer__margin-class">
-                      {selectedEmoji.map((emoji) => (
-                        <Emoji emoji={emoji} size={16} key={emoji.id} />
-                      ))}
+                      {(liked && likedId === post?._id) ||
+                      post?.reaction?.length > 0
+                        ? "❤️"
+                        : ""}
                       &nbsp;&nbsp;
-                      {/* <span>{post?.reaction} and </span> */}
                       <span>
-                        {post?.reaction_count
-                          ? `${post?.reaction_count} others`
-                          : "0 others"}
+                        {(liked && likedId === post?._id) ||
+                        post?.reaction?.length > 0
+                          ? `by you and ${post?.reaction_count || 0} others`
+                          : `liked by ${post?.reaction_count || 0} people`}
+                        {/* by you and {post?.reaction_count} others */}
                       </span>
                     </div>
                     {/* )} */}
+
                     <div>
                       <p className="bottom-div_text-right ">
                         {post?.comment_count
@@ -213,26 +217,11 @@ const PostsData = () => {
                       </p>
                     </div>
                   </BottomDiv>
-                  {reactionShown === post._id && (
-                    <Emojis
-                      setSelectedEmoji={setSelectedEmoji}
-                      selectedEmoji={selectedEmoji}
-                      total={total}
-                      setTotal={setTotal}
-                      setPickedEmoji={setPickedEmoji}
-                      onClick={() => handleSubmitEmoji(post?._id)}
-                    />
-                  )}
-                  {/* {console.log(selectedEmoji, "emoji")} */}
 
                   <BottomDiv className="like-comment-container PostsDataContainer__margin-class">
                     <p
                       className="bottom-div_text-blue"
-                      onClick={() =>
-                        setReactionShown((prevState) =>
-                          prevState === post._id ? "" : post._id
-                        )
-                      }
+                      onClick={() => handleSubmitEmoji(post._id)}
                       tabIndex="0"
                     >
                       Like

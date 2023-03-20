@@ -2,6 +2,7 @@ import { Picker } from "emoji-mart";
 // import { useMemo } from 'react';
 
 import "emoji-mart/css/emoji-mart.css";
+import { makeApiCall } from "../../lib/api";
 
 const customReactionEmojis = [
   {
@@ -69,8 +70,14 @@ const Emojis = ({
   setTotal,
   setPickedEmoji,
   onClick,
+  topicId,
 }) => {
-  const handleEmojiSelect = (emoji) => {
+  const handleEmojiSelect = async (emoji) => {
+    const response = await makeApiCall("/reaction", "PATCH", {
+      topicId: topicId,
+      emojiname: emoji.id,
+    });
+    console.log(response);
     setPickedEmoji(emoji.id);
     console.log(emoji, "I copied it");
     let isEmojiAlreadyFound = false;
@@ -109,8 +116,9 @@ const Emojis = ({
       showPreview={false}
       showSkinTones={false}
       emojiSize={16}
-      include={["custom"]}
-      custom={customReactionEmojis}
+      set="twitter"
+      // include={["custom"]}
+      // custom={customReactionEmojis}
     />
   );
 };
