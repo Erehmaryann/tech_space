@@ -3,11 +3,15 @@ import styled from "styled-components";
 export const FormDiv = styled.div`
   margin-top: 1.8rem;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  width: 100%;
 
   .comment-form-textarea {
-    width: 382px;
+    min-width: 382px;
     height: 37px;
     background: #f1f1f1;
     border: 1px solid #ffffff;
@@ -18,6 +22,8 @@ export const FormDiv = styled.div`
     position: relative;
     margin-left: 1.1rem;
     margin-right: 1.1rem;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
     margin-bottom: -0.4rem;
 
     &::placeholder {
@@ -33,6 +39,7 @@ export const FormDiv = styled.div`
     font-size: 16px;
     padding: 2px;
     border: none;
+    cursor: pointer;
     outline: none;
     border-radius: 8px;
     color: grey;

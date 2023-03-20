@@ -28,8 +28,10 @@ const PostsData = () => {
   const [total, setTotal] = useState([]);
   const [loading, setLoading] = useState(true);
   const [getTopics, setGetTopics] = useState([]);
+  const [updatePost, setUpdatePost] = useState(false);
   const user = useUser();
-
+  const selectedEmojiNames = selectedEmoji.map((emoji) => emoji.name);
+  console.log(selectedEmojiNames, "take");
   useEffect(() => {
     // make a GET request to retrieve data from the API endpoint
     const fetchData = makeApiCall(`/getTopics/${user?.role}`)
@@ -48,7 +50,21 @@ const PostsData = () => {
       });
 
     fetchData;
-  }, [user?.role]);
+  }, [user?.role, updatePost]);
+
+  const handleSubmitEmoji = async (item, value) => {
+    const response = await makeApiCall("/reaction", "PATCH", {
+      topicId: item,
+      emojiname: value,
+    });
+
+    // if (response.message !== "comment created") {
+    //   toast.error("something went wrong");
+    //   return;
+    // }
+    // setUpdatePost(!updatePost);
+    // toast.success(response.message);
+  };
 
   return (
     <PostsDataContainer>
@@ -173,6 +189,8 @@ const PostsData = () => {
                       borderBottom: "1px solid #ECECEC",
                     }}
                   >
+                    {console.log(post, "reaction")}
+                    {/* {console.log(post, "dream-post")} */}
                     {/* {reactionShown === post._id && ( */}
                     <div className="emoji-reaction PostsDataContainer__margin-class">
                       {selectedEmoji.map((emoji) => (
@@ -180,11 +198,19 @@ const PostsData = () => {
                       ))}
                       &nbsp;&nbsp;
                       {/* <span>{post?.reaction} and </span> */}
-                      {/* <span>{post?.reaction?.length} others</span> */}
+                      <span>
+                        {post?.reaction_count
+                          ? `${post?.reaction_count} others`
+                          : "0 others"}
+                      </span>
                     </div>
                     {/* )} */}
                     <div>
-                      <p className="bottom-div_text-right ">{`${post?.comment?.length} comment`}</p>
+                      <p className="bottom-div_text-right ">
+                        {post?.comment_count
+                          ? `${post?.comment_count} comment`
+                          : "0 comment"}
+                      </p>
                     </div>
                   </BottomDiv>
                   {reactionShown === post._id && (
@@ -193,8 +219,11 @@ const PostsData = () => {
                       selectedEmoji={selectedEmoji}
                       total={total}
                       setTotal={setTotal}
+                      // onClick={() => handleSubmitEmoji(post?._id, )}
                     />
                   )}
+                  {console.log(selectedEmoji, "emoji")}
+
                   <BottomDiv className="like-comment-container PostsDataContainer__margin-class">
                     <p
                       className="bottom-div_text-blue"
@@ -221,7 +250,16 @@ const PostsData = () => {
                 </PostBody>
               </div>
             </HomeItemContainer>
-            {clickedComment === post._id && <Comments currentUserId="1" />}
+            {clickedComment === post._id && (
+              <Comments
+                commentUserto={post?.user?._id}
+                topicId={post?._id}
+                postComments={post?.comment}
+                currentUserId={user?._id}
+                setUpdatePost={setUpdatePost}
+                updatePost={updatePost}
+              />
+            )}
           </div>
         ))
       )}

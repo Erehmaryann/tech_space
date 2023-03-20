@@ -19,7 +19,10 @@ function MyApp({ Component, pageProps }) {
   return (
     <div style={{ margin: 0 }}>
       {loading ? (
-        <GoogleOAuthProvider clientId="495090973592-dde8919d8f5i7uaqsdbbv8m9p98d2amn.apps.googleusercontent.com">
+        <GoogleOAuthProvider
+          clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`}
+          // clientId="495090973592-dde8919d8f5i7uaqsdbbv8m9p98d2amn.apps.googleusercontent.com"
+        >
           <Provider store={store}>
             <Layout>
               <ErrorBoundary>

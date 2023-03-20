@@ -28,6 +28,7 @@ const ProgrammingData = () => {
   const [total, setTotal] = useState([]);
   const [loading, setLoading] = useState(true);
   const [getTopics, setGetTopics] = useState([]);
+  const [updatePost, setUpdatePost] = useState(false);
   const user = useUser();
 
   useEffect(() => {
@@ -46,12 +47,12 @@ const ProgrammingData = () => {
         }
       })
       .catch((error) => {
-        toast.error(error);
+        toast.error("something went wrong");
         setLoading(false);
       });
 
     fetchData;
-  }, [user?.role]);
+  }, [user?.role, updatePost]);
 
   return (
     <PostsDataContainer>
@@ -178,18 +179,28 @@ const ProgrammingData = () => {
                       borderBottom: "1px solid #ECECEC",
                     }}
                   >
+                    {/* {console.log(post?.comment, "dream")} */}
+                    {/* {console.log(post, "dream-post")} */}
                     {/* {reactionShown === post._id && ( */}
                     <div className="emoji-reaction PostsDataContainer__margin-class">
                       {selectedEmoji.map((emoji) => (
                         <Emoji emoji={emoji} size={16} key={emoji.id} />
                       ))}
                       &nbsp;&nbsp;
-                      <span>{post?.reaction} and </span>
-                      <span>{post?.reaction?.length} others</span>
+                      {/* <span>{post?.reaction} and </span> */}
+                      <span>
+                        {post?.reaction_count
+                          ? `${post?.reaction_count} others`
+                          : "0 others"}
+                      </span>
                     </div>
                     {/* )} */}
                     <div>
-                      <p className="bottom-div_text-right ">{`${post?.comment?.length} comment`}</p>
+                      <p className="bottom-div_text-right ">
+                        {post?.comment_count
+                          ? `${post?.comment_count} comment`
+                          : "0 comment"}
+                      </p>
                     </div>
                   </BottomDiv>
                   {reactionShown === post._id && (
@@ -226,7 +237,16 @@ const ProgrammingData = () => {
                 </PostBody>
               </div>
             </HomeItemContainer>
-            {clickedComment === post._id && <Comments currentUserId="1" />}
+            {clickedComment === post._id && (
+              <Comments
+                commentUserto={post?.user?._id}
+                topicId={post?._id}
+                postComments={post?.comment}
+                currentUserId={user?._id}
+                setUpdatePost={setUpdatePost}
+                updatePost={updatePost}
+              />
+            )}
           </div>
         ))
       )}

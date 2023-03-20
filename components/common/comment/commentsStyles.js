@@ -3,8 +3,11 @@ import styled from "styled-components";
 export const CommentDiv = styled.div`
   background: rgb(255, 255, 255);
   width: inherit;
+  height: 100vh;
   box-shadow: 0px 4px 4px rgba(55, 73, 86, 0.07);
   display: flex;
+  overflow-y: scroll;
+  margin-bottom: 20px;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;

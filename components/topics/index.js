@@ -28,6 +28,7 @@ const Topic = () => {
   const [loading, setLoading] = useState(true);
   const [isDeletePost, setIsDeletePost] = useState(false);
   const [getTopics, setGetTopics] = useState([]);
+  const [updatePost, setUpdatePost] = useState(false);
   const user = useUser();
 
   useEffect(() => {
@@ -48,7 +49,7 @@ const Topic = () => {
       });
 
     fetchData;
-  }, [user?.role, isDeletePost]);
+  }, [user?.role, isDeletePost, updatePost]);
 
   const handleTopic = async (item) => {
     const response = await makeApiCall(`deletetopic/${item}`, "DELETE");
@@ -173,18 +174,28 @@ const Topic = () => {
                       borderBottom: "1px solid #ECECEC",
                     }}
                   >
+                    {/* {console.log(post?.comment, "dream")} */}
+                    {/* {console.log(post, "dream-post")} */}
                     {/* {reactionShown === post._id && ( */}
                     <div className="emoji-reaction PostsDataContainer__margin-class">
                       {selectedEmoji.map((emoji) => (
                         <Emoji emoji={emoji} size={16} key={emoji.id} />
                       ))}
                       &nbsp;&nbsp;
-                      <span>{post?.reaction} and </span>
-                      <span>{post?.reaction?.length} others</span>
+                      {/* <span>{post?.reaction} and </span> */}
+                      <span>
+                        {post?.reaction_count
+                          ? `${post?.reaction_count} others`
+                          : "0 others"}
+                      </span>
                     </div>
                     {/* )} */}
                     <div>
-                      <p className="bottom-div_text-right ">{`${post?.comment?.length} comment`}</p>
+                      <p className="bottom-div_text-right ">
+                        {post?.comment_count
+                          ? `${post?.comment_count} comment`
+                          : "0 comment"}
+                      </p>
                     </div>
                   </BottomDiv>
                   {reactionShown === post._id && (
@@ -221,7 +232,16 @@ const Topic = () => {
                 </PostBody>
               </div>
             </HomeItemContainer>
-            {clickedComment === post._id && <Comments currentUserId="1" />}
+            {clickedComment === post._id && (
+              <Comments
+                commentUserto={post?.user?._id}
+                topicId={post?._id}
+                postComments={post?.comment}
+                currentUserId={user?._id}
+                setUpdatePost={setUpdatePost}
+                updatePost={updatePost}
+              />
+            )}
           </div>
         ))
       )}
