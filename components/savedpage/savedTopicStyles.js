@@ -3,8 +3,6 @@ import styled from "styled-components";
 export const SavedDataContainer = styled.main`
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
-  padding: 20px;
 
   h5,
   h6,
@@ -12,6 +10,7 @@ export const SavedDataContainer = styled.main`
     margin: 0;
     padding: 0;
   }
+
   .SavedDataContainer__margin-class {
     margin: 10px 0;
   }
@@ -20,7 +19,7 @@ export const SavedDataContainer = styled.main`
 export const HomeItemContainer = styled.section`
   margin: 25px 0;
   background: white;
-  padding: 20px;
+  padding: 24px 51px 41px 18px;
   box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(55, 73, 86, 0.07);
@@ -62,6 +61,12 @@ export const SavedName = styled.div`
   }
   .save-icon {
     cursor: pointer;
+    position: relative;
+    /* button {
+      outline: none;
+      border: none;
+      background: transparent;
+    } */
   }
 `;
 

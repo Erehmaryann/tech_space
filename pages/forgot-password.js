@@ -12,9 +12,57 @@ import {
 import Link from "next/link";
 import Modal from "../components/modal/Modal";
 import { useState } from "react";
+import { useRouter } from "next/router";
+import { toast } from "react-hot-toast";
+import Spinner from "../components/common/spinner/spinner";
+import { makeApiCall } from "../lib/api";
 
 const ForgotPassword = () => {
+  const router = useRouter();
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [forgotPassDetails, setForgotPassDetails] = useState({
+    email: "",
+  });
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setForgotPassDetails((values) => ({
+      ...values,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const response = await makeApiCall(
+      "/forgotpassword",
+      "POST",
+      forgotPassDetails
+    );
+    if (response?.message === "mail sent") {
+      toast.success(response?.message);
+      setForgotPassDetails({
+        email: "",
+      });
+      setLoading(false);
+      setShowModal(true);
+      router.push("/");
+      return;
+    }
+    setLoading(false);
+    if (response?.message !== "mail sent") {
+      toast.error(response?.response?.data?.message);
+      setForgotPassDetails({
+        email: "",
+      });
+      return;
+    }
+  };
+
   return (
     <>
       <Head>
@@ -26,7 +74,7 @@ const ForgotPassword = () => {
             <Image src={forgotPassword} alt="hero Image" />
           </ImageDiv>
 
-          <Form>
+          <Form onSubmit={(e) => handleSubmit(e)} autoComplete="off">
             <h4>Forgot Password?</h4>
             <p>
               Enter the email address you registered with and we’ll help you
@@ -36,13 +84,39 @@ const ForgotPassword = () => {
               type={`email`}
               placeholder={`Email address`}
               name={`email`}
+              value={forgotPassDetails.email}
+              onChange={handleChange}
             />
             <Link href={`/`} replace>
               <a className="tech-space__forgot-password-small-text">
                 Already have an account?
               </a>
             </Link>
-            <LoginButtons setShowModal={setShowModal} text={`Submit`} />
+            {loading ? (
+              <div
+                style={{
+                  background: "#409de0",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "100%",
+                  borderRadius: "5px",
+                  height: "41px",
+                  margin: "10px 0",
+                  cursor: "pointer",
+                  boxShadow: "0px 5px 8px rgba(64, 157, 224, 0.15)",
+                  border: "none",
+                }}
+              >
+                <Spinner color="#fff" />
+              </div>
+            ) : (
+              <LoginButtons
+                // setShowModal={setShowModal}
+                type={"submit"}
+                text={`Submit`}
+              />
+            )}
           </Form>
         </Main>
         <Modal

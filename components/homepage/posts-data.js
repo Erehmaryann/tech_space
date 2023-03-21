@@ -9,8 +9,6 @@ import { toast } from "react-hot-toast";
 import Moment from "react-moment";
 import Spinner from "../common/spinner/spinner";
 import { makeApiCall } from "../../lib/api";
-// import Emojis from "../emoji/emoji";
-// import { Emoji } from "emoji-mart";
 import {
   PostsDataContainer,
   HomeItemContainer,
@@ -22,15 +20,14 @@ import {
 
 const PostsData = () => {
   const [clicked, setClicked] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
   const [clickedComment, setClickedComment] = useState("");
-  // const [reactionShown, setReactionShown] = useState("");
-  // const [selectedEmoji, setSelectedEmoji] = useState([]);
-  // const [total, setTotal] = useState([]);
   const [loading, setLoading] = useState(true);
   const [getTopics, setGetTopics] = useState([]);
   const [updatePost, setUpdatePost] = useState(false);
   const [liked, setLiked] = useState(false);
   const [likedId, setLikedId] = useState(null);
+  const [savedStatus, setSavedStatus] = useState(null);
   const user = useUser();
 
   useEffect(() => {
@@ -58,14 +55,51 @@ const PostsData = () => {
       topicId: item,
       emojiname: "love",
     });
-    // console.log(response, "response");
-
     if (response.message !== "reacted") {
       toast.error("something went wrong");
       return;
     }
     setLiked(true);
     setLikedId(item);
+  };
+
+  const handleSavePost = async (item) => {
+    setClicked(item);
+    setShowPopup(true);
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 5000);
+    const response = await makeApiCall("/savePost", "POST", {
+      topicId: item,
+    });
+    console.log(response, "new comer");
+    if (response.message !== "unsave") {
+      toast.success(response.message);
+      getBookMark(item);
+      return;
+    }
+    if (response.message !== "saved") {
+      toast.success(response.message);
+      return;
+    }
+  };
+
+  const getBookMark = async (item) => {
+    makeApiCall(`/checkBookMark/${item}`)
+      .then((responseData) => {
+        console.log(responseData, "offf");
+        if (responseData.message === true) {
+          setSavedStatus(responseData.message);
+          return;
+        }
+        if (responseData.message === false) {
+          setSavedStatus(responseData.message);
+          return;
+        }
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
   return (
@@ -125,18 +159,20 @@ const PostsData = () => {
                     </div>
                     <div
                       className="save-icon"
-                      onClick={() =>
-                        setClicked((prevState) =>
-                          prevState === post?._id ? "" : post?._id
-                        )
-                      }
+                      onClick={() => handleSavePost(post?._id)}
                     >
-                      {clicked === post?._id ? (
+                      {clicked === post?._id && savedStatus === true ? (
                         <img src="/assets/svg/savedTopic.svg" alt="save-icon" />
                       ) : (
                         <img src="/assets/svg/saveicon.svg" alt="save-icon" />
                       )}
-                      {clicked === post?._id && <Popup key={post?._id} />}
+
+                      {clicked === post?._id && showPopup && (
+                        <Popup
+                          key={post?._id}
+                          closePopup={clicked !== post?._id}
+                        />
+                      )}
                     </div>
                   </PostName>
                 </PostsDataHeader>
@@ -191,8 +227,6 @@ const PostsData = () => {
                       borderBottom: "1px solid #ECECEC",
                     }}
                   >
-                    {/* {((liked && likedId === post?._id) ||
-                      post?.reaction?.length > 0) && ( */}
                     <div className="emoji-reaction PostsDataContainer__margin-class">
                       {(liked && likedId === post?._id) ||
                       post?.reaction?.length > 0
@@ -202,12 +236,10 @@ const PostsData = () => {
                       <span>
                         {(liked && likedId === post?._id) ||
                         post?.reaction?.length > 0
-                          ? `by you and ${post?.reaction_count || 0} others`
+                          ? `You, and ${post?.reaction_count || 0} others`
                           : `liked by ${post?.reaction_count || 0} people`}
-                        {/* by you and {post?.reaction_count} others */}
                       </span>
                     </div>
-                    {/* )} */}
 
                     <div>
                       <p className="bottom-div_text-right ">
