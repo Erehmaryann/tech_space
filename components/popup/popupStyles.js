@@ -11,7 +11,7 @@ export const PopupDiv = styled.div`
   padding: 15px;
   z-index: 100;
   top: -65px;
-  right: -70px;
+  right: -150px;
   border-radius: 15px;
 
   .view {

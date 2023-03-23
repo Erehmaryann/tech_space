@@ -66,26 +66,25 @@ const CreateNewPassword = () => {
       "PATCH",
       changePassDetails
     );
-    console.log(response, "nawa o");
-    // if (response?.message === "password updated successfully") {
-    //   toast.success(response?.message);
-    //   setChangePassDetails({
-    //     password: "",
-    //     confirmPassword: "",
-    //   });
-    //   setLoading(false);
-    //   setShowModal(true);
-    //   return;
-    // }
-    // setLoading(false);
-    // if (response?.message !== "password updated successfully") {
-    //   toast.error(response?.response?.data?.message);
-    //   setChangePassDetails({
-    //     password: "",
-    //     confirmPassword: "",
-    //   });
-    //   return;
-    // }
+    if (response?.message === "password updated successfully") {
+      toast.success(response?.message);
+      setChangePassDetails({
+        password: "",
+        confirmPassword: "",
+      });
+      setLoading(false);
+      setShowModal(true);
+      return;
+    }
+    setLoading(false);
+    if (response?.message !== "password updated successfully") {
+      toast.error(response?.response?.data?.message);
+      setChangePassDetails({
+        password: "",
+        confirmPassword: "",
+      });
+      return;
+    }
   };
 
   return (
@@ -145,7 +144,7 @@ const CreateNewPassword = () => {
           btn
           btnText={`ok`}
         >
-          Your password has been reset successfully!
+          Your password has been reset successfully! Go back to login page.
         </Modal>
       </Container>
     </>

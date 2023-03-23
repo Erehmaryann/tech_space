@@ -12,13 +12,11 @@ import {
 import Link from "next/link";
 import Modal from "../components/modal/Modal";
 import { useState } from "react";
-import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
 import Spinner from "../components/common/spinner/spinner";
 import { makeApiCall } from "../lib/api";
 
 const ForgotPassword = () => {
-  const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [forgotPassDetails, setForgotPassDetails] = useState({
@@ -50,7 +48,6 @@ const ForgotPassword = () => {
       });
       setLoading(false);
       setShowModal(true);
-      router.push("/");
       return;
     }
     setLoading(false);

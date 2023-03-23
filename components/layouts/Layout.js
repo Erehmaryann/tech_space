@@ -7,27 +7,35 @@ import { useRouter } from "next/router";
 
 const Layout = ({ children }) => {
   const router = useRouter();
-  const path = router.asPath;
+  const path = router.pathname;
 
-  const pathsWithoutLayout = [
-    "/create-new-password",
-    "/",
-    "/login",
-    "/signup",
-    "/admin",
-    "/404",
-    "/forgot-password",
-  ];
+  const sideNavDisplay =
+    path === "/" ||
+    path === "/login" ||
+    path === "/signup" ||
+    path === "/admin" ||
+    path === "/404" ||
+    path === "/forgot-password" ||
+    path.includes("/create-new-password");
+  // const pathsWithoutLayout = [
+  //   "/create-new-password",
+  //   "/",
+  //   "/login",
+  //   "/signup",
+  //   "/admin",
+  //   "/404",
+  //   "/forgot-password",
+  // ];
 
-  const hasNoLayout = pathsWithoutLayout.some((route) => path.includes(route));
+  // const hasNoLayout = pathsWithoutLayout.some((route) => path.includes(route));
 
   return (
     <div>
       <Header />
       <Container>
-        {!hasNoLayout && <SideBar />}
+        {!sideNavDisplay && <SideBar />}
         {children}
-        {!hasNoLayout && <SideProfile />}
+        {!sideNavDisplay && <SideProfile />}
       </Container>
     </div>
   );

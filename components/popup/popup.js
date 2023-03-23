@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { PopupDiv } from "./popupStyles";
 
-const Popup = ({ closePopup }) => {
+const Popup = ({ closePopup, text }) => {
   return (
     <PopupDiv>
-      <span>Topic has been saved.</span>
+      <span>{text}</span>
       <div onClick={() => closePopup} className="view">
         <Link href="/dashboard/saved-topics">
           <a>View</a>
