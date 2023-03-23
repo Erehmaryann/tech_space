@@ -46,14 +46,14 @@ const MainNav = ({
   useEffect(() => {
     // make a GET request to retrieve data from the API endpoint
     // make a GET request to retrieve userprofile data from the API endpoint
-    makeApiCall(`/userprofile/${user._id}`)
+    makeApiCall(`/userprofile/${user?._id}`)
       .then((responseData) => {
         setGetUserProfile(responseData?.message);
       })
       .catch((error) => {
         toast.error(error);
       });
-  }, [user._id]);
+  }, [user?._id]);
 
   return (
     <Nav>

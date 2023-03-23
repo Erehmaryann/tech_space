@@ -6,20 +6,31 @@ const Header = () => {
   const router = useRouter();
   const path = router.pathname;
 
+  // const pathsWithoutLayout = [
+  //   "/create-new-password",
+  //   "/",
+  //   "/login",
+  //   "/signup",
+  //   "/admin",
+  //   "/404",
+  //   "/forgot-password",
+  // ];
+
+  // const hasNoLayout = pathsWithoutLayout.some((route) => path.includes(route));
+
   return (
     <>
-      {
-        path === "/" ||
-          path === "/login" ||
-          path === "/signup" ||
-          path === "/admin" ||
-          path === "/404" ||
-          path === "/forgot-password" ||
-          path === "/create-new-password" ? (
-          <LoginNav />
-        ) : (
-          <MainNav />
-        )}
+      {path === "/" ||
+      path === "/login" ||
+      path === "/signup" ||
+      path === "/admin" ||
+      path === "/404" ||
+      path === "/forgot-password" ||
+      path.includes("/create-new-password") ? (
+        <LoginNav />
+      ) : (
+        <MainNav />
+      )}
     </>
   );
 };

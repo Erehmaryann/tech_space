@@ -29,12 +29,12 @@ const Comments = ({
       type: "comment",
     });
 
-    if (response.message !== "comment created") {
+    if (response.message.acknowledged === false) {
       toast.error("something went wrong");
       return;
     }
     setUpdatePost(!updatePost);
-    toast.success(response.message);
+    toast.success("comment created successfully");
   };
 
   // const updateComment = (text, commentId) => {

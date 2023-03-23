@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 const Layout = ({ children }) => {
   const router = useRouter();
   const path = router.pathname;
+
   const sideNavDisplay =
     path === "/" ||
     path === "/login" ||
@@ -15,7 +16,18 @@ const Layout = ({ children }) => {
     path === "/admin" ||
     path === "/404" ||
     path === "/forgot-password" ||
-    path === "/create-new-password";
+    path.includes("/create-new-password");
+  // const pathsWithoutLayout = [
+  //   "/create-new-password",
+  //   "/",
+  //   "/login",
+  //   "/signup",
+  //   "/admin",
+  //   "/404",
+  //   "/forgot-password",
+  // ];
+
+  // const hasNoLayout = pathsWithoutLayout.some((route) => path.includes(route));
 
   return (
     <div>

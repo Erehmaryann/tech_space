@@ -9,8 +9,7 @@ import Moment from "react-moment";
 import Spinner from "../common/spinner/spinner";
 import { toast } from "react-hot-toast";
 import { makeApiCall } from "../../lib/api";
-import Emojis from "../emoji/emoji";
-import { Emoji } from "emoji-mart";
+
 import {
   PostsDataContainer,
   HomeItemContainer,
@@ -22,9 +21,8 @@ import {
 
 const Topic = () => {
   const [clickedComment, setClickedComment] = useState("");
-  const [reactionShown, setReactionShown] = useState("");
-  const [selectedEmoji, setSelectedEmoji] = useState([]);
-  const [total, setTotal] = useState([]);
+  const [liked, setLiked] = useState(false);
+  const [likedId, setLikedId] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isDeletePost, setIsDeletePost] = useState(false);
   const [getTopics, setGetTopics] = useState([]);
@@ -55,6 +53,19 @@ const Topic = () => {
     const response = await makeApiCall(`deletetopic/${item}`, "DELETE");
     setIsDeletePost(true);
     toast.success(response?.message);
+  };
+
+  const handleSubmitEmoji = async (item) => {
+    const response = await makeApiCall("/reaction", "PATCH", {
+      topicId: item,
+      emojiname: "love",
+    });
+    if (response.message !== "reacted") {
+      toast.error("something went wrong");
+      return;
+    }
+    setLiked(true);
+    setLikedId(item);
   };
 
   return (
@@ -174,22 +185,20 @@ const Topic = () => {
                       borderBottom: "1px solid #ECECEC",
                     }}
                   >
-                    {/* {console.log(post?.comment, "dream")} */}
-                    {/* {console.log(post, "dream-post")} */}
-                    {/* {reactionShown === post._id && ( */}
                     <div className="emoji-reaction PostsDataContainer__margin-class">
-                      {selectedEmoji.map((emoji) => (
-                        <Emoji emoji={emoji} size={16} key={emoji.id} />
-                      ))}
+                      {(liked && likedId === post?._id) ||
+                      post?.reaction?.length > 0
+                        ? "❤️"
+                        : ""}
                       &nbsp;&nbsp;
-                      {/* <span>{post?.reaction} and </span> */}
                       <span>
-                        {post?.reaction_count
-                          ? `${post?.reaction_count} others`
-                          : "0 others"}
+                        {(liked && likedId === post?._id) ||
+                        post?.reaction?.length > 0
+                          ? `You, and ${post?.reaction_count || 0} others`
+                          : `liked by ${post?.reaction_count || 0} people`}
                       </span>
                     </div>
-                    {/* )} */}
+
                     <div>
                       <p className="bottom-div_text-right ">
                         {post?.comment_count
@@ -198,22 +207,11 @@ const Topic = () => {
                       </p>
                     </div>
                   </BottomDiv>
-                  {reactionShown === post._id && (
-                    <Emojis
-                      setSelectedEmoji={setSelectedEmoji}
-                      selectedEmoji={selectedEmoji}
-                      total={total}
-                      setTotal={setTotal}
-                    />
-                  )}
+
                   <BottomDiv className="like-comment-container PostsDataContainer__margin-class">
                     <p
                       className="bottom-div_text-blue"
-                      onClick={() =>
-                        setReactionShown((prevState) =>
-                          prevState === post._id ? "" : post._id
-                        )
-                      }
+                      onClick={() => handleSubmitEmoji(post._id)}
                       tabIndex="0"
                     >
                       Like

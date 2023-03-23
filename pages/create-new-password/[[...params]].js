@@ -1,21 +1,42 @@
+// export default function CreateNewPassword() {
+
+//   const handlePasswordChange = async () => {
+//     const v = await fetch('', {
+//       method: 'POST',
+//       headers: {
+
+//       }
+
+//   })
+// }
+
+//   return <div>{JSON.stringify({ token, email })}</div>;
+// }
+
 import Head from "next/head";
 import Image from "next/image";
-import LoginButtons from "../components/buttons/LoginButtons";
-import createNewPassword from "../public/assets/svg/createnewpassword.svg";
-import LoginInputs from "../components/inputs/LoginInputs";
+import LoginButtons from "../../components/buttons/LoginButtons";
+import createNewPassword from "../../public/assets/svg/createnewpassword.svg";
+import LoginInputs from "../../components/inputs/LoginInputs";
+import { useRouter } from "next/router";
 import {
   Container,
   Form,
   ImageDiv,
   Main,
-} from "../components/styles/AuthStyles";
+} from "../../components/styles/AuthStyles";
 import { toast } from "react-hot-toast";
-import Spinner from "../components/common/spinner/spinner";
-import { makeApiCall } from "../lib/api";
-import Modal from "../components/modal/Modal";
+import Spinner from "../../components/common/spinner/spinner";
+import { makeApiCall } from "../../lib/api";
+import Modal from "../../components/modal/Modal";
 import { useState } from "react";
 
 const CreateNewPassword = () => {
+  const router = useRouter();
+  const { params } = router.query;
+  if (!params || !Array.isArray(params)) throw Error;
+  const [key, email] = params;
+
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [changePassDetails, setChangePassDetails] = useState({
@@ -31,6 +52,7 @@ const CreateNewPassword = () => {
       [name]: value,
     }));
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -40,7 +62,7 @@ const CreateNewPassword = () => {
       return;
     }
     const response = await makeApiCall(
-      "/change/password",
+      `/resetpassword/${key}/${email}`,
       "PATCH",
       changePassDetails
     );
@@ -112,11 +134,7 @@ const CreateNewPassword = () => {
                 <Spinner color="#fff" />
               </div>
             ) : (
-              <LoginButtons
-                // setShowModal={setShowModal}
-                type={"submit"}
-                text={`Submit`}
-              />
+              <LoginButtons type={"submit"} text={`Submit`} />
             )}
           </Form>
         </Main>
@@ -126,7 +144,7 @@ const CreateNewPassword = () => {
           btn
           btnText={`ok`}
         >
-          Your password has been reset successfully!
+          Your password has been reset successfully! Go back to login page.
         </Modal>
       </Container>
     </>
