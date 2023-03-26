@@ -48,7 +48,7 @@ export const Button = styled.button`
   text-decoration: none;
 `;
 
-export const SearchDiv = styled.div`
+export const SearchDiv = styled.form`
   width: 549px;
   height: 100%;
   position: relative;

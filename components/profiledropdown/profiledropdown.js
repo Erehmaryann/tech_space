@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { toggleProfileHidden } from "../../redux/profile/profile.actions";
 import { useRouter } from "next/router";
+import { makeApiCall } from "../../lib/api";
 import Cookies from "js-cookie";
 
 import { ProDiv } from "./proStyles";
@@ -10,9 +11,15 @@ const Profiledropdown = ({ toggleProfileHidden }) => {
   const router = useRouter();
   const path = router.pathname;
 
+  const handleSignout = async () => {
+    const response = await makeApiCall("/logout", "POST");
+    console.log(response, "girl");
+  };
+
   // logout
   const handleLogout = () => {
-    toggleProfileHidden;
+    // toggleProfileHidden;
+    handleSignout();
     Cookies.remove("user_token");
     Cookies.remove("user_details");
     router.push("/");

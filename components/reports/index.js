@@ -20,8 +20,9 @@ import ReportChart from "./chart";
 import Link from "next/link";
 import Spinner from "../common/spinner/spinner";
 import { makeApiCall } from "../../lib/api";
-import ReactSelect from "../common/select";
-import { options } from "./report-dummyData";
+// import ReactSelect from "../common/select";
+import Moment from "react-moment";
+// import { options } from "./report-dummyData";
 import {
   DownloadIcon,
   RightIcon,
@@ -30,9 +31,11 @@ import {
 } from "./icon";
 
 const Report = () => {
-  const [option, setOption] = useState(options);
+  // const [option, setOption] = useState(options);
   const [loading, setLoading] = useState(true);
   const [activeMembers, setActiveMembers] = useState([]);
+  const [membersStat, setMembersStat] = useState([]);
+  const [monthlyStat, setMonthlyStat] = useState([]);
 
   useEffect(() => {
     const getActiveMembers = makeApiCall(`/topContributors`)
@@ -46,45 +49,55 @@ const Report = () => {
       });
 
     getActiveMembers;
-  }, []);
 
+    const getMembersStatus = makeApiCall(`/stats/users`)
+      .then((responseData) => {
+        setMembersStat(responseData?.message);
+        setLoading(false);
+      })
+      .catch((error) => {
+        toast.error(error);
+        setLoading(false);
+      });
+
+    getMembersStatus;
+
+    const getMonthStatus = makeApiCall(`/stats/users/${3}`)
+      .then((responseData) => {
+        setMonthlyStat(responseData?.message);
+        setLoading(false);
+      })
+      .catch((error) => {
+        toast.error(error);
+        setLoading(false);
+      });
+
+    getMonthStatus;
+  }, []);
+  console.log(monthlyStat, "monthly stat");
   const columns = useMemo(
     () => [
       {
         Header: "Member’s name",
-        accessor: "name",
+        accessor: "fullname",
       },
       {
         Header: "Status",
         accessor: "status",
-        Cell: ({ cell: { value, row } }) => (
-          <Status status={value}>{value}</Status>
+        Cell: ({ cell: { value } }) => (
+          <Status status={value}>{value ? "Online" : "Offline"}</Status>
         ),
       },
       {
         Header: "Date registered",
-        accessor: "date_joined",
-      },
-    ],
-    []
-  );
-
-  const data = useMemo(
-    () => [
-      {
-        name: "Savannah Nguyen",
-        status: "Online",
-        date_joined: "2nd May 2022",
-      },
-      {
-        name: "Ereh Maryann",
-        status: "Online",
-        date_joined: "18th Aug 2022",
-      },
-      {
-        name: "Eleanor Pena",
-        status: "Offline",
-        date_joined: "18th Nov 2022",
+        accessor: "date",
+        Cell: ({ cell: { value } }) => (
+          <Div>
+            <Moment format="DD MMMM YYYY" withTitle>
+              {value}
+            </Moment>
+          </Div>
+        ),
       },
     ],
     []
@@ -129,11 +142,11 @@ const Report = () => {
                 <DownloadIcon />
               </button>
 
-              <ReactSelect
+              {/* <ReactSelect
                 setOption={setOption}
                 options={options}
                 placeholder="pick"
-              />
+              /> */}
             </div>
             <div className="second-div">
               <p>Monthly visits</p>
@@ -146,7 +159,20 @@ const Report = () => {
               <h4>New Members</h4>
               <Link href="/dashboard/members">View all</Link>
             </MemberHeader>
-            <ReportTable data={data} columns={columns} />
+            {loading ? (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "200px",
+                }}
+              >
+                <Spinner color="#409de0" />
+              </div>
+            ) : (
+              <ReportTable data={membersStat} columns={columns} />
+            )}
           </TableContainer>
         </div>
         <div className="total-num-post">
