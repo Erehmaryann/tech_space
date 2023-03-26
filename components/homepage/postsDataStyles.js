@@ -16,7 +16,7 @@ export const PostsDataContainer = styled.main`
 `;
 
 export const HomeItemContainer = styled.section`
-  margin: 25px 0;
+  margin: 30px 0;
   background: white;
   padding: 24px 51px 41px 18px;
   box-sizing: border-box;

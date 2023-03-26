@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 
 import { ProDiv } from "./proStyles";
 import Link from "next/link";
+import { toast } from "react-hot-toast";
 
 const Profiledropdown = ({ toggleProfileHidden }) => {
   const router = useRouter();
@@ -13,12 +14,15 @@ const Profiledropdown = ({ toggleProfileHidden }) => {
 
   const handleSignout = async () => {
     const response = await makeApiCall("/logout", "POST");
-    console.log(response, "girl");
+    if (response?.message === "User successfully logged out") {
+      toast.success(response?.message);
+      return;
+    }
   };
 
   // logout
   const handleLogout = () => {
-    // toggleProfileHidden;
+    toggleProfileHidden;
     handleSignout();
     Cookies.remove("user_token");
     Cookies.remove("user_details");

@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import ReactSelect from "../common/select";
-import { options } from "./cateData";
+// import { useRouter } from "next/router";
+// import ReactSelect from "../common/select";
+// import { options } from "./cateData";
 
 import {
   Nav,
@@ -47,7 +47,6 @@ const MainNav = ({
   // const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    // make a GET request to retrieve data from the API endpoint
     // make a GET request to retrieve userprofile data from the API endpoint
     makeApiCall(`/userprofile/${user?._id}`)
       .then((responseData) => {

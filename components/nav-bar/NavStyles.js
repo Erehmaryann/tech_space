@@ -64,8 +64,7 @@ export const NavInput = styled.input`
   border: none;
   background: #f7f7f7;
   color: #409de0;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-radius: 10px;
 
   ::placeholder {
     font-style: normal;
@@ -79,6 +78,7 @@ export const NavInput = styled.input`
     padding-left: 40px;
   }
 `;
+
 export const SearchIconDiv = styled.div`
   position: absolute;
   left: 10px;
