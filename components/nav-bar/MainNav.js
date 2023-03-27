@@ -1,24 +1,25 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import ReactSelect from "../common/select";
-import { options } from "./cateData";
+// import { useRouter } from "next/router";
+// import ReactSelect from "../common/select";
+// import { options } from "./cateData";
 
 import {
   Nav,
   LogoDiv,
-  NavInput,
-  SearchDiv,
-  SearchIconDiv,
+  // NavInput,
+  // SearchDiv,
+  // SearchIconDiv,
+  // SelectDiv,
   NotificationDiv,
   ImageDiv,
-  SelectDiv,
 } from "./NavStyles";
 import { useUser } from "../../helper/get-user";
 import logo from "../../public/assets/Logo.png";
-import { SearchIcon } from "../Icons/Icon";
+// import { SearchIcon } from "../Icons/Icon";
 import NotIcon from "../notIcon/notIcon";
 import Profiledropdown from "../profiledropdown/profiledropdown";
 import NotiDropdown from "../notidropdown/notidropdown";
@@ -36,15 +37,16 @@ const MainNav = ({
   toggleNotiHidden,
   notiHidden,
 }) => {
-  const router = useRouter();
-  const path = router.pathname;
-  const [option, setOption] = useState(options);
+  // const router = useRouter();
+  // const path = router.pathname;
+  // const [option, setOption] = useState(options);
   const user = useUser() || null;
 
   const [getUserProfile, setGetUserProfile] = useState([]);
+  // const [searchQuery, setSearchQuery] = useState("");
+  // const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    // make a GET request to retrieve data from the API endpoint
     // make a GET request to retrieve userprofile data from the API endpoint
     makeApiCall(`/userprofile/${user?._id}`)
       .then((responseData) => {
@@ -53,7 +55,35 @@ const MainNav = ({
       .catch((error) => {
         toast.error(error);
       });
+
+    // if (searchQuery !== "") {
+    //   makeSearchRequest();
+    // }
   }, [user?._id]);
+
+  // const makeSearchRequest = async () => {
+  //   try {
+  //     const response = await makeApiCall(`/search?search=${searchQuery}`);
+  //     setSearchResults(response.message);
+  //   } catch (error) {
+  //     toast.error(error);
+  //   }
+  // };
+
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+  //   makeSearchRequest();
+  // };
+
+  // const onInputChange = (e) => {
+  //   setSearchQuery(e.target.value);
+  // };
+
+  // const onPress = (e) => {
+  //   if (e.key === "Enter") {
+  //     onSubmit(e);
+  //   }
+  // };
 
   return (
     <Nav>
@@ -64,7 +94,7 @@ const MainNav = ({
           </a>
         </Link>
       </LogoDiv>
-      <div
+      {/* <div
         style={{
           display: "flex",
           alignItems: "center",
@@ -84,13 +114,19 @@ const MainNav = ({
             />
           </SelectDiv>
         )}
-        <SearchDiv>
+        <SearchDiv onSubmit={onSubmit}>
           <SearchIconDiv>
             <SearchIcon />
           </SearchIconDiv>
-          <NavInput type="text" placeholder="Search" />
+          <NavInput
+            type="text"
+            placeholder="Search"
+            value={searchQuery}
+            onChange={onInputChange}
+            onKeyDown={onPress}
+          />
         </SearchDiv>
-      </div>
+      </div> */}
       <NotificationDiv>
         <NotIcon onClick={toggleNotiHidden} />
         {notiHidden ? null : <NotiDropdown />}

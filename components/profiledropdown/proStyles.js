@@ -21,6 +21,7 @@ export const ProDiv = styled.div`
     span {
       padding: 10px 5px;
       font-size: 14px;
+      cursor: pointer;
 
       :hover {
         background: #abcee7;

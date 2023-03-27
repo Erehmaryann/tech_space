@@ -1,18 +1,29 @@
 import { connect } from "react-redux";
 import { toggleProfileHidden } from "../../redux/profile/profile.actions";
 import { useRouter } from "next/router";
+import { makeApiCall } from "../../lib/api";
 import Cookies from "js-cookie";
 
 import { ProDiv } from "./proStyles";
 import Link from "next/link";
+import { toast } from "react-hot-toast";
 
 const Profiledropdown = ({ toggleProfileHidden }) => {
   const router = useRouter();
   const path = router.pathname;
 
+  const handleSignout = async () => {
+    const response = await makeApiCall("/logout", "POST");
+    if (response?.message === "User successfully logged out") {
+      toast.success(response?.message);
+      return;
+    }
+  };
+
   // logout
   const handleLogout = () => {
     toggleProfileHidden;
+    handleSignout();
     Cookies.remove("user_token");
     Cookies.remove("user_details");
     router.push("/");

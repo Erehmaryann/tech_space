@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
 import { useUser } from "../../helper/get-user";
@@ -14,12 +15,16 @@ import {
   BottomDiv,
   Button,
 } from "./requestStyles";
+import { SearchDiv, NavInput, SearchIconDiv } from "../nav-bar/NavStyles";
+import { SearchIcon } from "../Icons/Icon";
 import Moment from "react-moment";
 import Spinner from "../common/spinner/spinner";
 
 const Request = () => {
   const user = useUser();
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+
   const [getTopics, setGetTopics] = useState([]);
   const [isApproved, setIsApproved] = useState(false);
 
@@ -41,7 +46,11 @@ const Request = () => {
       });
 
     fetchData;
-  }, [user?.role, isApproved]);
+
+    if (searchQuery !== "") {
+      makeSearchRequest();
+    }
+  }, [user?.role, isApproved, searchQuery]);
 
   const handleClick = async (item, value) => {
     const response = await makeApiCall(`updatestatus/${item?._id}`, "PATCH", {
@@ -50,9 +59,57 @@ const Request = () => {
     setIsApproved(true);
     toast.success(response?.message);
   };
+
+  const makeSearchRequest = async () => {
+    try {
+      const response = await makeApiCall(`/search?search=${searchQuery}`);
+      setGetTopics(response?.message);
+    } catch (error) {
+      toast.error(error);
+    }
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    makeSearchRequest();
+  };
+
+  const onInputChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const onPress = (e) => {
+    if (e.key === "Enter") {
+      onSubmit(e);
+    }
+  };
+
   return (
     <PostsDataContainer>
       <h2 style={{ color: "#374956" }}>Requests</h2>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          width: "50%",
+          height: "37px",
+          marginTop: "30px",
+        }}
+      >
+        <SearchDiv onSubmit={onSubmit}>
+          <SearchIconDiv>
+            <SearchIcon />
+          </SearchIconDiv>
+          <NavInput
+            type="text"
+            placeholder="Search"
+            value={searchQuery}
+            onChange={onInputChange}
+            onKeyDown={onPress}
+          />
+        </SearchDiv>
+      </div>
       {loading ? (
         <div
           style={{

@@ -311,5 +311,10 @@ export const Status = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 15px;
-  color: ${(props) => (props.status === "Online" ? "#56C568" : "#CF2A2A")};
+  color: ${(props) =>
+    props.status === true
+      ? "#56C568"
+      : props.status === false
+      ? "#CF2A2A"
+      : ""};
 `;

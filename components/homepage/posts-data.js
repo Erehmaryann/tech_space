@@ -1,5 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
+import { SearchDiv, NavInput, SearchIconDiv } from "../nav-bar/NavStyles";
+import { SearchIcon } from "../Icons/Icon";
 import EmptyState from "../empty-state/empty-state";
 import Comments from "../common/comment/comments";
 import { useUser } from "../../helper/get-user";
@@ -12,6 +15,8 @@ import HomeContainer from "./comp";
 const PostsData = () => {
   const [clickedComment, setClickedComment] = useState("");
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+
   const [getTopics, setGetTopics] = useState([]);
   const [updatePost, setUpdatePost] = useState(false);
   const user = useUser();
@@ -34,10 +39,61 @@ const PostsData = () => {
       });
 
     fetchData;
-  }, [user?.role, updatePost]);
+
+    if (searchQuery !== "") {
+      makeSearchRequest();
+    }
+  }, [user?.role, updatePost, searchQuery]);
+
+  const makeSearchRequest = async () => {
+    try {
+      const response = await makeApiCall(`/search?search=${searchQuery}`);
+      setGetTopics(response?.message);
+    } catch (error) {
+      toast.error(error);
+    }
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    makeSearchRequest();
+  };
+
+  const onInputChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const onPress = (e) => {
+    if (e.key === "Enter") {
+      onSubmit(e);
+    }
+  };
 
   return (
     <PostsDataContainer>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          width: "50%",
+          height: "37px",
+          marginTop: "30px",
+        }}
+      >
+        <SearchDiv onSubmit={onSubmit}>
+          <SearchIconDiv>
+            <SearchIcon />
+          </SearchIconDiv>
+          <NavInput
+            type="text"
+            placeholder="Search"
+            value={searchQuery}
+            onChange={onInputChange}
+            onKeyDown={onPress}
+          />
+        </SearchDiv>
+      </div>
       {loading ? (
         <div
           style={{
