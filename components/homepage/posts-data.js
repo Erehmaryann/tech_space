@@ -66,6 +66,7 @@ const PostsData = () => {
   const onPress = (e) => {
     if (e.key === "Enter") {
       onSubmit(e);
+      setSearchQuery("");
     }
   };
 
