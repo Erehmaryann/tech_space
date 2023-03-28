@@ -1,3 +1,7 @@
 {
-  "recommendations": ["gencay.vscode-chatgpt", "blackboxapp.blackbox"]
+  "recommendations": [
+    "gencay.vscode-chatgpt",
+    "blackboxapp.blackbox",
+    "genieai.chatgpt-vscode"
+  ]
 }

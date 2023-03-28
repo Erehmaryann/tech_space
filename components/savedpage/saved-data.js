@@ -14,7 +14,6 @@ const SaveData = () => {
   const [clickedComment, setClickedComment] = useState("");
   const [loading, setLoading] = useState(true);
   const [getTopics, setGetTopics] = useState([]);
-  const [updatePost, setUpdatePost] = useState(false);
 
   const user = useUser();
 
@@ -36,7 +35,7 @@ const SaveData = () => {
       });
 
     fetchData;
-  }, [updatePost]);
+  }, []);
 
   return (
     <SavedDataContainer>
@@ -67,8 +66,6 @@ const SaveData = () => {
                 topicId={post?.topicId?._id}
                 postComments={post?.topicId?.comment}
                 currentUserId={user?._id}
-                setUpdatePost={setUpdatePost}
-                updatePost={updatePost}
               />
             )}
           </div>

@@ -5,21 +5,14 @@ import CommentForm from "./commentForm";
 import { CommentDiv } from "./commentsStyles";
 import { toast } from "react-hot-toast";
 
-const Comments = ({
-  currentUserId,
-  commentUserto,
-  topicId,
-  postComments,
-  setUpdatePost,
-  updatePost,
-}) => {
+const Comments = ({ currentUserId, commentUserto, topicId, postComments }) => {
   const [originalComments, setOriginalComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
-
+  console.log(originalComments, "yeah");
   useEffect(() => {
     setOriginalComments(postComments);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [updatePost]);
+  }, []);
 
   const handleSubmit = async (text) => {
     const response = await makeApiCall("/createComment", "PATCH", {
@@ -33,7 +26,7 @@ const Comments = ({
       toast.error("something went wrong");
       return;
     }
-    setUpdatePost(!updatePost);
+    setOriginalComments(response.message.comment);
     toast.success("comment created successfully");
   };
 
