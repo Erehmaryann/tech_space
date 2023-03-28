@@ -8,7 +8,7 @@ import { toast } from "react-hot-toast";
 const Comments = ({ currentUserId, commentUserto, topicId, postComments }) => {
   const [originalComments, setOriginalComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
-  console.log(originalComments, "yeah");
+
   useEffect(() => {
     setOriginalComments(postComments);
     // eslint-disable-next-line react-hooks/exhaustive-deps
