@@ -18,7 +18,6 @@ const PostsData = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const [getTopics, setGetTopics] = useState([]);
-  const [updatePost, setUpdatePost] = useState(false);
   const user = useUser();
 
   useEffect(() => {
@@ -43,7 +42,7 @@ const PostsData = () => {
     if (searchQuery !== "") {
       makeSearchRequest();
     }
-  }, [user?.role, updatePost, searchQuery]);
+  }, [user?.role, searchQuery]);
 
   const makeSearchRequest = async () => {
     try {
@@ -121,8 +120,6 @@ const PostsData = () => {
                 topicId={post?._id}
                 postComments={post?.comment}
                 currentUserId={user?._id}
-                setUpdatePost={setUpdatePost}
-                updatePost={updatePost}
               />
             )}
           </div>

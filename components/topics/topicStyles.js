@@ -22,6 +22,7 @@ export const HomeItemContainer = styled.section`
   padding: 20px;
   box-sizing: border-box;
   border-radius: 10px;
+  display: ${(props) => (props.unsave ? "none" : "block")};
   box-shadow: 0px 4px 4px rgba(55, 73, 86, 0.07);
 `;
 

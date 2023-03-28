@@ -1,11 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import EmptyState from "../empty-state/empty-state";
 import Comments from "../common/comment/comments";
-import Popup from "../popup/popup";
 import { useUser } from "../../helper/get-user";
-import Moment from "react-moment";
 import Spinner from "../common/spinner/spinner";
 import { toast } from "react-hot-toast";
 import { makeApiCall } from "../../lib/api";
@@ -16,7 +13,6 @@ const Maintenance = () => {
   const [clickedComment, setClickedComment] = useState("");
   const [loading, setLoading] = useState(true);
   const [getTopics, setGetTopics] = useState([]);
-  const [updatePost, setUpdatePost] = useState(false);
   const user = useUser();
 
   useEffect(() => {
@@ -40,7 +36,7 @@ const Maintenance = () => {
       });
 
     fetchData;
-  }, [user?.role, updatePost]);
+  }, [user?.role]);
 
   return (
     <PostsDataContainer>
@@ -73,8 +69,6 @@ const Maintenance = () => {
                 topicId={post?._id}
                 postComments={post?.comment}
                 currentUserId={user?._id}
-                setUpdatePost={setUpdatePost}
-                updatePost={updatePost}
               />
             )}
           </div>

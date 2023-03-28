@@ -13,7 +13,6 @@ const NetData = () => {
   const [clickedComment, setClickedComment] = useState("");
   const [loading, setLoading] = useState(true);
   const [getTopics, setGetTopics] = useState([]);
-  const [updatePost, setUpdatePost] = useState(false);
   const user = useUser();
 
   useEffect(() => {
@@ -37,7 +36,7 @@ const NetData = () => {
       });
 
     fetchData;
-  }, [user?.role, updatePost]);
+  }, [user?.role]);
 
   return (
     <PostsDataContainer>
@@ -70,8 +69,6 @@ const NetData = () => {
                 topicId={post?._id}
                 postComments={post?.comment}
                 currentUserId={user?._id}
-                setUpdatePost={setUpdatePost}
-                updatePost={updatePost}
               />
             )}
           </div>

@@ -20,7 +20,7 @@ const Comment = ({
   setActiveComment,
   // parentId = null,
 }) => {
-  const fiveMinutes = 300000;
+  // const fiveMinutes = 300000;
   // const timePassed = new Date() - new Date(comment?.date) > fiveMinutes;
   const canReply = Boolean(commentUserto);
   // const canEdit = commentUserto === comment?._id && !timePassed;
@@ -107,7 +107,7 @@ const Comment = ({
           )}
           {canReply && (
             <div className="reply-action" onClick={() => setToggle(!toggle)}>
-              {replies.length} replies
+              {replies?.length} replies
             </div>
           )}
           {/* {canEdit && (
@@ -138,9 +138,9 @@ const Comment = ({
             handleSubmit={(text) => handleReply(text)}
           />
         )}
-        {replies.length > 0 && toggle && (
+        {replies?.length > 0 && toggle && (
           <div className="replies">
-            {replies.map((reply) => (
+            {replies?.map((reply) => (
               <Comment
                 key={reply._id}
                 comment={reply}

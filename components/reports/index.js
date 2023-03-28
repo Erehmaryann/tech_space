@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @next/next/no-html-link-for-pages */
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
 import { ReportTable } from "./table/table";
 import {
   ActivityTableContainer,
@@ -32,6 +32,7 @@ import {
 
 const Report = () => {
   // const [option, setOption] = useState(options);
+  const chartRef = useRef(null);
   const [loading, setLoading] = useState(true);
   const [activeMembers, setActiveMembers] = useState([]);
   const [membersStat, setMembersStat] = useState([]);
@@ -75,6 +76,7 @@ const Report = () => {
     getMonthStatus;
   }, []);
   console.log(monthlyStat, "monthly stat");
+
   const columns = useMemo(
     () => [
       {
@@ -130,6 +132,17 @@ const Report = () => {
     []
   );
 
+  const handleDownload = () => {
+    const canvas = chartRef.current.chartInstance.canvas;
+    const dataUrl = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.download = "chart.png";
+    link.href = dataUrl;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <ReportContainer>
       <h2>Overview</h2>
@@ -137,7 +150,7 @@ const Report = () => {
         <div className="chart-table-container">
           <ChartContainer>
             <div className="first-div">
-              <button className="download-button">
+              <button onClick={handleDownload} className="download-button">
                 Dowload &nbsp;
                 <DownloadIcon />
               </button>
@@ -152,7 +165,7 @@ const Report = () => {
               <p>Monthly visits</p>
               <h6>40k Avg Visits</h6>
             </div>
-            <ReportChart />
+            <ReportChart ref={chartRef} />
           </ChartContainer>
           <TableContainer>
             <MemberHeader>
