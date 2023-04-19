@@ -16,6 +16,17 @@ export const SavedDataContainer = styled.main`
   }
 `;
 
+export const Active = styled.div`
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid lightgrey;
+  bottom: 0;
+  z-index: 10;
+  right: 0;
+`;
+
 export const HomeItemContainer = styled.section`
   margin: 25px 0;
   background: white;
@@ -32,6 +43,13 @@ export const SavedDataHeader = styled.div`
   height: 50px;
   justify-content: space-between;
   align-items: center;
+
+  .img-container {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    position: relative;
+  }
 `;
 
 export const SavedName = styled.div`

@@ -1,11 +1,29 @@
 import styled from "styled-components";
 
+export const Active = styled.div`
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid lightgrey;
+  bottom: 0;
+  z-index: 10;
+  right: 0;
+`;
 export const Div = styled.div`
   display: flex;
   margin-bottom: 10px;
 
   .comment-image-container {
     margin-right: 1.2rem;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    position: relative;
+
+    .user-comment-img {
+      border-radius: 50%;
+    }
   }
 
   .comment-right-part {

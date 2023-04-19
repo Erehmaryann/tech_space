@@ -11,6 +11,7 @@ import {
   SavedName,
   PostBody,
   BottomDiv,
+  Active,
 } from "./savedTopicStyles";
 
 const HomeContainer = ({ post, setClickedComment }) => {
@@ -53,27 +54,37 @@ const HomeContainer = ({ post, setClickedComment }) => {
     <HomeItemContainer unsave={unSave}>
       <div className="post-container">
         <SavedDataHeader>
-          <img
-            style={{
-              width: "50px",
-              height: "50px",
-              borderRadius: "50%",
-            }}
-            id={post?.user?._id}
-            src={
-              post?.user?.profileimg
-                ? post?.user?.profileimg
-                : "/assets/svg/sideDp.svg"
-            }
-            alt="profile-pix"
-          />
+          <div className="img-container">
+            <img
+              style={{
+                width: "50px",
+                height: "50px",
+                borderRadius: "50%",
+              }}
+              id={post?.topicId?.user?._id}
+              src={
+                post?.topicId?.user?.profileimg
+                  ? post?.topicId?.user?.profileimg
+                  : "/assets/svg/sideDp.svg"
+              }
+              alt="profile-pix"
+            />
+            <Active
+              style={{
+                background: `${
+                  post?.topicId?.user?.status === true ? "#56C568" : "#CF2A2A"
+                }`,
+              }}
+            />
+          </div>
+
           <SavedName className="name">
             <div>
               <h5
                 className="post-name-title"
                 style={{ textTransform: "capitalize" }}
               >
-                {post?.user?.fullname}
+                {post?.topicId?.user?.fullname}
               </h5>
               <p className="post-name-time">
                 <Moment fromNow ago>

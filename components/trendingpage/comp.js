@@ -12,6 +12,7 @@ import {
   TrendName,
   PostBody,
   BottomDiv,
+  Active,
 } from "./trendingTopicStyles";
 
 const HomeContainer = ({ post, setClickedComment }) => {
@@ -83,20 +84,29 @@ const HomeContainer = ({ post, setClickedComment }) => {
     <HomeItemContainer>
       <div className="post-container">
         <TrendDataHeader>
-          <img
-            style={{
-              width: "50px",
-              height: "50px",
-              borderRadius: "50%",
-            }}
-            id={post?.user?._id}
-            src={
-              post?.user?.profileimg
-                ? post?.user?.profileimg
-                : "/assets/svg/sideDp.svg"
-            }
-            alt="profile-pix"
-          />
+          <div className="img-container">
+            <img
+              style={{
+                width: "50px",
+                height: "50px",
+                borderRadius: "50%",
+              }}
+              id={post?.user?._id}
+              src={
+                post?.user?.profileimg
+                  ? post?.user?.profileimg
+                  : "/assets/svg/sideDp.svg"
+              }
+              alt="profile-pix"
+            />
+            <Active
+              style={{
+                background: `${
+                  post?.user?.status === true ? "#56C568" : "#CF2A2A"
+                }`,
+              }}
+            />
+          </div>
           <TrendName className="name">
             <div>
               <h5
