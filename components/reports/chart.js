@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import {
   BarChart,
   Bar,
@@ -12,70 +12,73 @@ import {
 } from "recharts";
 import { ChartStyles } from "./reportStyles";
 
-const data = [
-  {
-    name: "Jan",
-    pv: 10,
-    amt: 20,
-  },
-  {
-    name: "Feb",
-    pv: 19,
-    amt: 20,
-  },
-  {
-    name: "Mar",
-    pv: 32,
-    amt: 40,
-  },
-  {
-    name: "Apr",
-    pv: 32,
-    amt: 40,
-  },
-  {
-    name: "May",
-    pv: 28,
-    amt: 30,
-  },
-  {
-    name: "Jun",
-    pv: 55,
-    amt: 60,
-  },
-  {
-    name: "Jul",
-    pv: 48,
-    amt: 50,
-  },
-  {
-    name: "Aug",
-    pv: 69,
-    amt: 70,
-  },
-  {
-    name: "Sep",
-    pv: 55,
-    amt: 60,
-  },
-  {
-    name: "Oct",
-    pv: 61,
-    amt: 70,
-  },
-  {
-    name: "Nov",
-    pv: 50,
-    amt: 60,
-  },
-  {
-    name: "Dec",
-    pv: 39,
-    amt: 40,
-  },
-];
-
-export default class ReportChart extends PureComponent {
+export default class ReportChart extends Component {
+  constructor(props) {
+    super(props);
+    this.data = [
+      {
+        name: "Jan",
+        pv: this.props.data[0],
+        amt: this.props.data[0],
+      },
+      {
+        name: "Feb",
+        pv: this.props.data[1],
+        amt: this.props.data[1],
+      },
+      {
+        name: "Mar",
+        pv: this.props.data[2],
+        amt: this.props.data[2],
+        // amt: 40,
+      },
+      {
+        name: "Apr",
+        pv: this.props.data[3],
+        amt: this.props.data[3],
+      },
+      {
+        name: "May",
+        pv: this.props.data[4],
+        amt: this.props.data[4],
+      },
+      {
+        name: "Jun",
+        pv: this.props.data[5],
+        amt: this.props.data[5],
+      },
+      {
+        name: "Jul",
+        pv: this.props.data[6],
+        amt: this.props.data[6],
+      },
+      {
+        name: "Aug",
+        pv: this.props.data[7],
+        amt: this.props.data[7],
+      },
+      {
+        name: "Sep",
+        pv: this.props.data[8],
+        amt: this.props.data[8],
+      },
+      {
+        name: "Oct",
+        pv: this.props.data[9],
+        amt: this.props.data[9],
+      },
+      {
+        name: "Nov",
+        pv: this.props.data[10],
+        amt: this.props.data[10],
+      },
+      {
+        name: "Dec",
+        pv: this.props.data[11],
+        amt: this.props.data[11],
+      },
+    ];
+  }
   render() {
     return (
       <ChartStyles>
@@ -83,7 +86,7 @@ export default class ReportChart extends PureComponent {
           <BarChart
             width={672}
             height={291}
-            data={data}
+            data={this?.data}
             margin={{
               top: 5,
               right: 0,

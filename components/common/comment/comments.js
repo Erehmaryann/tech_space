@@ -26,7 +26,7 @@ const Comments = ({ currentUserId, commentUserto, topicId, postComments }) => {
       toast.error("something went wrong");
       return;
     }
-    setOriginalComments(response.message.comment);
+    setOriginalComments(response?.message?.comment);
     toast.success("comment created successfully");
   };
 
@@ -69,6 +69,7 @@ const Comments = ({ currentUserId, commentUserto, topicId, postComments }) => {
             // updateComment={updateComment}
             comment={comment}
             replies={comment?.reply}
+            setOriginalComments={setOriginalComments}
             // replies={[]}
             topicId={topicId}
             commentUserto={commentUserto}

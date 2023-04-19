@@ -20,6 +20,7 @@ const SideProfile = () => {
   const [totalNumOfMembers, setTotalNumOfMembers] = useState([]);
   const [totalNumOfTopics, setTotalNumOfTopics] = useState([]);
   const [getUserProfile, setGetUserProfile] = useState([]);
+  const [membersStat, setMembersStat] = useState([]);
   const [topContributors, setTopContributors] = useState([]);
 
   useEffect(() => {
@@ -83,7 +84,23 @@ const SideProfile = () => {
       });
 
     getTopContributors;
+
+    const getMembersStatus = makeApiCall(`/stats/users`)
+      .then((responseData) => {
+        setMembersStat(responseData?.message);
+        setLoading(false);
+      })
+      .catch((error) => {
+        toast.error(error);
+        setLoading(false);
+      });
+
+    getMembersStatus;
   }, [user?._id]);
+
+  const trueStatusLength = membersStat.filter(
+    (member) => member.status === true
+  ).length;
 
   const showModalHandler = () => {
     setShowFirstModal(true);
@@ -124,7 +141,6 @@ const SideProfile = () => {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        // height: "200px",
                       }}
                     >
                       <Spinner color="#409de0" />
@@ -192,7 +208,7 @@ const SideProfile = () => {
               <div className="num-of-mem">
                 <h1
                   style={{
-                    background: "#56C568",
+                    background: "lightgrey",
                   }}
                 >
                   {loading ? <Spinner color="#fff" /> : totalNumOfTopics ?? ""}
@@ -202,14 +218,10 @@ const SideProfile = () => {
               <div className="num-of-mem">
                 <h1
                   style={{
-                    background: "#EB5757",
+                    background: "#56C568",
                   }}
                 >
-                  {loading ? (
-                    <Spinner color="#fff" />
-                  ) : (
-                    topContributors.length ?? ""
-                  )}
+                  {loading ? <Spinner color="#fff" /> : trueStatusLength ?? ""}
                 </h1>
                 <h4>Active Members Count</h4>
               </div>

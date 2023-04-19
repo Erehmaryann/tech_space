@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @next/next/no-html-link-for-pages */
-import React, { useMemo, useState, useEffect, useRef } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { ReportTable } from "./table/table";
 import {
   ActivityTableContainer,
@@ -32,7 +32,7 @@ import {
 
 const Report = () => {
   // const [option, setOption] = useState(options);
-  const chartRef = useRef(null);
+  // const chartRef = useRef(null);
   const [loading, setLoading] = useState(true);
   const [activeMembers, setActiveMembers] = useState([]);
   const [membersStat, setMembersStat] = useState([]);
@@ -63,7 +63,7 @@ const Report = () => {
 
     getMembersStatus;
 
-    const getMonthStatus = makeApiCall(`/stats/users/${3}`)
+    const getMonthStatus = makeApiCall(`/stats/months`)
       .then((responseData) => {
         setMonthlyStat(responseData?.message);
         setLoading(false);
@@ -75,7 +75,8 @@ const Report = () => {
 
     getMonthStatus;
   }, []);
-  console.log(monthlyStat, "monthly stat");
+
+  const registeredUsers = monthlyStat.map((month) => month?.registeredUsers);
 
   const columns = useMemo(
     () => [
@@ -132,16 +133,16 @@ const Report = () => {
     []
   );
 
-  const handleDownload = () => {
-    const canvas = chartRef.current.chartInstance.canvas;
-    const dataUrl = canvas.toDataURL("image/png");
-    const link = document.createElement("a");
-    link.download = "chart.png";
-    link.href = dataUrl;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  // const handleDownload = () => {
+  //   const canvas = chartRef.current.chartInstance.canvas;
+  //   const dataUrl = canvas.toDataURL("image/png");
+  //   const link = document.createElement("a");
+  //   link.download = "chart.png";
+  //   link.href = dataUrl;
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
 
   return (
     <ReportContainer>
@@ -150,7 +151,7 @@ const Report = () => {
         <div className="chart-table-container">
           <ChartContainer>
             <div className="first-div">
-              <button onClick={handleDownload} className="download-button">
+              <button className="download-button">
                 Dowload &nbsp;
                 <DownloadIcon />
               </button>
@@ -165,7 +166,7 @@ const Report = () => {
               <p>Monthly visits</p>
               <h6>40k Avg Visits</h6>
             </div>
-            <ReportChart ref={chartRef} />
+            <ReportChart data={registeredUsers && registeredUsers} />
           </ChartContainer>
           <TableContainer>
             <MemberHeader>

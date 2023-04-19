@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
-import { Div } from "./commentStyles";
+import { Div, Active } from "./commentStyles";
 import CommentForm from "./commentForm";
 import { toast } from "react-hot-toast";
 // import { updateComment } from "./api";
@@ -18,6 +18,7 @@ const Comment = ({
   // deleteComment,
   activeComment,
   setActiveComment,
+  setOriginalComments,
   // parentId = null,
 }) => {
   // const fiveMinutes = 300000;
@@ -49,7 +50,9 @@ const Comment = ({
       toast.error("something went wrong");
       return;
     }
-    toast.success(response.message);
+    toast.success(response?.message);
+    setOriginalComments(response?.comment?.comment);
+    setToggle(true);
   };
 
   return (
@@ -61,11 +64,18 @@ const Comment = ({
               ? comment?.from?.profileimg
               : "/assets/svg/profilepix.svg"
           }
-          width={"28px"}
-          height={"28px"}
+          width={"30px"}
+          height={"30px"}
           alt="img"
           loading="lazy"
-          style={{ borderRadius: "50%" }}
+          className="user-comment-img"
+        />
+        <Active
+          style={{
+            background: `${
+              comment?.from?.status === true ? "#56C568" : "#CF2A2A"
+            }`,
+          }}
         />
       </div>
       <div className="comment-right-part">

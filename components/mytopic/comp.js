@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from "react";
-import Popup from "../popup/popup";
 import Link from "next/link";
 import Moment from "react-moment";
 import { makeApiCall } from "../../lib/api";
@@ -12,38 +11,33 @@ import {
   PostName,
   PostBody,
   BottomDiv,
-  Active,
-} from "./postsDataStyles";
-
+} from "./mytopicStyles";
 const HomeContainer = ({ post, setClickedComment }) => {
   const [clicked, setClicked] = useState("");
-  const [showPopup, setShowPopup] = useState(false);
   const [liked, setLiked] = useState(false);
   const [likedId, setLikedId] = useState(null);
-  const [saved, setSaved] = useState(false);
-  const [savedStatus, setSavedStatus] = useState(null);
 
-  const getBookMark = async (item) => {
-    makeApiCall(`/checkBookMark/${item}`)
-      .then((responseData) => {
-        if (responseData.message === true) {
-          setClicked(post?._id);
-          setSavedStatus(responseData.message);
-          return;
-        }
-        if (responseData.message === false) {
-          setSavedStatus(responseData.message);
-          return;
-        }
-      })
-      .catch((error) => {
-        toast.error(error);
-      });
-  };
+  // const getBookMark = async (item) => {
+  //   makeApiCall(`/checkBookMark/${item}`)
+  //     .then((responseData) => {
+  //       if (responseData.message === true) {
+  //         setClicked(post?._id);
+  //         setSavedStatus(responseData.message);
+  //         return;
+  //       }
+  //       if (responseData.message === false) {
+  //         setSavedStatus(responseData.message);
+  //         return;
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       toast.error(error);
+  //     });
+  // };
 
-  useEffect(() => {
-    getBookMark(post?._id);
-  }, [post?._id]);
+  // useEffect(() => {
+  //   getBookMark(post?._id);
+  // }, [post?._id]);
 
   const handleSubmitEmoji = async (item) => {
     const response = await makeApiCall("/reaction", "PATCH", {
@@ -58,55 +52,46 @@ const HomeContainer = ({ post, setClickedComment }) => {
     setLikedId(item);
   };
 
-  const handleSavePost = async (item) => {
-    setShowPopup(true);
-    setTimeout(() => {
-      setShowPopup(false);
-    }, 5000);
-    const response = await makeApiCall("/savePost", "POST", {
-      topicId: item,
-    });
-    if (response.message === "saved") {
-      setClicked(item);
-      setSaved(true);
-      toast.success(response.message);
-      return;
-    }
-    if (response.message === "unsave") {
-      setSaved(false);
-      setClicked("");
-      toast.success(response.message);
-      return;
-    }
-  };
+  // const handleSavePost = async (item) => {
+  //   setShowPopup(true);
+  //   setTimeout(() => {
+  //     setShowPopup(false);
+  //   }, 5000);
+  //   const response = await makeApiCall("/savePost", "POST", {
+  //     topicId: item,
+  //   });
+  //   if (response.message === "saved") {
+  //     setClicked(item);
+  //     setSaved(true);
+  //     toast.success(response.message);
+  //     return;
+  //   }
+  //   if (response.message === "unsave") {
+  //     setSaved(false);
+  //     setClicked("");
+  //     toast.success(response.message);
+  //     return;
+  //   }
+  // };
 
   return (
     <HomeItemContainer>
       <div className="post-container">
         <PostsDataHeader>
-          <div className="img-container">
-            <img
-              style={{
-                width: "50px",
-                height: "50px",
-                borderRadius: "50%",
-              }}
-              id={post?.user?._id}
-              src={
-                post?.user?.profileimg
-                  ? post?.user?.profileimg
-                  : "/assets/svg/sideDp.svg"
-              }
-              alt="profile-pix"
-            />
-            <Active
-              style={{
-                background: `${
-                  post?.user?.status === true ? "#56C568" : "#CF2A2A"
-                }`,
-              }}
-            />
-          </div>
+          <img
+            style={{
+              width: "50px",
+              height: "50px",
+              borderRadius: "50%",
+            }}
+            id={post?.user?._id}
+            src={
+              post?.user?.profileimg
+                ? post?.user?.profileimg
+                : "/assets/svg/sideDp.svg"
+            }
+            alt="profile-pix"
+          />
           <PostName className="name">
             <div>
               <h5
@@ -122,27 +107,6 @@ const HomeContainer = ({ post, setClickedComment }) => {
                 &nbsp; &nbsp;
                 <span>{post?.category}</span>
               </p>
-            </div>
-            <div
-              className="save-icon"
-              onClick={() => handleSavePost(post?._id)}
-            >
-              {(clicked === post?._id && savedStatus === true) ||
-              saved === true ? (
-                <img src="/assets/svg/savedTopic.svg" alt="save-icon" />
-              ) : (
-                <img src="/assets/svg/saveicon.svg" alt="save-icon" />
-              )}
-
-              {clicked === post?._id && showPopup && (
-                <Popup
-                  key={post?._id}
-                  text={
-                    saved ? "Topic has been saved" : "Topic has been unsaved"
-                  }
-                  closePopup={clicked !== post?._id}
-                />
-              )}
             </div>
           </PostName>
         </PostsDataHeader>
